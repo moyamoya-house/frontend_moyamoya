@@ -1,17 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Signup from './components/signup';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/signup" element={<Signup></Signup>} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
