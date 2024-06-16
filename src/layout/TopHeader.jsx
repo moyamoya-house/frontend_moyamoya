@@ -1,4 +1,3 @@
-'use client';
 import {
     Button,
     List,
@@ -8,6 +7,7 @@ import {
     DrawerBody,
     useDisclosure,
     Box,
+    Image,
 } from "@yamada-ui/react";
 
 
@@ -16,7 +16,9 @@ const TopHeader = () => {
     return(
         <>
             <Box w='100%' h={100} bg="gray">
-            <Button onClick={onOpen} w={50} h={50} borderRadius={100} float={"right"} mt={25}>icon</Button>
+            
+            <Image src="download.jpg" alt="pot" h={100}></Image>
+            <Button onClick={onOpen} w={50} h={50} borderRadius={100} float={"right"} mt={25} border="none">icon</Button>
 
             <Drawer isOpen={isOpen} onClose={onClose} placement="right" w='500px' h="auto" textAlign='right' border='1px solid #000' bg='#fff'>
                 <DrawerHeader mt={50}>username</DrawerHeader>
@@ -25,7 +27,7 @@ const TopHeader = () => {
                     <List textAlign="right" mt={50}>
                         <ListItem fontSize={50} m='20, 20'>My page</ListItem>
                         <ListItem fontSize={50} m='20, 20'>投稿内容</ListItem>
-                        <ListItem fontSize={50} m='20, 20'>愚痴の壺</ListItem>
+                        <ListItem fontSize={50} m='20, 20'>PotCom</ListItem>
                         <ListItem fontSize={50} m='20, 20'>メッセージ</ListItem>
                     </List>
                 </DrawerBody>
