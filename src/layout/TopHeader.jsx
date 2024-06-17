@@ -8,6 +8,7 @@ import {
     useDisclosure,
     Box,
     Image,
+    Link,
 } from "@yamada-ui/react";
 
 
@@ -16,8 +17,9 @@ const TopHeader = () => {
     return(
         <>
             <Box w='100%' h={100} bg="gray">
-            
-            <Image src="download.jpg" alt="pot" h={100}></Image>
+            <Link href="/">
+                <Image src="PotCom_logo_typography.png" alt="pot" h={100}></Image>
+            </Link>
             <Button onClick={onOpen} w={50} h={50} borderRadius={100} float={"right"} mt={25} border="none">icon</Button>
 
             <Drawer isOpen={isOpen} onClose={onClose} placement="right" w='500px' h="auto" textAlign='right' border='1px solid #000' bg='#fff'>
