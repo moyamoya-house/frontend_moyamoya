@@ -21,20 +21,21 @@ const Signup = () => {
     };
 
     return (
-        <Box w={500} h={500} m="0 auto" border='1px solid #000' mt={100} boxShadow='10px 10px 5px gray'>
+        <Box w={500} h={500} m="0 auto" border='1px solid #000' mt={50} boxShadow='10px 10px 5px gray'>
         <form onSubmit={handleSignup}>
             {/* タイトル */}
             <Text textAlign="center" fontSize='1.5rem' fontWeight='bold'>signup</Text>
             {/* username */}
-            <Box m='30px'>
+            <Box m='40px'>
             <Input
                 type='text'
                 placeholder='Username'
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 w='90%'
-                size='md'
-                variant='filled'
+                padding={10}
+                borderRadius={5}
+                maxLength={20}
             />
             </Box>
             {/* パスワード */}
@@ -45,6 +46,8 @@ const Signup = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 w='90%'
+                padding={10}
+                borderRadius={5}
             />
             </Box>
             {/* Eメール */}
@@ -55,6 +58,8 @@ const Signup = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 w='90%'
+                padding={10}
+                borderRadius={5}
             />
             </Box>
             {/* 画像 */}
@@ -68,12 +73,9 @@ const Signup = () => {
             </Box>
             {/* 送信ボタン */}
             <Center>
-                <Button w='90%' h={50} m="20px auto" colorScheme="secondary" border='none'>sign up</Button>
+                <Button type='submit' w='90%' h={50} m="20px auto" colorScheme="secondary" border='none' bg='lightskyblue' borderRadius={10}>新規登録</Button>
             </Center>
-            <Button m="20px" colorScheme="primary" variant="outline" bg='white'>
-            Outline
-            </Button>
-            </form>
+        </form>
         </Box>
     )
 };

@@ -16,13 +16,17 @@ const TopHeader = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     return(
         <>
-            <Box w='100%' h={100} bg="gray">
-            <Link href="/">
-                <Image src="PotCom_logo_typography.png" alt="pot" h={100}></Image>
-            </Link>
-            <Button onClick={onOpen} w={50} h={50} borderRadius={100} float={"right"} mt={25} border="none">icon</Button>
-
-            <Drawer isOpen={isOpen} onClose={onClose} placement="right" w='500px' h="auto" textAlign='right' border='1px solid #000' bg='#fff'>
+            <Box w='100%' h={100} bg="gray" display="flex" justifyContent="space-between">
+                <Link href="/">
+                    <Image src="PotCom_logo_typography.png" alt="pot" h={100}></Image>
+                </Link>
+                <Box display='flex' mt={25}>
+                    <Link href="/signup" mr={20} mt={10} textDecoration={"none"} >
+                    新規登録
+                    </Link>
+                    <Button onClick={onOpen} w={50} h={50} borderRadius={100} float={"right"} border="none">icon</Button>
+                </Box>
+            <Drawer isOpen={isOpen} onClose={onClose} placement="right" w='350px' h="auto" textAlign='right' border='1px solid #000' bg='#fff'>
                 <DrawerHeader mt={50}>username</DrawerHeader>
 
                 <DrawerBody textAlign="right">
