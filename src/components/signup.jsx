@@ -22,7 +22,7 @@ const Signup = () => {
         console.log(data);
 
         if (response.ok) {
-            history.push("/login");
+            history("/login");
         }
     };
 

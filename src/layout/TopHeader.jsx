@@ -17,7 +17,7 @@ const TopHeader = () => {
     return(
         <>
             <Box w='100%' h={100} bg="gray" display="flex" justifyContent="space-between">
-                <Link href="/">
+                <Link href="/top">
                     <Image src="PotCom_logo_typography.png" alt="pot" h={100}></Image>
                 </Link>
                 <Box display='flex' mt={25}>

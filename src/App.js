@@ -4,6 +4,7 @@ import Signup from './components/signup';
 import TopHeader from './layout/TopHeader';
 import Footer from './layout/Footer';
 import Login from './components/login';
+import Top from './top/Top';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route path="/login" element={<Login></Login>} />
           <Route path="/signup" element={<Signup></Signup>} />signup
           <Route path="*" element={<Navigate to="/login" />} />
+          <Route path='/top' element={<Top></Top>} />
         </Routes>
     </Router>
     <Footer></Footer>
