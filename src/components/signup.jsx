@@ -1,11 +1,13 @@
 import React,{ useState } from 'react';
 import { Box ,Input ,Button, Text, Center } from '@yamada-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [profimage, setProfimage] = useState('');
+    const history = useNavigate();
 
     const handleSignup = async (e) => {
         e.preventDefault();
@@ -18,6 +20,10 @@ const Signup = () => {
         });
         const data = await response.json();
         console.log(data);
+
+        if (response.ok) {
+            history.push("/login");
+        }
     };
 
     return (

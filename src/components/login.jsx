@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Box, Text, Input, Center, Button } from "@yamada-ui/react";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const redirect = useNavigate();
 
     const hadlelogin = async (e) => {
         e.preventDefault();
@@ -16,11 +18,14 @@ const Login = () => {
         });
         const data = await response.json();
         console.log(data);
+        if (response.ok) {
+            redirect.push('/home');
+        }
     };
 
     return (
         <>
-            <Box>
+            <Box w={500} h={400} m="0px auto 20px auto" border='1px solid #000' mt={50} boxShadow='10px 10px 5px gray'>
                 <form onSubmit={hadlelogin}>
                     {/* title */}
                     <Text textAlign='center' fontSize='1.5rem' fontWeight='bold'>login</Text>
@@ -38,7 +43,7 @@ const Login = () => {
                         />
                     </Box>
                     {/* パスワード */}
-                    <Box>
+                    <Box m={40}>
                         <Input
                             type="password"
                             placeholder="Passwordを入力"
@@ -51,7 +56,7 @@ const Login = () => {
                     </Box>
                     {/* loginbutton */}
                     <Center>
-                        <Button type="submit" w='90%' h={50} m='20px auto' colorScheme="secondary" border='none' bg='lightskyblue' borderRadius={10}>ログイン</Button>
+                        <Button type="submit" w='90%' h={50} m='40px auto' colorScheme="secondary" border='none' bg='lightskyblue' borderRadius={10}>ログイン</Button>
                     </Center>
                 </form>
             </Box>
