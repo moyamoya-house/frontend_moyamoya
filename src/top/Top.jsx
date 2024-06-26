@@ -1,4 +1,4 @@
-import { Text, Image } from '@yamada-ui/react';
+import { Text, Box } from '@yamada-ui/react';
 import { useEffect, useState } from 'react';
 
 const Top = () => {
@@ -25,10 +25,14 @@ const Top = () => {
     return (
         <>            
         {useData ? (
-            <>
+            <Box w={1500} maxWidth='80%' h={1000}>
                 <Text>Hello {useData.username}</Text>
-                <Image src={useData.profimage}></Image>
-            </>
+                <div>
+                    <span>
+                        scroll
+                    </span>
+                </div>
+            </Box>
         ) : (
             <Text>Loading...</Text>
         )}
