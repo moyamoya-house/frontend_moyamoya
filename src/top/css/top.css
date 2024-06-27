@@ -1,0 +1,58 @@
+.scrolldown {
+    background: linear-gradient(to bottom right, #fff05f, pink);
+    position: absolute;
+    bottom: 1%;
+    right: 50%;
+    animation: arrowmove 1s ease-in-out infinite;
+}
+
+@keyframes arrowmove {
+    0%{bottom:1%;}
+    50%{bottom: 3%;}
+    100%{bottom: 1%;}
+}
+
+.scrolldown span {
+    position: absolute;
+    left: -20px;
+    bottom: 10px;
+    /* テキストの描写 */
+    color: #333;
+    font-size: 0.7rem;
+    letter-spacing: 0.05rem;
+
+    /* 縦書き設定 */
+    -ms-writing-mode: tb-rl;
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+}
+
+
+.scrolldown::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: -6px;
+
+    /* 矢印の形状 */
+    width: 1px;
+    height: 20px;
+    background: #444;
+    transform: skewX(-31deg);
+}
+
+.scrolldown::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    /* 矢印の形状 */
+    width: 1px;
+    height: 50px;
+    background: #000;
+}
+
+.gradetion {
+    background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+    height: 1000px;
+}
