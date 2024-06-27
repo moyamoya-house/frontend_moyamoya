@@ -23,7 +23,6 @@ const TopHeader = () => {
                 </Link>
                 <Box display='flex' mt={25}>
                     <Button onClick={onOpen} w={50} h={50} borderRadius={100} float={"right"} border="none" mr={40}>icon</Button>
-                    <Link href="/logout">ログアウト</Link>
                 </Box>
             <Drawer isOpen={isOpen} onClose={onClose} placement="right" w='350px' h="auto" textAlign='right' border='1px solid #000' bg='#fff'>
                 <DrawerHeader mt={50}>username</DrawerHeader>

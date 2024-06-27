@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
-import Signup from './components/signup';
+import Signup from './login/signup';
 import TopHeader from './layout/TopHeader';
 import Footer from './layout/Footer';
-import Login from './components/login';
+import Login from './login/login';
 import Top from './top/Top';
 
 const App = () => {

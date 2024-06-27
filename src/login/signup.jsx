@@ -48,7 +48,7 @@ const Signup = () => {
     };
 
     return (
-        <Box w={500} h={500} m="0 auto" border='1px solid #000' mt={50} boxShadow='10px 10px 5px gray'>
+        <Box w={500} h={500} m="0px auto 20px" border='1px solid #000' mt={50} boxShadow='10px 10px 5px gray'>
         <form onSubmit={handleSignup}>
             {/* タイトル */}
             <Text textAlign="center" fontSize='1.5rem' fontWeight='bold'>signup</Text>

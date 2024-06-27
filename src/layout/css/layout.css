@@ -1,3 +1,10 @@
 .header {
-    background: linear-gradient( #d64705,#929191,#52e1fe );
+    background: linear-gradient( #FC4C02,#A48A79,#4CC8EF );
+}
+
+.footer {
+    width: 100%;
+    height: 100px;
+    bottom: 0;
+    background: linear-gradient( #FC4C02,#A48A79,#4CC8EF );
 }

@@ -1,9 +1,10 @@
 import { Box, Center, Text } from "@yamada-ui/react"
+import './css/layout.css'
 
 const Footer = () => {
     return(
         <>
-            <Box w='100%' h={100} bg='gray' bottom={0}>
+            <Box className="footer">
                 <Center>
                     <Text color='#fff' mt={50}>2024 &copy; Copyright YamamotoTatsuya. All rights reserved.</Text>
                 </Center>
