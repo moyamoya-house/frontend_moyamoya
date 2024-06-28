@@ -5,6 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* font 設定 */
+  font-family: "Kaisei Decol", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 code {

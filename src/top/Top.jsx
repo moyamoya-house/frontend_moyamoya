@@ -1,4 +1,4 @@
-import { Text, Box, Image } from '@yamada-ui/react';
+import { Text, Box, Center } from '@yamada-ui/react';
 import { useEffect, useState } from 'react';
 import './css/top.css';
 
@@ -26,12 +26,12 @@ const Top = () => {
     return (
         <>            
         {useData ? (
-            <Box w={1500} maxWidth='80%' h={'auto'} m='0 auto'>
+            <Box className='top'>
                 <Box className='gradetion'>
-                    <Text mt={0}>Hello {useData.username}</Text>
-                    <Image src={`http://127.0.0.1:5000${useData.usericon}`} alt='prof_image' />
 
-                    aaaa
+                    <Center>
+                        <Text className='potcom'>PotCom</Text>
+                    </Center>
                 </Box>
                 <div className='scrolldown'>
                     <span>

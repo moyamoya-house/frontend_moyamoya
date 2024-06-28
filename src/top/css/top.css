@@ -1,3 +1,10 @@
+.top {
+    width: 1500px;
+    max-width: 80%;
+    height: auto;
+    margin: 100px auto 0 auto;
+}
+
 .scrolldown {
     background: linear-gradient(to bottom right, #fff05f, pink);
     position: absolute;
@@ -54,5 +61,30 @@
 
 .gradetion {
     background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
-    height: 1000px;
+    height: 500px;
 }
+
+.potcom {
+    font-size: 120px;
+    text-align: center;
+    animation: sineWave 3s ease-in-out infinite;
+}
+
+
+@keyframes sineWave {
+    0% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(0);
+    }
+    75% {
+      transform: translateY(10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
