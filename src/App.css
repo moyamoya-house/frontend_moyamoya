@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: teal;
+  color: white;
+  padding: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s, visibility 0.4s;
+}
+
+.to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+

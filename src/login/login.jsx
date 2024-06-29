@@ -27,7 +27,7 @@ const Login = () => {
 
     return (
         <>
-            <Box w={500} h='auto' m="0px auto 20px auto" border='1px solid #000' mt={50} boxShadow='10px 10px 5px gray'>
+            <Box w={500} h='auto' m="0px auto 20px auto" border='1px solid #000' mt={120} boxShadow='10px 10px 5px gray'>
                 <form onSubmit={hadlelogin}>
                     {/* title */}
                     <Text textAlign='center' fontSize='1.5rem' fontWeight='bold'>login</Text>
@@ -62,7 +62,7 @@ const Login = () => {
                     </Center>
                     {/* signupbutton */}
                     <Center>
-                        <Link href='/signup' textDecoration={"none"} textColor={"black"} w='80%' h={50} bg='lightskyblue' borderRadius={10} m='20px auto' textAlign='center'>新規登録へ</Link>
+                        <Link href='/signup' textDecoration={"none"} textColor={"black"} w='80%' h={50} bg='lightskyblue' borderRadius={10} m='20px auto' textAlign='center' display={"inline-block"}>新規登録へ</Link>
                     </Center>
                 </form>
             </Box>

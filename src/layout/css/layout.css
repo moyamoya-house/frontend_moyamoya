@@ -5,7 +5,7 @@
     justify-content: space-between;
     position: fixed;
     z-index: 10;
-    margin-top: -100px;
+    top: 0;
     background: linear-gradient( #FC4C02,#A48A79,#4CC8EF );
 }
 

@@ -1,5 +1,9 @@
 import { Text, Box, Center } from '@yamada-ui/react';
 import { useEffect, useState } from 'react';
+import Baloon from './component/baloon';
+import BaloonTopRight from './component/baloon-topright';
+import BaloonTopLeft from './component/baloon-topleft';
+import BaloonBottomRight from './component/baloon-bottomright';
 import './css/top.css';
 
 const Top = () => {
@@ -28,10 +32,13 @@ const Top = () => {
         {useData ? (
             <Box className='top'>
                 <Box className='gradetion'>
-
+                    <Baloon></Baloon>
                     <Center>
                         <Text className='potcom'>PotCom</Text>
                     </Center>
+                    <BaloonTopLeft></BaloonTopLeft>
+                    <BaloonTopRight></BaloonTopRight>
+                    <BaloonBottomRight></BaloonBottomRight>
                 </Box>
                 <div className='scrolldown'>
                     <span>
