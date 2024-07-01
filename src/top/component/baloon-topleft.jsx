@@ -4,8 +4,8 @@ import '../css/baloon.css'
 const BaloonTopLeft = () => {
     return (
         <>
-            <Box className="baloon">
-                最近ストレスたまってるな｡｡｡
+            <Box className="baloon baloontopleft">
+                ストレス発散できる何かないかな
             </Box>
         </>
     )

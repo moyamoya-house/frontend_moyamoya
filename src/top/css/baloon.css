@@ -8,7 +8,6 @@
     margin-top: 10px;
 }
 
-
 /* big boal */
 .baloon::before {
     content: '';
@@ -17,7 +16,6 @@
     border-radius: 50%;
     background-color: #ade0ff;
     right: -35px;
-    bottom: 5px;
     width: 30px;
     height: 30px;
 }
@@ -32,4 +30,52 @@
     right: -55px;
     width: 15px;
     height: 15px;
+}
+
+/* 右上に配置 */
+.baloontopright {
+    top: 100px;
+    right: 140px;
+}
+
+.baloontopright::before {
+    left: -35px;
+    bottom: 5px;
+}
+
+.baloontopright::after {
+    left: -55px;
+    bottom: 5px;
+}
+
+/* 左下に配置 */
+.baloontopleft {
+    bottom: 10px;
+    left: 130px;
+}
+
+.baloontopleft::before {
+    right: -35px;
+    top: 5px;
+}
+
+.baloontopleft::after {
+    right: -55px;
+    top: 5px;
+}
+
+/* 右下に配置 */
+.baloonbottomright {
+    bottom: 10px;
+    right: 140px;
+}
+
+.baloonbottomright::before {
+    left: -35px;
+    top: 5px;
+}
+
+.baloonbottomright::after {
+    left: -55px;
+    top: 5px;
 }

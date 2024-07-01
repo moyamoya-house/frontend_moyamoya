@@ -45,6 +45,12 @@ const Top = () => {
                         scroll
                     </span>
                 </div>
+
+                <Box m='0 auto'>
+                    <Center>
+                        <Text fontSize='30px'>皆さん、日頃のストレスや思っていること発散していますか？</Text>
+                    </Center>
+                </Box>
             </Box>
         ) : (
             <Text>Loading...</Text>
