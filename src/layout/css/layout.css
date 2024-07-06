@@ -9,6 +9,10 @@
     background: linear-gradient( #FC4C02,#A48A79,#4CC8EF );
 }
 
+.header .username {
+    text-align: right;
+}
+
 .footer {
     width: 100%;
     height: 100px;

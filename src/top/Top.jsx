@@ -1,4 +1,4 @@
-import { Text, Box, Center } from '@yamada-ui/react';
+import { Text, Box, Center, Image } from '@yamada-ui/react';
 import { useEffect, useState } from 'react';
 import Baloon from './component/baloon';
 import BaloonTopRight from './component/baloon-topright';
@@ -48,6 +48,7 @@ const Top = () => {
 
                 <Box m='0 auto' mt={50}>
                     <Center>
+                        <Image src={`http://127.0.0.1:5000/prof_image/${useData.prof_image}`} alt={`${useData.prof_image}`} />
                         <Text fontSize='30px'>皆さん、日頃のストレスや思っていること発散していますか？</Text>
                     </Center>
                 </Box>

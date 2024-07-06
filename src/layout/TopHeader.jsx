@@ -24,7 +24,7 @@ const TopHeader = () => {
             const response = await fetch('http://127.0.0.1:5000/mypage',{
                 method: 'GET',
                 headers: {
-                    'Authrization': `Bearer ${token}`,
+                    'Authorization': `Bearer ${token}`,
                 }
             });
             if (response.ok) {
@@ -42,10 +42,16 @@ const TopHeader = () => {
                     <Image src="PotCom_logo_typography.png" alt="pot" h={100}></Image>
                 </Link>
                 <Box display='flex' mt={25}>
-                    <Button onClick={onOpen} w={50} h={50} borderRadius={100} float={"right"} border="none" mr={40}>icon</Button>
+                    <Button onClick={onOpen} w={50} h={50} borderRadius={100} float={"right"} border="none" mr={40}>
+                        <Image src={`http://127.0.0.1:5000/prof_image/${userData.prof_image}`} alt="prof_image"></Image>
+                    </Button>
                 </Box>
             <Drawer isOpen={isOpen} onClose={onClose} placement="right" w='350px' h="auto" textAlign='right' border='1px solid #000' bg='#fff' zIndex={20}>
-                <DrawerHeader mt={50}>username</DrawerHeader>
+                <DrawerHeader mt={50} textAlign="right">
+                    <h1 className="username">
+                    {userData.username}
+                    </h1>
+                </DrawerHeader>
 
                 <DrawerBody textAlign="right">
                     <List textAlign="right" mt={50}>
