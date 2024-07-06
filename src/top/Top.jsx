@@ -46,7 +46,7 @@ const Top = () => {
                     </span>
                 </div>
 
-                <Box m='0 auto'>
+                <Box m='0 auto' mt={50}>
                     <Center>
                         <Text fontSize='30px'>皆さん、日頃のストレスや思っていること発散していますか？</Text>
                     </Center>

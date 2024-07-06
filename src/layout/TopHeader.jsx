@@ -11,12 +11,32 @@ import {
     Link,
 } from "@yamada-ui/react";
 import './css/layout.css'
+import { useEffect, useState } from "react";
 
 
 const TopHeader = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [userData, setUserData] = useState(null);
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const token = localStorage.getItem('token');
+            const response = await fetch('http://127.0.0.1:5000/mypage',{
+                method: 'GET',
+                headers: {
+                    'Authrization': `Bearer ${token}`,
+                }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setUserData(data);
+            }
+        };
+        fetchUserData();
+    }, []);
     return(
         <>
+        {userData ? (
             <Box className="header">
                 <Link href="/top">
                     <Image src="PotCom_logo_typography.png" alt="pot" h={100}></Image>
@@ -37,7 +57,14 @@ const TopHeader = () => {
                 </DrawerBody>
             </Drawer>
             </Box>
-
+        ) : (
+            
+            <Box className="header">
+                <Link href="/top">
+                    <Image src="PotCom_logo_typography.png" alt="pot" h={100}></Image>
+                </Link>
+            </Box>
+        )}
         </>
     );
 }
