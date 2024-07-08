@@ -5,6 +5,7 @@ import TopHeader from './layout/TopHeader';
 import Footer from './layout/Footer';
 import Login from './login/login';
 import Top from './top/Top';
+import Mypage from './mypage/Mypage';
 import './App.css';
 
 const App = () => {
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="/signup" element={<Signup></Signup>} />signup
           <Route path="*" element={<Navigate to="/login" />} />
           <Route path='/top' element={<Top></Top>} />
+          <Route path='/mypage' element={<Mypage></Mypage>} />
         </Routes>
     </Router>
     <Footer></Footer>
