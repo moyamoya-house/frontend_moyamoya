@@ -22,12 +22,20 @@ const Mypage  = () => {
     }, []);
     return (
         <>
-            <Box w={1200} h={600} >
+        {useData ? (
+            <>
+            <Box w={1200} h={300} mt={100}>
                 <Image src={`http://127.0.0.1:5000/second_image/${useData.second_image}`} alt="big image"/>
             </Box>
-            <Box w={300} h={300} borderRadius={100} mt={300}>
-                <Image src={`http://127.0.0.1:5000/prof_image/${useData.prof_image}`} alt="prof image"/>
+            <Box>
+                <Image w={200} h={200} mt={-100} ml={200} borderRadius={100} src={`http://127.0.0.1:5000/prof_image/${useData.prof_image}`} alt="prof image"/>
             </Box>
+            </>
+        ) : (
+            <Box>
+                loading
+            </Box>
+        )}
         </>
     );
 }
