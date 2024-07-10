@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box,Image } from "@yamada-ui/react";
+import './css/mypage.css'
 
 const Mypage  = () => {
     const [useData, setUseData] = useState(null);
@@ -23,14 +24,15 @@ const Mypage  = () => {
     return (
         <>
         {useData ? (
-            <>
-            <Box w={1200} h={300} mt={100}>
-                <Image src={`http://127.0.0.1:5000/second_image/${useData.second_image}`} alt="big image"/>
+            <Box w={1500} maxWidth='80%' m='0 auto' mt={100}>
+                <Box h={300} border='1px solid #000'>
+                    <Image src={`http://127.0.0.1:5000/second_image/${useData.second_image}`} alt="big image"/>
+                </Box>
+                <Box>
+                    <Image w={150} h={150} mt={-80} ml={100} borderRadius={100} src={`http://127.0.0.1:5000/prof_image/${useData.prof_image}`} alt="prof image"/>
+                </Box>
+                <h1 className="title">{useData.name}</h1>
             </Box>
-            <Box>
-                <Image w={200} h={200} mt={-100} ml={200} borderRadius={100} src={`http://127.0.0.1:5000/prof_image/${useData.prof_image}`} alt="prof image"/>
-            </Box>
-            </>
         ) : (
             <Box>
                 loading
