@@ -26,7 +26,8 @@ const Mypage  = () => {
         {useData ? (
             <Box w={1500} maxWidth='80%' m='0 auto' mt={100}>
                 <Box h={300} border='1px solid #000'>
-                    <Image src={`http://127.0.0.1:5000/second_image/${useData.second_image}`} alt="big image"/>
+                    {/* <Image src={`http://127.0.0.1:5000/second_image/${useData.second_image}`} alt="big image"/> */}
+                    <Image src="sample01.jpg" alt="sample" width='100%' h='auto' />
                 </Box>
                 <Box>
                     <Image w={150} h={150} mt={-80} ml={100} borderRadius={100} src={`http://127.0.0.1:5000/prof_image/${useData.prof_image}`} alt="prof image"/>

@@ -49,7 +49,7 @@ const Signup = () => {
 
     return (
         <Box w={500} h={500} m="0px auto 20px" border='1px solid #000' mt={120} boxShadow='10px 10px 5px gray'>
-        <form onSubmit={handleSignup}>
+        <form onSubmit={handleSignup} encType='multipart/form-data'>
             {/* タイトル */}
             <Text textAlign="center" fontSize='1.5rem' fontWeight='bold'>signup</Text>
             {/* username */}
@@ -109,7 +109,7 @@ const Signup = () => {
                 </Flex>
             {/* 送信ボタン */}
             <Center>
-                <Button type='submit' w='90%' h={50} m="20px auto" colorScheme="secondary" border='none' bg='lightskyblue' borderRadius={10}>新規登録</Button>
+                <Button type='submit' w='85%' h={50} m="20px auto" colorScheme="secondary" border='none' bg='lightskyblue' borderRadius={10}>新規登録</Button>
             </Center>
         </form>
         </Box>
