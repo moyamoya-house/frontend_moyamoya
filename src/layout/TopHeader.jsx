@@ -53,6 +53,8 @@ const TopHeader = () => {
               <Image
                 src={`http://127.0.0.1:5000/prof_image/${userData.prof_image}`}
                 alt="prof_image"
+                w={50}
+                h={50}
               ></Image>
             </Button>
           </Box>
@@ -60,7 +62,7 @@ const TopHeader = () => {
             isOpen={isOpen}
             onClose={onClose}
             placement="right"
-            w="350px"
+            w="200px"
             h="auto"
             textAlign="right"
             border="1px solid #000"
@@ -73,18 +75,18 @@ const TopHeader = () => {
 
             <DrawerBody textAlign="right">
               <List textAlign="right" mt={50}>
-                <ListItem fontSize={50} m="20, 20">
+                <ListItem fontSize={25} m="20, 20">
                   <Link href="/mypage" color={"black"} textDecoration={"none"}>
                     My page
                   </Link>
                 </ListItem>
-                <ListItem fontSize={50} m="20, 20">
+                <ListItem fontSize={25} m="20, 20">
                   投稿内容
                 </ListItem>
-                <ListItem fontSize={50} m="20, 20">
+                <ListItem fontSize={25} m="20, 20">
                   PotCom
                 </ListItem>
-                <ListItem fontSize={50} m="20, 20">
+                <ListItem fontSize={25} m="20, 20">
                   メッセージ
                 </ListItem>
               </List>
