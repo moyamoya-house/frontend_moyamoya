@@ -13,6 +13,7 @@ import {
 import "./css/layout.css";
 import { useEffect, useState } from "react";
 
+
 const TopHeader = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [userData, setUserData] = useState(null);
@@ -76,7 +77,7 @@ const TopHeader = () => {
             <DrawerBody textAlign="right">
               <List textAlign="right" mt={50}>
                 <ListItem fontSize={25} m="20, 20">
-                  <Link href="/mypage" color={"black"} textDecoration={"none"}>
+                  <Link href='/mypage' color={"black"} textDecoration={"none"}>
                     My page
                   </Link>
                 </ListItem>
