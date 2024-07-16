@@ -41,6 +41,7 @@ const Mypage  = () => {
                     justifyContent="center" 
                     alignItems="center"
                 >
+                    { useData.prof_image ? (
                     <Image 
                         w={150} 
                         h={150} 
@@ -48,11 +49,20 @@ const Mypage  = () => {
                         src={`http://127.0.0.1:5000/prof_image/${useData.prof_image}`} 
                         alt="prof image" 
                     />
+                ) : (
+                    <Image 
+                    w={150} 
+                    h={150} 
+                    borderRadius={100} 
+                    src='not-profileicon.jpg'
+                    alt="prof image" 
+                />
+                )}
                 </Box>
                 </Box>
                 <h1 className="title">{useData.name}</h1>
                 <Box w={200} h={50} backgroundColor='#dcdcdc' m='-100px 0 50px 700px'>
-                    <Link href="/prof_edit" display={"flex"} w={200} h={50} textDecoration={"none"} color={"black"} alignItems={'center'} justifyContent={'center'} textAlign={"center"}>+ プロフ編集</Link>
+                    <Link href="/prof_edit" display={"flex"} w={200} h={50} textDecoration={"none"} color={"black"} alignItems={'center'} justifyContent={'center'} textAlign={"center"} >+ プロフ編集</Link>
                 </Box>
             </Box>
             

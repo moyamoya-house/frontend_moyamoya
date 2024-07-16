@@ -51,12 +51,21 @@ const TopHeader = () => {
               border="none"
               mr={40}
             >
+              { userData.prof_image ? (
               <Image
                 src={`http://127.0.0.1:5000/prof_image/${userData.prof_image}`}
                 alt="prof_image"
                 w={50}
                 h={50}
               ></Image>
+            ) : (
+              <Image
+              src='not-profileicon.jpg'
+              alt="prof_image"
+              w={50}
+              h={50}
+            ></Image>
+            )}
             </Button>
           </Box>
           <Drawer
