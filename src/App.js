@@ -6,6 +6,7 @@ import Footer from './layout/Footer';
 import Login from './login/login';
 import Top from './top/Top';
 import Mypage from './mypage/Mypage';
+import ProfileEditPage from './prof_edit/ProfEditPage';
 import './App.css';
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
           <Route path="*" element={<Navigate to="/login" />} />
           <Route path='/top' element={<Top></Top>} />
           <Route path='/mypage' element={<Mypage></Mypage>} />
+          <Route path='/prof_edit' element={<ProfileEditPage></ProfileEditPage>} />
         </Routes>
     </Router>
     <Footer></Footer>

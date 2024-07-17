@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box,Image, Link } from "@yamada-ui/react";
+import { Box,Image, Link, Text } from "@yamada-ui/react";
 import './css/mypage.css'
 
 const Mypage  = () => {
@@ -26,8 +26,8 @@ const Mypage  = () => {
         {useData ? (
             <Box w={1500} maxWidth='80%' m='0 auto' mt={100} overflow={"hidden"}>
                 <Box h={300} border='1px solid #000'>
-                    {/* <Image src={`http://127.0.0.1:5000/second_image/${useData.second_image}`} alt="big image"/> */}
-                    <Image src="sample01.jpg" alt="sample" width='100%' height='100%' objectFit={"cover"} />
+                    <Image src={`http://127.0.0.1:5000/second_image/${useData.second_image}`} alt="big image"  width='100%' height='100%' objectFit={"cover"}/>
+                    {/* <Image src="sample01.jpg" alt="sample" width='100%' height='100%' objectFit={"cover"} /> */}
                 </Box>
                 <Box position="relative" display="flex" >
                 <Box 
@@ -61,6 +61,7 @@ const Mypage  = () => {
                 </Box>
                 </Box>
                 <h1 className="title">{useData.name}</h1>
+                <Text>{useData.prof_comment}</Text>
                 <Box w={200} h={50} backgroundColor='#dcdcdc' m='-100px 0 50px 700px'>
                     <Link href="/prof_edit" display={"flex"} w={200} h={50} textDecoration={"none"} color={"black"} alignItems={'center'} justifyContent={'center'} textAlign={"center"} >+ プロフ編集</Link>
                 </Box>
