@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box } from '@yamada-ui/react';
+import './css/profedit.css';
 
 const ProfEdit = ({ useData }) => {
     const [username, setUsername] = useState(useData.name);
@@ -43,9 +44,85 @@ const ProfEdit = ({ useData }) => {
         }
     }
 
+    const handlesecondimage = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setSecondImage(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleProfImage = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreview(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
         <>
-            <form onSubmit={handleEditSubmit}>
+            <form onSubmit={handleEditSubmit} className="proform">
+                <div>
+                <input
+                    type="file"
+                    style={{ display: "none" }}
+                    id="imageInput"
+                    onChange={handlesecondimage}
+                />
+                <label htmlFor="imageInput">
+                    <div
+                    style={{
+                        width: "100%",
+                        height: "180px",
+                        border: "2px dashed #000",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        cursor: "pointer",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundImage: secondImage ? `url(${secondImage})` : "none"
+                    }}
+                    >
+                    {secondImage ? "" : "クリックして画像を選択"}
+                    </div>
+                </label>
+                </div>
+                <div>
+                <input
+                    type="file"
+                    style={{ display: "none" }}
+                    id="imageInput"
+                    onChange={handleProfImage}
+                />
+                <label htmlFor="imageInput">
+                    <div
+                    style={{
+                        width: "150px",
+                        height: "150px",
+                        border: "2px solid #000",
+                        borderRadius: "100%",
+                        display: "flex",
+                        margin: "20px 0 0 0",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        cursor: "pointer",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundImage: preview ? `url(${preview})` : "none"
+                    }}
+                    >
+                    {preview ? "" : "クリックして画像を選択"}
+                    </div>
+                </label>
+                </div>
                 <Box>
                     <label>ユーザーネーム：{useData.name}</label>
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -61,14 +138,6 @@ const ProfEdit = ({ useData }) => {
                 <div>
                     <label>Password:</label>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <div>
-                    <label>Profile Image:</label>
-                    <input type="file" onChange={(e) => setProfimage(e.target.files[0])} />
-                </div>
-                <div>
-                    <label>Second Image:</label>
-                    <input type="file" onChange={(e) => setSecondImage(e.target.files[0])} />
                 </div>
                 <button type="submit">ユーザー情報の更新</button>
             </form>
