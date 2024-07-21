@@ -69,6 +69,7 @@ const ProfEdit = ({ useData }) => {
     return (
         <>
             <form onSubmit={handleEditSubmit} className="proform">
+            <h1>プロフィール編集</h1>
                 <div>
                 <input
                     type="file"
@@ -91,7 +92,7 @@ const ProfEdit = ({ useData }) => {
                         backgroundImage: secondImage ? `url(${secondImage})` : "none"
                     }}
                     >
-                    {secondImage ? "" : "クリックして画像を選択"}
+                    {secondImage ? "" : "背景画像を選択"}
                     </div>
                 </label>
                 </div>
@@ -102,7 +103,7 @@ const ProfEdit = ({ useData }) => {
                     id="imageInput"
                     onChange={handleProfImage}
                 />
-                <label htmlFor="imageInput">
+                <label htmlFor="imageInput" className="label">
                     <div
                     style={{
                         width: "150px",
@@ -110,7 +111,7 @@ const ProfEdit = ({ useData }) => {
                         border: "2px solid #000",
                         borderRadius: "100%",
                         display: "flex",
-                        margin: "20px 0 0 0",
+                        margin: "60px 0 0 100px",
                         justifyContent: "center",
                         alignItems: "center",
                         cursor: "pointer",
@@ -119,27 +120,29 @@ const ProfEdit = ({ useData }) => {
                         backgroundImage: preview ? `url(${preview})` : "none"
                     }}
                     >
-                    {preview ? "" : "クリックして画像を選択"}
+                    {preview ? "" : "アイコン画像を選択"}
                     </div>
                 </label>
                 </div>
-                <Box>
-                    <label>ユーザーネーム：{useData.name}</label>
-                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-                </Box>
-                <div>
-                    <label>Email:{useData.email}</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <div className="editbox">
+                    <Box className="username">
+                        <label>ユーザーネーム：</label>
+                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    </Box>
+                    <div className="email">
+                        <label>Email:</label>
+                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    </div>
+                    <div className="comment">
+                        <label>Comment:</label>
+                        <textarea value={comment} onChange={(e) => setComment(e.target.value)} />
+                    </div>
+                    <div className="password">
+                        <label>Password:</label>
+                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </div>
                 </div>
-                <div>
-                    <label>Comment:{useData.prof_comment}</label>
-                    <textarea value={comment} onChange={(e) => setComment(e.target.value)} />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <button type="submit">ユーザー情報の更新</button>
+                <button type="submit" className="btn">ユーザー情報の更新</button>
             </form>
         </>
     )
