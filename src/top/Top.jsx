@@ -1,4 +1,4 @@
-import { Text, Box, Center } from '@yamada-ui/react';
+import { Text, Box, Center, Image } from '@yamada-ui/react';
 import { useEffect, useState } from 'react';
 import Baloon from './component/baloon';
 import BaloonTopRight from './component/baloon-topright';
@@ -31,30 +31,58 @@ const Top = () => {
         <>            
         {useData ? (
             <Box className='top'>
+                {/* トップヘッダー */}
                 <Box className='gradetion'>
                     <Baloon></Baloon>
+                    {/* 心の声左上 */}
+                    <BaloonTopLeft></BaloonTopLeft>
+                    {/* 心の声右上 */}
+                    <BaloonTopRight></BaloonTopRight>
+                    {/* 心の声左下 */}
+                    <BaloonBottomRight></BaloonBottomRight>
+                    {/* タイトル */}
                     <Center>
                         <Text className='potcom'>PotCom</Text>
                     </Center>
-                    <BaloonTopLeft></BaloonTopLeft>
-                    <BaloonTopRight></BaloonTopRight>
-                    <BaloonBottomRight></BaloonBottomRight>
                 </Box>
+
+                {/* スクロール促す */}
                 <div className='scrolldown'>
                     <span>
                         scroll
                     </span>
                 </div>
 
+                {/* サイト概要 */}
                 <Box m='0 auto' mt={50}>
                     <Center>
                         <Text fontSize='30px'>
                             皆さん、日頃のストレスや思っていること発散していますか？<br />
                             人間関係や仕事、勉強など様々な要因でストレスを感じてます。<br></br>
-                            POtComではそんなストレスや不満を思う存分発散してもらう<br></br>
+                            PotComではそんなストレスや不満を思う存分発散してもらう<br></br>
                             SNSアプリになっております。
                         </Text>
                     </Center>
+                </Box>
+
+                {/* 愚痴の壺紹介 */}
+                <Box>
+                    <Center>
+                        <Text fontSize='30px' mt={50}>
+                            PotComの主要機能
+                        </Text>
+                    </Center>
+                </Box>
+
+                <Box>
+                    <Center>
+                        <Text fontSize='30px' mt={20} mb={30}>
+                            PotCom()
+                        </Text>
+                    </Center>
+                    <Box>
+                        <Image src='download.jpg' width={200} h={'auto'} />
+                    </Box>
                 </Box>
             </Box>
         ) : (
