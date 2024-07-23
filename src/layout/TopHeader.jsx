@@ -77,6 +77,7 @@ const TopHeader = () => {
             textAlign="right"
             border="1px solid #000"
             bg="#fff"
+            size={"xs"}
             zIndex={20}
           >
             <DrawerHeader mt={50} textAlign="right">

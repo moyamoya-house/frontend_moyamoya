@@ -11,7 +11,6 @@ const ProfEdit = ({ useData }) => {
     const [profImage, setProfimage] = useState(null);
     const [secondImage, setSecondImage] = useState(null);
     const [preview, setPreview] = useState(null);
-    const [secondpreview, setSecondPreview] = useState(null);
     const history = useNavigate();
 
     const handleEditSubmit = async (e) => {
