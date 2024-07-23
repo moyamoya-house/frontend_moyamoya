@@ -9,6 +9,13 @@
     background: linear-gradient( #FC4C02,#A48A79,#4CC8EF );
 }
 
+.drawer-content {
+    padding: 20px;
+    background-color: #fff;
+    height: 100%;
+    overflow-y: auto;
+}
+
 .header .username {
     text-align: right;
 }
