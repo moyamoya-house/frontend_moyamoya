@@ -5,6 +5,11 @@
     margin: 100px auto 0 auto;
 }
 
+.potcomTitle {
+  font-size: 50px;
+  color: lightseagreen;
+}
+
 .scrolldown {
     background: linear-gradient(to bottom right, #fff05f, pink);
     position: absolute;

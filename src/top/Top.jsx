@@ -1,4 +1,4 @@
-import { Text, Box, Center, Image } from '@yamada-ui/react';
+import { Text, Box, Center, Image, Flex } from '@yamada-ui/react';
 import { useEffect, useState } from 'react';
 import Baloon from './component/baloon';
 import BaloonTopRight from './component/baloon-topright';
@@ -56,11 +56,16 @@ const Top = () => {
                 {/* サイト概要 */}
                 <Box m='0 auto' mt={50}>
                     <Center>
+                        <Text className='potcomTitle'>
+                            PotComとは...
+                        </Text>
+                    </Center>
+                    <Center mt={-20}>
                         <Text fontSize='30px'>
                             皆さん、日頃のストレスや思っていること発散していますか？<br />
                             人間関係や仕事、勉強など様々な要因でストレスを感じてます。<br></br>
-                            PotComではそんなストレスや不満を思う存分発散してもらう<br></br>
-                            SNSアプリになっております。
+                            そんなストレスや不満を思う存分発散してもらおうじゃないかと思い<br></br>
+                            このストレス発散用SNSアプリ<strong>｢PotCom｣</strong>を制作しました。
                         </Text>
                     </Center>
                 </Box>
@@ -68,21 +73,22 @@ const Top = () => {
                 {/* 愚痴の壺紹介 */}
                 <Box>
                     <Center>
-                        <Text fontSize='30px' mt={50}>
-                            PotComの主要機能
+                        <Text fontSize='50px' mt={50}>
+                            PotComの由来...
                         </Text>
                     </Center>
                 </Box>
 
-                <Box>
+                <Box display={'flex'} m="0 auto" justifyContent={'center'} alignItems={'center'}>
+                    <Box>
+                        <Image src='download.jpg' width={200} m='0 auto'/>
+                    </Box>
                     <Center>
-                        <Text fontSize='30px' mt={20} mb={30}>
-                            PotCom()
+                        <Text fontSize='30px'>
+                            PotComは｢愚痴の壺｣という商品をオマージュして製作しています。<br></br>
+
                         </Text>
                     </Center>
-                    <Box>
-                        <Image src='download.jpg' width={200} h={'auto'} />
-                    </Box>
                 </Box>
             </Box>
         ) : (
