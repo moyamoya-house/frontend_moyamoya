@@ -10,6 +10,16 @@
   color: lightseagreen;
 }
 
+.link {
+  font-size: 45px;
+  margin: 20px auto 30px auto;
+  width: 200px;
+  height: 70px;
+  border-radius: 60px;
+  background-color: rgb(0, 255, 110);
+  text-align: center;
+}
+
 .scrolldown {
     background: linear-gradient(to bottom right, #fff05f, pink);
     position: absolute;

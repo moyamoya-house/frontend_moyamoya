@@ -1,4 +1,4 @@
-import { Text, Box, Center, Image, Flex } from '@yamada-ui/react';
+import { Text, Box, Center, Image, Link } from '@yamada-ui/react';
 import { useEffect, useState } from 'react';
 import Baloon from './component/baloon';
 import BaloonTopRight from './component/baloon-topright';
@@ -79,16 +79,22 @@ const Top = () => {
                     </Center>
                 </Box>
 
-                <Box display={'flex'} m="0 auto" justifyContent={'center'} alignItems={'center'}>
-                    <Box>
-                        <Image src='download.jpg' width={200} m='0 auto'/>
+                <Box>
+                    <Box display={'flex'} m="0 auto" justifyContent={'center'} alignItems={'center'}>
+                        <Box>
+                            <Image src='download.jpg' width={200} m='0 auto'/>
+                        </Box>
+                        <Center>
+                            <Text fontSize={20}>
+                                <strong>｢愚痴の壺｣</strong>という商品をオマージュ。<br></br>
+                                詳細は<Link href='https://nlab.itmedia.co.jp/nl/articles/1907/01/news043.html#:~:text=%E3%83%95%E3%82%BF%E3%82%92%E9%96%8B%E3%81%91%E3%81%A6%E5%8F%A3,%E3%81%AA%E3%81%84%E5%A0%B4%E6%89%80%E3%81%A7%E4%BD%BF%E3%81%8A%E3%81%86%E3%80%82&text=%E3%80%8C%E6%AF%92%E8%88%8C%E3%80%8D%E3%80%8C%E6%94%BE%E9%80%81%E7%A6%81%E6%AD%A2%E3%80%8D%E3%80%8C%E3%83%8A%E3%82%A4%E3%82%B7%E3%83%A7%E3%80%8D%E3%81%A8%E3%81%84%E3%81%A3%E3%81%9F%E3%80%81,%E3%81%AE%E8%A3%BD%E5%93%81%E3%82%82%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%A2%E3%83%83%E3%83%97%E3%80%82'>こちら→</Link>
+                                PotComでは｢愚痴の壺｣を疑似体験できます!!
+                            </Text>
+                        </Center>
                     </Box>
-                    <Center>
-                        <Text fontSize='30px'>
-                            PotComは｢愚痴の壺｣という商品をオマージュして製作しています。<br></br>
-
-                        </Text>
-                    </Center>
+                    <Box className='link'>
+                        <Link href='/potcom' textDecoration={'none'} display={'inline-block'} color={'black'}>愚痴の壺</Link>
+                    </Box>
                 </Box>
             </Box>
         ) : (
