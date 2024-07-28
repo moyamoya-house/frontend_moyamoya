@@ -92,7 +92,9 @@ const TopHeader = () => {
                   </Link>
                 </ListItem>
                 <ListItem fontSize={25} m="20, 20">
-                  投稿内容
+                  <Link href="/post_all"color={"black"} textDecoration={"none"} >
+                    投稿内容
+                  </Link>
                 </ListItem>
                 <ListItem fontSize={25} m="20, 20">
                   PotCom

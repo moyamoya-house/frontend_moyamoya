@@ -7,6 +7,7 @@ import Login from './login/login';
 import Top from './top/Top';
 import Mypage from './mypage/Mypage';
 import ProfileEditPage from './prof_edit/ProfEditPage';
+import PostAll from './post_all/Postall';
 import './App.css';
 
 const App = () => {
@@ -44,6 +45,7 @@ const App = () => {
           <Route path='/top' element={<Top></Top>} />
           <Route path='/mypage' element={<Mypage></Mypage>} />
           <Route path='/prof_edit' element={<ProfileEditPage></ProfileEditPage>} />
+          <Route path='/post_all' element={<PostAll></PostAll>} />
         </Routes>
     </Router>
     <Footer></Footer>
