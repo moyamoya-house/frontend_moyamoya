@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Box, Link, Text } from "@yamada-ui/react";
+import Post from "../post/post";
 
 const PostAll  = () => {
     const [postData, setPostData] = useState(null);
@@ -40,6 +41,7 @@ const PostAll  = () => {
                     </ul>
                 </Box>
             </Box>
+            <Post></Post>
         </>
     );
 }

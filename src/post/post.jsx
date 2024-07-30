@@ -5,6 +5,7 @@ import {
   ModalHeader,
   ModalBody,
   Center,
+  rgbaTo,
 } from "@yamada-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +15,8 @@ const Post = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
-  const handleCreateMoyamoya = async (postContent) => {
+  const handleCreateMoyamoya = async (e) => {
+    e.preventDefault();
     const token = localStorage.getItem("token");
     const response = await fetch("http://127.0.0.1:5000/moyamoya", {
       method: "POST",
@@ -22,15 +24,16 @@ const Post = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ post: postContent }),
+      body: JSON.stringify({ post }),
     });
     if (response.ok) {
       const data = await response.json();
       console.log("MoyaMoya Created", data);
       navigate("/post_all");
+      onClose();
     } else {
       const error = await response.json();
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -46,7 +49,7 @@ const Post = () => {
         +
       </Button>
 
-      <Modal isOpen={isOpen} onClick={onClose}>
+      <Modal isOpen={isOpen} bg={"gray"}>
         <ModalHeader>モヤモヤ投稿</ModalHeader>
 
         <ModalBody>
