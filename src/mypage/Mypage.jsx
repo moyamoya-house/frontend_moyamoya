@@ -4,6 +4,7 @@ import './css/mypage.css'
 
 const Mypage  = () => {
     const [useData, setUseData] = useState(null);
+    const [moyamoya, setMoyamoya] = useState([]);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -20,6 +21,23 @@ const Mypage  = () => {
             }
         };
         fetchUserData();
+    }, []);
+
+    useEffect(() => {
+        const fetchMoyamoyaData = async () => {
+            const token = localStorage.getItem('token');
+            const response = await fetch('http://127.0.0.1:5000/moyamoya_user', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setMoyamoya(data);
+            }
+        };
+        fetchMoyamoyaData();
     }, []);
     return (
         <>
@@ -65,6 +83,19 @@ const Mypage  = () => {
                 <Box w={200} h={50} backgroundColor='#dcdcdc' m='-100px 0 50px 700px'>
                     <Link href="/prof_edit" display={"flex"} w={200} h={50} textDecoration={"none"} color={"black"} alignItems={'center'} justifyContent={'center'} textAlign={"center"} >+ プロフ編集</Link>
                 </Box>
+                {moyamoya ? (
+                    <Box>
+                        {moyamoya.map((post) => (
+                            <Box>
+                                <Link href={`/post_detail/${post.id}`} textDecoration={"none"}>
+                                    <Text>{post.post}</Text>
+                                </Link>
+                            </Box>
+                        ))}
+                    </Box>
+                ) : (
+                    <Box></Box>
+                )}
             </Box>
             
         ) : (

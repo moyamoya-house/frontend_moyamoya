@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Box, Link, Text } from "@yamada-ui/react";
 import Post from "../post/post";
+import './css/post_all.css'
 
 const PostAll  = () => {
     const [postData, setPostData] = useState(null);
@@ -32,9 +33,10 @@ const PostAll  = () => {
                     }}>モヤモヤ投稿一覧</h1>
                     <ul className="post">
                         {postData.map((post) => (
-                            <Link href={`/post_detail/${post.id}`}>
+                            <Link href={`/post_detail/${post.id}`} textDecoration={"none"}>
                                 <li key={post.id} className="postlist">
                                     <Text>{post.post}</Text>
+                                    <Text>{post.user_id}</Text>
                                 </li>
                             </Link>
                         ))}
