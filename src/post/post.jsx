@@ -5,7 +5,6 @@ import {
   ModalHeader,
   ModalBody,
   Center,
-  rgbaTo,
 } from "@yamada-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

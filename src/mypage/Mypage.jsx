@@ -72,7 +72,7 @@ const Mypage  = () => {
                     w={150} 
                     h={150} 
                     borderRadius={100} 
-                    src='not-profileicon.jpg'
+                    src='not_profileicon.jpg'
                     alt="prof image" 
                 />
                 )}
