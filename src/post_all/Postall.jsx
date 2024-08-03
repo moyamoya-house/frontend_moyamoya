@@ -77,6 +77,7 @@ const PostAll = () => {
               <Link key={post.id} href={`/post_detail/${post.id}`} textDecoration="none">
                 <li className="postlist">
                   {userData[post.user_id] && userData[post.user_id].prof_image ? (
+                    <Box>
                     <Image 
                         w={50} 
                         h={50} 
@@ -84,7 +85,9 @@ const PostAll = () => {
                         src={`http://127.0.0.1:5000/prof_image/${userData[post.user_id].prof_image}`} 
                         alt="prof image" 
                     />
+                    </Box>
                   ) : (
+                    <Box>
                     <Image 
                         w={50} 
                         h={50} 
@@ -92,7 +95,9 @@ const PostAll = () => {
                         src='not_profileicon.jpg'
                         alt="prof image" 
                     />
+                    </Box>
                   )}
+                  <Text>{userData[post.user_id].name}</Text>
                   <Text>{post.post}</Text>
                 </li>
               </Link>
