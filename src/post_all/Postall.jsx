@@ -76,29 +76,23 @@ const PostAll = () => {
             {postData.map((post) => (
               <Link key={post.id} href={`/post_detail/${post.id}`} textDecoration="none">
                 <li className="postlist">
-                  {userData[post.user_id] && userData[post.user_id].prof_image ? (
+                  {userData[post.user_id] ? (
                     <Box>
-                    <Image 
+                      <Image 
                         w={50} 
                         h={50} 
                         borderRadius={100} 
-                        src={`http://127.0.0.1:5000/prof_image/${userData[post.user_id].prof_image}`} 
+                        src={userData[post.user_id].prof_image 
+                            ? `http://127.0.0.1:5000/prof_image/${userData[post.user_id].prof_image}` 
+                            : 'not_profileicon.jpg'} 
                         alt="prof image" 
-                    />
+                      />
+                      <Text>{userData[post.user_id].name}</Text>
+                      <Text>{post.post}</Text>
                     </Box>
                   ) : (
-                    <Box>
-                    <Image 
-                        w={50} 
-                        h={50} 
-                        borderRadius={100} 
-                        src='not_profileicon.jpg'
-                        alt="prof image" 
-                    />
-                    </Box>
+                    <p>Loading user data...</p>
                   )}
-                  <Text>{userData[post.user_id].name}</Text>
-                  <Text>{post.post}</Text>
                 </li>
               </Link>
             ))}
