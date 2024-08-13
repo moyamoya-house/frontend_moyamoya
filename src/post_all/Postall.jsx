@@ -62,7 +62,7 @@ const PostAll = () => {
 
   return (
     <>
-      <Box w={1500} maxWidth="80%" m="0 auto" mt={100} overflow="hidden" h="100vh">
+      <Box w={1500} maxWidth="80%" m="0 auto" mt={100} overflow="auto" h="100vh">
         <Box m="0 auto">
           <h1
             style={{
