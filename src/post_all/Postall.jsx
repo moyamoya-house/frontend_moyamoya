@@ -62,12 +62,12 @@ const PostAll = () => {
 
   return (
     <>
-      <Box w={1500} maxWidth="80%" m="0 auto" mt={100} overflow="auto" h="100vh">
-        <Box m="0 auto">
+      <Box w={1500} maxWidth="80%" m="0 auto" mt={100} overflowY={"auto"} h="100vh">
+        <Box>
           <h1
             style={{
-              width: '100vw',
-              borderBottom: '1px solid #000',
+              width: '990px',
+              borderBottom: '1px solid #000'
             }}
           >
             モヤモヤ投稿一覧
