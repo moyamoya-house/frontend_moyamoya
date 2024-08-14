@@ -2,6 +2,7 @@ import {
   useDisclosure,
   Button,
   Modal,
+  ModalOverlay,
   ModalHeader,
   ModalBody,
   Center,
@@ -44,14 +45,16 @@ const Post = () => {
         height={100}
         border={"none"}
         borderRadius={100}
+        variant={"ghost"}
       >
         +
       </Button>
 
-      <Modal isOpen={isOpen} bg={"gray"}>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay bg="rgba(0, 0, 0, 0.6)" /> {/* Set the background to gray with opacity */}
         <ModalHeader>モヤモヤ投稿</ModalHeader>
 
-        <ModalBody>
+        <ModalBody width={200} height={200} border='1px solid #000'>
             <form onSubmit={handleCreateMoyamoya}>
                 <input
                     type="text"
