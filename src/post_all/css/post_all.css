@@ -4,3 +4,10 @@
     height: 200px;
     border: 1px solid #000;
 }
+
+.post_circle {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  z-index: 1000;
+}

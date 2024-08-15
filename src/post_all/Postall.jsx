@@ -62,7 +62,7 @@ const PostAll = () => {
 
   return (
     <>
-      <Box w={1500} maxWidth="80%" m="0 auto" mt={100} overflowY={"auto"} h="100vh">
+      <Box w={1500} maxWidth="80%" m="0 auto" mt={100} overflowY={"auto"} h="100vh" zIndex={1000}>
         <Box>
           <h1
             style={{
@@ -99,7 +99,9 @@ const PostAll = () => {
           </ul>
         </Box>
       </Box>
-      <Post />
+      <Box className="post_circle">
+        <Post />
+      </Box>
     </>
   );
 };
