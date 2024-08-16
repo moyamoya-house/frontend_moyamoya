@@ -46,6 +46,9 @@ const Post = () => {
         border={"none"}
         borderRadius={100}
         variant={"ghost"}
+        cursor={"pointer"}
+        fontSize={30}
+        backgroundColor={"lightblue"}
       >
         +
       </Button>
