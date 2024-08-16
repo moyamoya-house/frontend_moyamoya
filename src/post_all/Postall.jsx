@@ -62,7 +62,7 @@ const PostAll = () => {
 
   return (
     <>
-      <Box w={1500} maxWidth="80%" m="0 auto" mt={100} overflowY={"auto"} h="100vh" zIndex={1000}>
+      <Box w={1500} maxWidth="80%" m="0 auto 30px auto" mt={100} overflowY={"auto"} h="100vh" zIndex={1000}>
         <Box>
           <h1
             style={{
@@ -74,27 +74,31 @@ const PostAll = () => {
           </h1>
           <ul className="post">
             {postData.map((post) => (
-              <Link key={post.id} href={`/post_detail/${post.id}`} textDecoration="none">
                 <li className="postlist">
                   {userData[post.user_id] ? (
                     <Box>
-                      <Image 
-                        w={50} 
-                        h={50} 
-                        borderRadius={100} 
-                        src={userData[post.user_id].prof_image 
-                            ? `http://127.0.0.1:5000/prof_image/${userData[post.user_id].prof_image}` 
-                            : 'not_profileicon.jpg'} 
-                        alt="prof image" 
-                      />
-                      <Text>{userData[post.user_id].name}</Text>
+                      <Box display={"flex"} m='20px 0 0 20px'>
+                        <Link key={post.user_id} href={`/user_prof/${post.user_id}`} display={"inline-block"} >
+                        <Image 
+                          w={50} 
+                          h={50} 
+                          borderRadius={100} 
+                          src={userData[post.user_id].prof_image 
+                              ? `http://127.0.0.1:5000/prof_image/${userData[post.user_id].prof_image}` 
+                              : 'not_profileicon.jpg'} 
+                          alt="prof image" 
+                        />
+                        <Text marginLeft={10}>{userData[post.user_id].name}</Text>
+                        </Link>
+                      </Box>
+                      <Link key={post.id} href={`/post_detail/${post.id}`} textDecoration="none">
                       <Text>{post.post}</Text>
+                      </Link>
                     </Box>
                   ) : (
                     <p>Loading user data...</p>
                   )}
                 </li>
-              </Link>
             ))}
           </ul>
         </Box>
