@@ -6,6 +6,7 @@ import {
   ModalHeader,
   ModalBody,
   Center,
+  Text
 } from "@yamada-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -53,17 +54,22 @@ const Post = () => {
         +
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} background={"white"} border='1px solid #000'borderRadius={10}>
         <ModalOverlay bg="rgba(0, 0, 0, 0.6)" /> {/* Set the background to gray with opacity */}
-        <ModalHeader>モヤモヤ投稿</ModalHeader>
+        <ModalHeader>
+          <Text m={'0 auto'}>モヤモヤ投稿</Text>
+        </ModalHeader>
 
-        <ModalBody width={200} height={200} border='1px solid #000'>
-            <form onSubmit={handleCreateMoyamoya}>
+        <ModalBody width={600} height={200}>
+            <form onSubmit={handleCreateMoyamoya} width={600} m={'0 auto'}>
                 <input
                     type="text"
                     placeholder="発散させたいこと"
                     value={post}
                     onChange={(e) => setPost(e.target.value)}
+                    style={{
+                      margin: '0 auto'
+                    }}
                 />
                 <Center>
                     <Button type="submit" w='85%' h={50} m="20px auto" colorScheme="secondary" border='none' bg='lightskyblue' borderRadius={10} >投稿!</Button>
