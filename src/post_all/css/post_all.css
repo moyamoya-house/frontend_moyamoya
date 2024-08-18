@@ -1,3 +1,10 @@
+.postalltitle {
+  width: 1500px;
+  max-width: 80%;
+  margin: 125px auto 30px auto;
+  border-bottom: 1px solid #000;
+}
+
 .postlist {
     list-style: none;
     width: 900px;
@@ -10,4 +17,23 @@
   bottom: 25px;
   right: 15px;
   z-index: 1000;
+}
+
+.post_all {
+  width: 1500px;
+  max-width: 80%;
+  margin: 20px auto 30px auto;
+  height: 77vh;
+  overflow-y: scroll;
+}
+
+.post_all::-webkit-scrollbar {
+  width: 8px;
+  background-color: #DE94BF;
+  border-radius: 5px;
+}
+.post_all::-webkit-scrollbar-thumb {
+  background: #FAF8D8;
+  width: 6px;
+  border-radius: 5px;
 }

@@ -49,7 +49,7 @@ const Post = () => {
         variant={"ghost"}
         cursor={"pointer"}
         fontSize={30}
-        backgroundColor={"lightblue"}
+        backgroundColor={"lightskyblue"}
       >
         +
       </Button>
