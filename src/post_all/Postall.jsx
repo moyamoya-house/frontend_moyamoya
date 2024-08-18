@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Link, Text, Image } from "@yamada-ui/react";
+import { Box, Link, Text, Image} from "@yamada-ui/react";
 import Post from "../post/post";
 import "./css/post_all.css";
 
@@ -74,11 +74,14 @@ const PostAll = () => {
               <li className="postlist">
                 {userData[post.user_id] ? (
                   <Box>
-                    <Box display={"flex"} m="20px 0 0 20px">
+                    <Box m="20px 0 0 20px">
                       <Link
                         key={post.user_id}
                         href={`/user_prof/${post.user_id}`}
-                        display={"inline-block"}
+                        // display={"inline-block"}
+                        display={"flex"}
+                        textDecoration={"none"}
+                        color={"black"}
                       >
                         <Image
                           w={50}
@@ -102,9 +105,11 @@ const PostAll = () => {
                       key={post.id}
                       href={`/post_detail/${post.id}`}
                       textDecoration="none"
+                      color={"black"}
                     >
-                      <Text>{post.post}</Text>
+                      <Text textAlign={"center"}>{post.post}</Text>
                     </Link>
+                    <Text mt={50} ml={700}>{post.created_at.split('-').join('/')}</Text>
                   </Box>
                 ) : (
                   <p>Loading user data...</p>
