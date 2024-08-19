@@ -74,7 +74,7 @@ const PostAll = () => {
               <li className="postlist">
                 {userData[post.user_id] ? (
                   <Box>
-                    <Box m="20px 0 0 20px">
+                    <Box m="20px 0 0 20px" display={"flex"}>
                       <Link
                         key={post.user_id}
                         href={`/user_prof/${post.user_id}`}
@@ -101,15 +101,18 @@ const PostAll = () => {
                         </Text>
                       </Link>
                     </Box>
+                    <Text mt={-50} ml={730}>{post.created_at.split('-').join('/')}</Text>
                     <Link
                       key={post.id}
                       href={`/post_detail/${post.id}`}
                       textDecoration="none"
                       color={"black"}
+                      display={"inline-block"}
+                      mt={70}
+                      textAlign={"center"}
                     >
-                      <Text textAlign={"center"}>{post.post}</Text>
+                      <Text>{post.post}</Text>
                     </Link>
-                    <Text mt={50} ml={700}>{post.created_at.split('-').join('/')}</Text>
                   </Box>
                 ) : (
                   <p>Loading user data...</p>

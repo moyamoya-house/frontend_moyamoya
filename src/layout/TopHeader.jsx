@@ -57,6 +57,7 @@ const TopHeader = () => {
                 alt="prof_image"
                 w={50}
                 h={50}
+                cursor={"pointer"}
               ></Image>
             ) : (
               <Image
@@ -64,6 +65,7 @@ const TopHeader = () => {
               alt="prof_image"
               w={50}
               h={50}
+              cursor={"pointer"}
             ></Image>
             )}
             </Button>
