@@ -108,10 +108,9 @@ const PostAll = () => {
                       textDecoration="none"
                       color={"black"}
                       display={"inline-block"}
-                      mt={70}
-                      textAlign={"center"}
+                      mt={50}
                     >
-                      <Text>{post.post}</Text>
+                      <Text textAlign={"center"}>{post.post}</Text>
                     </Link>
                   </Box>
                 ) : (

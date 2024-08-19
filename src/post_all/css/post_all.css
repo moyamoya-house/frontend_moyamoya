@@ -28,12 +28,12 @@
 }
 
 .post_all::-webkit-scrollbar {
-  width: 8px;
-  background-color: #DE94BF;
+  width: 5px;
+  background-color: #23efcd;
   border-radius: 5px;
 }
 .post_all::-webkit-scrollbar-thumb {
-  background: #FAF8D8;
-  width: 6px;
+  background: #d8f5fa;
+  width: 3px;
   border-radius: 5px;
 }
