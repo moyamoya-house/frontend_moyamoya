@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Link, Text, Image} from "@yamada-ui/react";
+import { Box, Link, Text, Image } from "@yamada-ui/react";
 import Post from "../post/post";
 import "./css/post_all.css";
 
@@ -64,9 +64,7 @@ const PostAll = () => {
 
   return (
     <>
-      <h1 className="postalltitle">
-        モヤモヤ投稿一覧
-      </h1>
+      <h1 className="postalltitle">モヤモヤ投稿一覧</h1>
       <Box className="post_all">
         <Box>
           <ul className="post">
@@ -96,12 +94,14 @@ const PostAll = () => {
                           }
                           alt="prof image"
                         />
-                        <Text marginLeft={10}>
+                        <Text mt={10} marginLeft={10}>
                           {userData[post.user_id].name}
                         </Text>
                       </Link>
                     </Box>
-                    <Text mt={-50} ml={730}>{post.created_at.split('-').join('/')}</Text>
+                    <Text mt={-50} ml={620}>
+                      {post.created_at.split("-").join("/")}
+                    </Text>
                     <Link
                       key={post.id}
                       href={`/post_detail/${post.id}`}
@@ -112,6 +112,14 @@ const PostAll = () => {
                     >
                       <Text textAlign={"center"}>{post.post}</Text>
                     </Link>
+                    <Box display={"flex"} ml={700}>
+                      <Box fontSize={"x-large"}>
+                        <i class="fas fa-solid fa-heart"></i>
+                      </Box>
+                      <Box fontSize={"x-large"} ml={20}>
+                        <i class="fas fa-regular fa-bookmark"></i>
+                      </Box>
+                    </Box>
                   </Box>
                 ) : (
                   <p>Loading user data...</p>

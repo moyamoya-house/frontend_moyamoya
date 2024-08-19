@@ -1,13 +1,13 @@
 .postalltitle {
   width: 1500px;
-  max-width: 80%;
+  max-width: 70%;
   margin: 125px auto 30px auto;
   border-bottom: 1px solid #000;
 }
 
 .postlist {
     list-style: none;
-    width: 900px;
+    width: 800px;
     height: 200px;
     border: 1px solid #000;
 }
@@ -21,7 +21,7 @@
 
 .post_all {
   width: 1500px;
-  max-width: 80%;
+  max-width: 70%;
   margin: 20px auto 30px auto;
   height: 77vh;
   overflow-y: scroll;
