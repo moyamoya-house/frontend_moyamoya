@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Link, Text, Image } from "@yamada-ui/react";
+import { Box, Link, Text, Image, Center } from "@yamada-ui/react";
 import Post from "../post/post";
 import "./css/post_all.css";
 
@@ -108,9 +108,10 @@ const PostAll = () => {
                       textDecoration="none"
                       color={"black"}
                       display={"inline-block"}
-                      mt={50}
+                      mt={30}
+                      ml={350}
                     >
-                      <Text textAlign={"center"}>{post.post}</Text>
+                      <Center><Text>{post.post}</Text></Center>
                     </Link>
                     <Box display={"flex"} ml={700}>
                       <Box fontSize={"x-large"}>
