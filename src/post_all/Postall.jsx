@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Box, Link, Text, Image, Center } from "@yamada-ui/react";
 import Post from "../post/post";
+import Sidebar from "./component/sidebar";
 import "./css/post_all.css";
 
 const PostAll = () => {
@@ -133,6 +134,7 @@ const PostAll = () => {
       <Box className="post_circle">
         <Post />
       </Box>
+      <Sidebar />
     </>
   );
 };

@@ -81,6 +81,7 @@ const TopHeader = () => {
             bg="#fff"
             size={"xs"}
             zIndex={20}
+            backgroundColor={"blue"}
           >
             <DrawerHeader mt={50} textAlign="right">
               <h1 className="username">{userData.name}</h1>
@@ -88,20 +89,20 @@ const TopHeader = () => {
 
             <DrawerBody textAlign="right">
               <List textAlign="right" mt={50}>
-                <ListItem fontSize={25} m="20, 20">
+                <ListItem fontSize={25} m="30, 20">
                   <Link href='/mypage' color={"black"} textDecoration={"none"}>
                     My page
                   </Link>
                 </ListItem>
-                <ListItem fontSize={25} m="20, 20">
+                <ListItem fontSize={25} m="30, 20">
                   <Link href="/post_all"color={"black"} textDecoration={"none"} >
                     投稿内容
                   </Link>
                 </ListItem>
-                <ListItem fontSize={25} m="20, 20">
+                <ListItem fontSize={25} m="30, 20">
                   PotCom
                 </ListItem>
-                <ListItem fontSize={25} m="20, 20">
+                <ListItem fontSize={25} m="30, 20">
                   メッセージ
                 </ListItem>
               </List>
