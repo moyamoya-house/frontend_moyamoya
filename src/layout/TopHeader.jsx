@@ -39,7 +39,7 @@ const TopHeader = () => {
       {userData ? (
         <Box className="header">
           <Link href="/top">
-            <Image src="PotCom_logo_typography.png" alt="pot" h={100}></Image>
+            <Image src="/PotCom_logo_typography.png" alt="pot" h={100}></Image>
           </Link>
           <Box display="flex" mt={25}>
             <Button

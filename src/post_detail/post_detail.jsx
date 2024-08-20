@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Box } from "@yamada-ui/react";
+import { Box, Text } from "@yamada-ui/react";
 import './css/post_detail.css';
 
 const PostDetail = () => {
@@ -40,8 +40,9 @@ const PostDetail = () => {
 
     return (
         <>
-            <Box>
+            <Box mt={100}>
                 <h1>モヤモヤ詳細</h1>
+                <Text>{postData.post}</Text>
             </Box>
         </>
     );
