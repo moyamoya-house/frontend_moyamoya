@@ -8,6 +8,7 @@ import Top from './top/Top';
 import Mypage from './mypage/Mypage';
 import ProfileEditPage from './prof_edit/ProfEditPage';
 import PostAll from './post_all/Postall';
+import PostDetail from './post_detail/post_detail';
 import './App.css';
 
 const App = () => {
@@ -46,6 +47,7 @@ const App = () => {
           <Route path='/mypage' element={<Mypage></Mypage>} />
           <Route path='/prof_edit' element={<ProfileEditPage></ProfileEditPage>} />
           <Route path='/post_all' element={<PostAll></PostAll>} />
+          <Route path='/post_detail/:id' element={<PostDetail></PostDetail>}></Route>
         </Routes>
     </Router>
     <Footer></Footer>
