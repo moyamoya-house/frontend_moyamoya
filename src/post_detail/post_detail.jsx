@@ -65,21 +65,28 @@ const PostDetail = () => {
     return (
         <>
             <Box className="postdetail">
-                <h1>モヤモヤ詳細</h1>
-                <Text>{postData.post}</Text>
+                <h1 className="detailTitle">モヤモヤ詳細</h1>
             {postUser ? (
-                <Box>
-                    <Text>{postUser.name}</Text>
+                <Box display={"flex"}>
                     {postUser.prof_image ? (
-                        <Image src={`http://127.0.0.1:5000/prof_image/${postUser.prof_image}`} alt="prof_image" />
-
+                        <Image
+                        src={`http://127.0.0.1:5000/prof_image/${postUser.prof_image}`}
+                        alt="prof_image"
+                        className="prof_image"
+                        />
                     ) : (
-                        <Image src="/not_profileicon.jpg" />
+                        <Image
+                        src="/not_profileicon.jpg"
+                        alt="not-proficon"
+                        className="prof_image"
+                        />
                     )}
+                    <Text ml={20}>{postUser.name}</Text>
                 </Box>
             ) : (
                 <p>Loading user data...</p>
             )}
+            <Text>{postData.post}</Text>
             </Box>
         </>
     );
