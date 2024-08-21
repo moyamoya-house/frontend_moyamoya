@@ -35,7 +35,7 @@ const PostDetail = () => {
         if (postData && postData.id) {
         const fetchPostUser = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:5000/users/${postData.id}`,{
+                const response = await fetch(`http://127.0.0.1:5000/users/${postData.user_id}`,{
                     method: 'GET',
                 });
                 if (response.ok) {
