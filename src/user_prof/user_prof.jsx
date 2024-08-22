@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Box } from "@yamada-ui/react";
+import { Box, Image } from "@yamada-ui/react";
 
 const UserProf = () => {
     const { id } = useParams();
@@ -39,7 +39,47 @@ const UserProf = () => {
     return (
         <>
         {userData ? (
-            <Box >
+            <Box w={1500} maxWidth='80%' m='0 auto' mt={100} overflow={"hidden"}>
+                <Box h={300} border='1px solid #000' overflow={"hidden"}>
+                    {userData.second_image ? (
+                        <Image src={`http://127.0.0.1:5000/second_image/${userData.second_image}`}></Image>
+                    ) : (
+                        <Image src="/sample01.jpg"></Image>
+                    )}
+                </Box>
+                <Box position='relative' display={"flex"}>
+                    <Box
+                    w={160}
+                    h={160}
+                    borderRadius={100}
+                    mt={-90}
+                    ml={100}
+                    bg='white'
+                    display={"flex"}
+                    justifyContent='center'
+                    alignItems={"center"}
+                    >
+                        { userData.prof_image ? (
+                            <Image
+                            w={150}
+                            h={150}
+                            borderRadius={100}
+                            src={`http://127.0.0.1:5000/prof_image/${userData.prof_image}`}
+                            alt="prof_image"
+                            >
+                            </Image>
+                        ) : (
+                            <Image
+                            w={150}
+                            h={150}
+                            borderRadius={100}
+                            src="/not_profileicon.jpg"
+                            alt="prof_image"
+                            ></Image>
+                        )}
+
+                    </Box>
+                </Box>
                 <h1>{userData.name}</h1>
             </Box>
         ) : (
