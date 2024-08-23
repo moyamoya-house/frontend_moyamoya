@@ -44,7 +44,7 @@ const UserProf = () => {
                     {userData.second_image ? (
                         <Image src={`http://127.0.0.1:5000/second_image/${userData.second_image}`}></Image>
                     ) : (
-                        <Image src="/sample01.jpg"></Image>
+                        <Box bg={"aquamarine"}></Box>
                     )}
                 </Box>
                 <Box position='relative' display={"flex"}>
