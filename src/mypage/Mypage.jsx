@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box,Image, Link, Text } from "@yamada-ui/react";
 import './css/mypage.css'
+import Follow from "../follow/follow";
 
 const Mypage  = () => {
     const [useData, setUseData] = useState(null);
@@ -82,6 +83,7 @@ const Mypage  = () => {
                 <Box w={200} h={50} backgroundColor='#dcdcdc' m='-140px 0 50px 700px'>
                     <Link href="/prof_edit" display={"flex"} w={200} h={50} textDecoration={"none"} color={"black"} alignItems={'center'} justifyContent={'center'} textAlign={"center"} >+ プロフ編集</Link>
                 </Box>
+                <Follow />
                 {moyamoya ? (
                     <Box mt={100}>
                         {moyamoya.map((post) => (
