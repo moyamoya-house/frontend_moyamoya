@@ -6,7 +6,8 @@ import {
   ModalHeader,
   ModalBody,
   Text,
-  Box
+  Box,
+  CloseButton
 } from "@yamada-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -55,6 +56,7 @@ const Post = () => {
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose} background={"white"} border='1px solid #000'borderRadius={10}>
+        <CloseButton></CloseButton>
         <ModalOverlay bg="rgba(0, 0, 0, 0.6)" /> {/* Set the background to gray with opacity */}
         <ModalHeader>
           <Text m={'0 auto'}>モヤモヤ投稿</Text>
