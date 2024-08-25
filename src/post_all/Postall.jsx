@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useEffect, useState } from "react";
 import { Box, Link, Text, Image, Center, Tabs, TabPanels, Tab, TabPanel } from "@yamada-ui/react";
 import Post from "../post/post";
@@ -120,18 +120,19 @@ const PostAll = () => {
     <>
       <h1 className="postalltitle">モヤモヤ投稿一覧</h1>
       <Tabs
-      variant="line"
       margin='0 auto 0 auto'
       >
           <Tab
           width={300}
           margin='0 auto 0 auto'
+          variant="line"
           >
             全体
           </Tab>
           <Tab
           w={300}
           m={'0 auto 0 -110px'}
+          variant="line"
           >
             フォロー中
           </Tab>
@@ -231,8 +232,8 @@ const PostAll = () => {
                               </Text>
                             </Link>
                           </Box>
-                          <Text mt={-50} ml={620}>
-                          {post.created_at.split("-").join("/")}
+                          <Text mt={-60} ml={620}>
+                          {post.created_at}
                           </Text>
                           <Link
                             href={`/post_detail/${post.id}`}
