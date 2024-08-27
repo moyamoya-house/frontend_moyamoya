@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Box, Link, Text, Image, Center, Tabs, TabPanels, Tab, TabPanel } from "@yamada-ui/react";
 import Post from "../post/post";
 import Sidebar from "./component/sidebar";
+import LikeButton from "../nice/nice";
 import "./css/post_all.css";
 
 const PostAll = () => {
@@ -183,9 +184,7 @@ const PostAll = () => {
                             <Center><Text>{post.post}</Text></Center>
                           </Link>
                           <Box display={"flex"} ml={700}>
-                            <button className="icon-button">
-                              <i className="fas fa-solid fa-heart"></i>
-                            </button>
+                            <LikeButton postId={post.id}></LikeButton>
                             <Box fontSize={"x-large"} ml={20}>
                               <i className="fas fa-regular fa-bookmark"></i>
                             </Box>

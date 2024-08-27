@@ -4,4 +4,9 @@
     border: none;
     font-size: x-large;
     margin-top: 5px;
+    cursor: pointer;
+}
+
+.icon-button:hover {
+    color: lightcoral;
 }
