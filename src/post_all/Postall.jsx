@@ -246,9 +246,9 @@ const PostAll = () => {
                             <Center><Text>{post.post}</Text></Center>
                           </Link>
                           <Box display={"flex"} ml={700}>
-                            <Box fontSize={"x-large"}>
+                            <button className="icon-button">
                               <i className="fas fa-solid fa-heart"></i>
-                            </Box>
+                            </button>
                             <Box fontSize={"x-large"} ml={20}>
                               <i className="fas fa-regular fa-bookmark"></i>
                             </Box>
