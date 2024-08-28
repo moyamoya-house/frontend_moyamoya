@@ -1,8 +1,37 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import './css/nice.css';
 
 const LikeButton = ({ postId }) => {
-    const [liked, setLiked] = useState(null);
+    const [liked, setLiked] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+
+
+  useEffect(() => {
+    const fetchLikedStatus = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:5000/nice/${postId}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setLiked(data.liked);
+        } else {
+          console.error('Failed to fetch like status');
+        }
+      } catch (error) {
+        console.error('Error fetching like status:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLikedStatus();
+  }, [postId]);
+
 
     const like = async () => {
         const token = localStorage.getItem('token');
@@ -26,11 +55,14 @@ const LikeButton = ({ postId }) => {
         }
     };
 
-
+  if (loading) {
+    return <div>Loading...</div>;
+  }
     return (
     <button
     className="icon-button"
     onClick={like}
+    style={{ color: liked ? 'orange': 'gray' }}
     >
         <i className="fas fa-solid fa-heart"></i>
     </button>
