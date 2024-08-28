@@ -28,7 +28,11 @@ const LikeButton = ({ postId }) => {
 
 
     return (
-    <button className="icon-button" onClick={like}>
+    <button
+    className="icon-button"
+    bg={liked ? 'orange': 'gray'}
+    onClick={like}
+    >
         <i className="fas fa-solid fa-heart"></i>
     </button>
     )
