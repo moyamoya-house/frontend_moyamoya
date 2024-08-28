@@ -42,6 +42,7 @@ const TopHeader = () => {
             <Image src="/PotCom_logo_typography.png" alt="pot" h={100}></Image>
           </Link>
           <Box display="flex" mt={25}>
+          <i class="fas fa-regular fa-bell"></i>
             <Button
               onClick={onOpen}
               w={50}
