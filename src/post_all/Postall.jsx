@@ -4,6 +4,7 @@ import { Box, Link, Text, Image, Center, Tabs, TabPanels, Tab, TabPanel } from "
 import Post from "../post/post";
 import Sidebar from "./component/sidebar";
 import LikeButton from "../nice/nice";
+import Bookmark from "../bookmark/bookmark";
 import "./css/post_all.css";
 
 const PostAll = () => {
@@ -185,9 +186,7 @@ const PostAll = () => {
                           </Link>
                           <Box display={"flex"} ml={700}>
                             <LikeButton postId={post.id}></LikeButton>
-                            <Box fontSize={"x-large"} ml={20}>
-                              <i className="fas fa-regular fa-bookmark"></i>
-                            </Box>
+                            <Bookmark postId={post.id}></Bookmark>
                           </Box>
                         </Box>
                       ) : (
@@ -245,12 +244,8 @@ const PostAll = () => {
                             <Center><Text>{post.post}</Text></Center>
                           </Link>
                           <Box display={"flex"} ml={700}>
-                            <button className="icon-button">
-                              <i className="fas fa-solid fa-heart"></i>
-                            </button>
-                            <Box fontSize={"x-large"} ml={20}>
-                              <i className="fas fa-regular fa-bookmark"></i>
-                            </Box>
+                            <LikeButton postId={post.id}></LikeButton>
+                            <Bookmark postId={post.id}></Bookmark>
                           </Box>
                         </Box>
                       ) : (
