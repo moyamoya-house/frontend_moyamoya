@@ -114,20 +114,6 @@ const PostAll = () => {
     }
   }, [followPost]);
 
-    // 時間のフォーマット設定
-    const formatDate = (dateString) => {
-      const date = new Date(dateString);
-      
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-      const hours = String(date.getHours()).padStart(2, '0');
-      const minutes = String(date.getMinutes()).padStart(2, '0');
-      const seconds = String(date.getSeconds()).padStart(2, '0');
-    
-      return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
-    };
-
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -197,6 +183,7 @@ const PostAll = () => {
                           </Link>
                           <Box display={"flex"} ml={700}>
                             <LikeButton postId={post.id}></LikeButton>
+                            <Text>{post.count}</Text>
                             <Bookmark postId={post.id}></Bookmark>
                           </Box>
                         </Box>
@@ -242,7 +229,7 @@ const PostAll = () => {
                             </Link>
                           </Box>
                           <Text mt={-50} ml={620}>
-                          {formatDate(post.created_at)}
+                          {post.created_at}
                           </Text>
                           <Link
                             href={`/post_detail/${post.id}`}
