@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
-import { Box, Link, Text, Image, Center, Tabs, TabPanels, Tab, TabPanel } from "@yamada-ui/react";
+import { Box, Link, Text, Image, Center, Tabs, TabPanels, Tab, TabPanel, VStack } from "@yamada-ui/react";
 import Post from "../post/post";
 import Sidebar from "./component/sidebar";
 import LikeButton from "../nice/nice";
@@ -114,6 +114,20 @@ const PostAll = () => {
     }
   }, [followPost]);
 
+    // 時間のフォーマット設定
+    const formatDate = (dateString) => {
+      const date = new Date(dateString);
+      
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      const seconds = String(date.getSeconds()).padStart(2, '0');
+    
+      return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+    };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -121,20 +135,17 @@ const PostAll = () => {
   return (
     <>
       <h1 className="postalltitle">モヤモヤ投稿一覧</h1>
-      <Tabs
-      margin='0 auto 0 auto'
-      >
+      <VStack>
+      <Tabs variant="line">
           <Tab
           width={300}
           margin='0 auto 0 auto'
-          variant="line"
           >
             全体
           </Tab>
           <Tab
           w={300}
           m={'0 auto 0 -110px'}
-          variant="line"
           >
             フォロー中
           </Tab>
@@ -230,8 +241,8 @@ const PostAll = () => {
                               </Text>
                             </Link>
                           </Box>
-                          <Text mt={-60} ml={620}>
-                          {post.created_at}
+                          <Text mt={-50} ml={620}>
+                          {formatDate(post.created_at)}
                           </Text>
                           <Link
                             href={`/post_detail/${post.id}`}
@@ -258,7 +269,7 @@ const PostAll = () => {
             </Box>
           </TabPanel>
         </TabPanels>
-      </Tabs>
+      </Tabs></VStack>
 
       <Box className="post_circle">
         <Post />
