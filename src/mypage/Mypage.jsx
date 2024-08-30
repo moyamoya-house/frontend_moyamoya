@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Box,Image, Link, Text } from "@yamada-ui/react";
+import { Box,Image, Link, Tabs, Text, Tab, TabPanels, TabPanel } from "@yamada-ui/react";
 import './css/mypage.css'
 import Follow from "../follow/follow";
 import UserPost from "./component/user_post";
+import BookmarkPost from "./component/bookmark_post";
 
 const Mypage  = () => {
     const [useData, setUseData] = useState(null);
@@ -69,7 +70,20 @@ const Mypage  = () => {
                     <Link href="/prof_edit" display={"flex"} w={200} h={50} textDecoration={"none"} color={"black"} alignItems={'center'} justifyContent={'center'} textAlign={"center"} >+ プロフ編集</Link>
                 </Box>
                 <Follow />
-                <UserPost></UserPost>
+                <Tabs>
+                    <Tab>投稿一覧</Tab>
+                    <Tab>ブックマーク一覧</Tab>
+
+                    <TabPanels>
+                        <TabPanel>
+                            <UserPost></UserPost>
+                        </TabPanel>
+                        
+                        <TabPanel>
+                            <BookmarkPost></BookmarkPost>
+                        </TabPanel>
+                    </TabPanels>
+                </Tabs>
             </Box>
             
         ) : (
