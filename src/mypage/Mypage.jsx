@@ -66,8 +66,8 @@ const Mypage  = () => {
                 </Box>
                 <h1 className="title">{useData.name}</h1>
                 <Text mb={20}>{useData.prof_comment}</Text>
-                <Link href="/prof_edit" display={"flex"} w={200} h={50} textDecoration={"none"} color={"black"} alignItems={'center'} justifyContent={'center'} textAlign={"center"} >
-                    <Box w={200} h={50} backgroundColor='#dcdcdc' m='-140px 0 50px 700px'>+ プロフ編集</Box>
+                <Link href="/prof_edit" display={"inline-block"} w={200} h={50} textDecoration={"none"} color={"black"} alignItems={'center'} justifyContent={'center'} textAlign={"center"} m='-180px 0 50px 700px' backgroundColor='#dcdcdc' >
+                    + プロフ編集
                 </Link>
                 <Follow />
                 <Tabs>

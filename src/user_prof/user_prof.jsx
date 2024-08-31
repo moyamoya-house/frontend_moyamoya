@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Box, Image, Text } from "@yamada-ui/react";
+import { Box, Image, Text, Tabs, TabPanels, TabPanel, Tab } from "@yamada-ui/react";
 import Followbutton from "./follow_button/follow_button";
 import UserFollow from "../follow/user_follow";
 import UserMoyamoya from "./component/user_post";
+import UserBookmark from "./component/user_bookmark";
 
 const UserProf = () => {
     const { id } = useParams();
@@ -88,7 +89,20 @@ const UserProf = () => {
                 <Text>{userData.prof_comment}</Text>
                 <Followbutton userId={userData.id} />
 
-                <UserMoyamoya userId={userData.id} />
+                <Tabs>
+                    <Tab>投稿一覧</Tab>
+                    <Tab>ブックマーク一覧</Tab>
+
+                    <TabPanels>
+                        <TabPanel>
+                            <UserMoyamoya userId={userData.id} />
+                        </TabPanel>
+
+                        <TabPanel>
+                            <UserBookmark userId={userData.id} />
+                        </TabPanel>
+                    </TabPanels>
+                </Tabs>
             </Box>
         ) : (
             <p>Loading user data...</p>
