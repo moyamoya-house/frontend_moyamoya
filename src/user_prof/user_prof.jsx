@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Box, Image, Text } from "@yamada-ui/react";
 import Followbutton from "./follow_button/follow_button";
 import UserFollow from "../follow/user_follow";
+import UserMoyamoya from "./component/user_post";
 
 const UserProf = () => {
     const { id } = useParams();
@@ -86,6 +87,8 @@ const UserProf = () => {
                 <UserFollow userId={userData.id} />
                 <Text>{userData.prof_comment}</Text>
                 <Followbutton userId={userData.id} />
+
+                <UserMoyamoya userId={userData.id} />
             </Box>
         ) : (
             <p>Loading user data...</p>
