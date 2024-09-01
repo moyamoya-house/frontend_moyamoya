@@ -8,7 +8,6 @@ const ProfEdit = ({ useData }) => {
     const [password, setPassword] = useState(useData.password);
     const [email, setEmail] = useState(useData.email);
     const [comment, setComment] = useState(useData.prof_comment);
-    const [profImage, setProfimage] = useState(null);
     const [secondImage, setSecondImage] = useState(null);
     const [preview, setPreview] = useState(null);
     const history = useNavigate();
@@ -21,7 +20,7 @@ const ProfEdit = ({ useData }) => {
         formData.append('password', password);
         formData.append('comment', comment);
         formData.append('email',email);
-        if (profImage) formData.append('profimage',profImage);
+        if (preview) formData.append('profimage',preview);
         if (secondImage) formData.append('secondimage',secondImage);
 
         const token = localStorage.getItem('token');

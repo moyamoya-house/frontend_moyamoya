@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
-const Pots = () => {
+const Potsxxx = () => {
   const ref = useRef();
 
   // 壺の形を定義
@@ -21,4 +21,4 @@ const Pots = () => {
 
 
 
-export default Pots;
+export default Potsxxx;

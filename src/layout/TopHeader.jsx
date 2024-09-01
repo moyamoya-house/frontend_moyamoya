@@ -103,7 +103,9 @@ const TopHeader = () => {
                   </Link>
                 </ListItem>
                 <ListItem fontSize={25} m="30, 20">
-                  PotCom
+                  <Link href="/pots" color={"black"} textDecoration={"none"}>
+                    PotCom
+                  </Link>
                 </ListItem>
                 <ListItem fontSize={25} m="30, 20">
                   メッセージ
