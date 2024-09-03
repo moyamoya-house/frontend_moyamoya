@@ -64,7 +64,7 @@ const TopHeader = () => {
               ></Image>
             ) : (
               <Image
-              src='not-profileicon.jpg'
+              src='/not-profileicon.jpg'
               alt="prof_image"
               w={50}
               h={50}
@@ -117,7 +117,7 @@ const TopHeader = () => {
       ) : (
         <Box className="header">
           <Link href="/top">
-            <Image src="PotCom_logo_typography.png" alt="pot" h={100}></Image>
+            <Image src="/PotCom_logo_typography.png" alt="pot" h={100}></Image>
           </Link>
         </Box>
       )}
