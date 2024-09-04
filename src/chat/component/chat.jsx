@@ -24,3 +24,4 @@ const Chat = ({receiver_id}) => {
         setMessage("");
       };
 }
+export default Chat;
