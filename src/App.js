@@ -10,8 +10,9 @@ import ProfileEditPage from './prof_edit/ProfEditPage';
 import PostAll from './post_all/Postall';
 import PostDetail from './post_detail/post_detail';
 import UserProf from './user_prof/user_prof';
-import './App.css';
 import Pot from './Pots/Pot';
+import ChatAll from './chat/chat_all';
+import './App.css';
 
 const App = () => {
   const [showTopBtn, setShowTopBtn] = useState(false);
@@ -52,6 +53,7 @@ const App = () => {
           <Route path='/post_detail/:id' element={<PostDetail></PostDetail>}></Route>
           <Route path='/user_prof/:id' element={<UserProf></UserProf>}></Route>
           <Route path='/pots' element={<Pot></Pot>}></Route>
+          <Route path='/chat' element={<ChatAll></ChatAll>}></Route>
         </Routes>
     </Router>
     <Footer></Footer>

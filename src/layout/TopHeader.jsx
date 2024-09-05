@@ -108,7 +108,9 @@ const TopHeader = () => {
                   </Link>
                 </ListItem>
                 <ListItem fontSize={25} m="30, 20">
-                  メッセージ
+                  <Link href="/chat" color={"black"} textDecoration={"none"}>
+                    メッセージ
+                  </Link>
                 </ListItem>
               </List>
             </DrawerBody>

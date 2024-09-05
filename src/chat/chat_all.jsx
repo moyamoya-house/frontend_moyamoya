@@ -39,15 +39,15 @@ const ChatAll = () => {
         fetchUsersData();
     }, []);
 
-    // const handleUserSelect = (id) => {
-    //     setReceiverId(id);
-    //   };
+    const handleUserSelect = (id) => {
+        setReceiver(id);
+      };
 
     return (
         <>
             <Box>
-                <UserSelect ></UserSelect>
-                <Chat></Chat>
+                <UserSelect users={users} onSelectUser={handleUserSelect}></UserSelect>
+                <Chat receiver_id={receiverId} userId={userId}></Chat>
             </Box>
         </>
     )
