@@ -45,7 +45,7 @@ const ChatAll = () => {
 
     return (
         <>
-            <Box>
+            <Box w={1500} h="100vh" maxWidth='80%' m={"100px auto 0 auto"}>
                 <UserSelect users={users} onSelectUser={handleUserSelect}></UserSelect>
                 <Chat receiver_id={receiverId} userId={userId}></Chat>
             </Box>

@@ -27,7 +27,7 @@ const Chat = ({ receiver_id, userId }) => {
   };
 
   return (
-    <Box>
+    <Box ml={300}>
       <h1>ユーザーチャット</h1>
       <div>
         {messages.map((msg, index) => (
