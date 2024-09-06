@@ -6,7 +6,8 @@ import Chat from "./component/chat";
 const ChatAll = () => {
     const [receiverId, setReceiver] = useState(null);
     const [userId, setUser] = useState(null);
-
+    const [receiverName, setReceiverName] = useState("");
+    const [receiverImage, setReceiverImage] = useState("");
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -40,17 +41,21 @@ const ChatAll = () => {
     }, []);
 
     const handleUserSelect = (id) => {
-        setReceiver(id);
-      };
+        const selectedUser = users.find(user => user.id === id);
+        if (selectedUser) {
+            setReceiver(id);
+            setReceiverName(selectedUser.name);
+            setReceiverImage(selectedUser.prof_image);
+        }
+    };
 
     return (
         <>
-            <Box w={1500} h="100vh" maxWidth='80%' m={"100px auto 0 auto"}>
+            <Box w={1500} h="71vh" maxWidth='80%' m={"100px auto 0 auto"}>
                 <UserSelect users={users} onSelectUser={handleUserSelect}></UserSelect>
-                <Chat receiver_id={receiverId} userId={userId}></Chat>
+                <Chat receiverId={receiverId} userId={userId} receiverName={receiverName} receiverImage={receiverImage}></Chat>
             </Box>
         </>
     )
-
 }
 export default ChatAll;
