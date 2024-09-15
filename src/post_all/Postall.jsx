@@ -13,6 +13,12 @@ const PostAll = () => {
   const [userData, setUserData] = useState({});
   const [followUserData, setFollowUserData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [bgColor, setBgColor] = useState(0);
+
+  // ボタンクリック時に背景色を変更する関数
+  const handleTabClick = (index) => {
+    setBgColor(index);
+  };
 
   // 全体の投稿を取得
   useEffect(() => {
@@ -114,6 +120,7 @@ const PostAll = () => {
     }
   }, [followPost]);
 
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -126,12 +133,18 @@ const PostAll = () => {
           <Tab
           width={300}
           margin='0 auto 0 auto'
+          border={"none"}
+          onClick={() => handleTabClick(0)}
+          backgroundColor={bgColor === 0 ? 'lightblue' : 'white' }
           >
             全体
           </Tab>
           <Tab
           w={300}
           m={'0 auto 0 -110px'}
+          border={"none"}
+          onClick={() => handleTabClick(1)}
+          backgroundColor={bgColor === 1? 'lightblue' : 'white' }
           >
             フォロー中
           </Tab>
