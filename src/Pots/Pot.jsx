@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { MeshDistortMaterial, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import { Box } from '@yamada-ui/react';
+import SpeechText from './audio/audio_speach';
 
 const Pots = () => {
   const ref = useRef();
@@ -35,6 +36,7 @@ const Pot = () => {
       <Pots />
       <OrbitControls />
     </Canvas>
+    <SpeechText></SpeechText>
     </Box>
   );
 };
