@@ -90,8 +90,22 @@ const UserProf = () => {
                 <Followbutton userId={userData.id} />
 
                 <Tabs>
-                    <Tab>投稿一覧</Tab>
-                    <Tab>ブックマーク一覧</Tab>
+                    <Tab
+                        width={300}
+                        maxW="100%"
+                        m="0 auto 0 auto"
+                        border={"none"}
+                    >
+                        投稿一覧
+                    </Tab>
+                    <Tab
+                        width={300}
+                        maxW="100%"
+                        m="0 auto 0 auto"
+                        border={"none"}
+                    >
+                        ブックマーク一覧
+                    </Tab>
 
                     <TabPanels>
                         <TabPanel>

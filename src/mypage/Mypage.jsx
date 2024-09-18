@@ -31,8 +31,11 @@ const Mypage  = () => {
         {useData ? (
             <Box w={1500} maxWidth='80%' m='0 auto' mt={100} overflow={"hidden"}>
                 <Box h={300} border='1px solid #000'>
-                    <Image src={`http://127.0.0.1:5000/second_image/${useData.second_image}`} alt="big image"  width='100%' height='100%' objectFit={"cover"}/>
-                </Box>
+                {useData.second_image ? (
+                        <Image src={`http://127.0.0.1:5000/second_image/${useData.second_image}`}></Image>
+                    ) : (
+                        <Box h={300} bg={"aquamarine"}></Box>
+                    )}                </Box>
                 <Box position="relative" display="flex" >
                 <Box 
                     w={160} 
@@ -71,8 +74,22 @@ const Mypage  = () => {
                 </Link>
                 <Follow />
                 <Tabs>
-                    <Tab>投稿一覧</Tab>
-                    <Tab>ブックマーク一覧</Tab>
+                    <Tab
+                        width={300}
+                        maxW="100%"
+                        m="0 auto 0 auto"
+                        border={"none"}
+                    >
+                        投稿一覧
+                    </Tab>
+                    <Tab
+                        width={300}
+                        maxW="100%"
+                        m="0 auto 0 auto"
+                        border={"none"}
+                    >
+                        ブックマーク一覧
+                    </Tab>
 
                     <TabPanels>
                         <TabPanel>
