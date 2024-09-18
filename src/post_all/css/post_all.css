@@ -10,6 +10,7 @@
     width: 95%;
     height: 200px;
     border: 1px solid #000;
+    margin: 0 auto;
 }
 
 .post_circle {
@@ -36,6 +37,10 @@
   background: #d8f5fa;
   width: 3px;
   border-radius: 5px;
+}
+
+.post {
+  margin: 0 auto;
 }
 
 

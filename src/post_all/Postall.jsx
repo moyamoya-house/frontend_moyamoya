@@ -1,6 +1,21 @@
-'use client';
+"use client";
 import { useEffect, useState } from "react";
-import { Box, Link, Text, Image, Center, Tabs, TabPanels, Tab, TabPanel, VStack } from "@yamada-ui/react";
+import {
+  Box,
+  Link,
+  Text,
+  Image,
+  Center,
+  Tabs,
+  TabPanels,
+  Tab,
+  TabPanel,
+  VStack,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+} from "@yamada-ui/react";
 import Post from "../post/post";
 import Sidebar from "./component/sidebar";
 import LikeButton from "../nice/nice";
@@ -71,12 +86,12 @@ const PostAll = () => {
   // フォロー中のユーザーの投稿を取得
   useEffect(() => {
     const fetchFollowPost = async () => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       try {
-        const response = await fetch('http://127.0.0.1:5000/moyamoya_follow', {
-          method: 'GET',
+        const response = await fetch("http://127.0.0.1:5000/moyamoya_follow", {
+          method: "GET",
           headers: {
-            'Authorization': `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
         if (response.ok) {
@@ -120,7 +135,6 @@ const PostAll = () => {
     }
   }, [followPost]);
 
-
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -129,147 +143,159 @@ const PostAll = () => {
     <>
       <h1 className="postalltitle">モヤモヤ投稿一覧</h1>
       <VStack>
-      <Tabs variant="line">
+        <Tabs variant="line">
           <Tab
-          width={300}
-          margin='0 auto 0 auto'
-          border={"none"}
-          onClick={() => handleTabClick(0)}
-          backgroundColor={bgColor === 0 ? 'lightblue' : 'white' }
+            width={300}
+            margin="0 auto 0 auto"
+            border={"none"}
+            onClick={() => handleTabClick(0)}
+            backgroundColor={bgColor === 0 ? "lightblue" : "white"}
           >
             全体
           </Tab>
           <Tab
-          w={300}
-          m={'0 auto 0 -110px'}
-          border={"none"}
-          onClick={() => handleTabClick(1)}
-          backgroundColor={bgColor === 1? 'lightblue' : 'white' }
+            w={300}
+            m={"0 auto 0 -110px"}
+            border={"none"}
+            onClick={() => handleTabClick(1)}
+            backgroundColor={bgColor === 1 ? "lightblue" : "white"}
           >
             フォロー中
           </Tab>
 
-        <TabPanels>
-          <TabPanel>
-            <Box className="post_all">
-              <Box>
-                <ul className="post">
-                  {postData.map((post) => (
-                    <li className="postlist" key={post.id}>
-                      {userData[post.user_id] ? (
-                        <Box>
-                          <Box m="20px 0 0 20px" display={"flex"}>
-                            <Link
-                              href={`/user_prof/${post.user_id}`}
-                              display={"flex"}
-                              textDecoration={"none"}
-                              color={"black"}
-                            >
-                              <Image
-                                w={50}
-                                h={50}
-                                borderRadius={100}
-                                src={
-                                  userData[post.user_id].prof_image
-                                    ? `http://127.0.0.1:5000/prof_image/${userData[post.user_id].prof_image}`
-                                    : "not_profileicon.jpg"
-                                }
-                                alt="prof image"
-                              />
-                              <Text mt={10} marginLeft={10}>
-                                {userData[post.user_id].name}
+          <TabPanels>
+            <TabPanel>
+              <Box className="post_all">
+                <Box>
+                  <Box className="post">
+                    {postData.map((post) => (
+                      <Card className="postlist" key={post.id}>
+                        {userData[post.user_id] ? (
+                          <Box>
+                            <CardHeader w="100%" m="10px 0 0 20px" display={"flex"}>
+                              <Link
+                                href={`/user_prof/${post.user_id}`}
+                                display={"flex"}
+                                textDecoration={"none"}
+                                color={"black"}
+                              >
+                                <Image
+                                  w={50}
+                                  h={50}
+                                  borderRadius={100}
+                                  src={
+                                    userData[post.user_id].prof_image
+                                      ? `http://127.0.0.1:5000/prof_image/${
+                                          userData[post.user_id].prof_image
+                                        }`
+                                      : "not_profileicon.jpg"
+                                  }
+                                  alt="prof image"
+                                />
+                                <Text mt={10} marginLeft={10}>
+                                  {userData[post.user_id].name}
+                                </Text>
+                              </Link>
+                              <Text ml={500}>
+                                {post.created_at.split("-").join("/")}
                               </Text>
-                            </Link>
+                            </CardHeader>
+                            <CardBody>
+                              <Link
+                                href={`/post_detail/${post.id}`}
+                                textDecoration="none"
+                                color={"black"}
+                                display={"inline-block"}
+                                mt={30}
+                                ml={350}
+                              >
+                                  <Text>{post.post}</Text>
+                              </Link>
+                            </CardBody>
+                            <CardFooter>
+                              <Box display={"flex"} mt={-20} ml={700}>
+                                <LikeButton postId={post.id}></LikeButton>
+                                <Text>{post.count}</Text>
+                                <Bookmark postId={post.id}></Bookmark>
+                              </Box>
+                            </CardFooter>
                           </Box>
-                          <Text mt={-50} ml={620}>
-                            {post.created_at.split("-").join("/")}
-                          </Text>
-                          <Link
-                            href={`/post_detail/${post.id}`}
-                            textDecoration="none"
-                            color={"black"}
-                            display={"inline-block"}
-                            mt={30}
-                            ml={350}
-                          >
-                            <Center><Text>{post.post}</Text></Center>
-                          </Link>
-                          <Box display={"flex"} ml={700}>
-                            <LikeButton postId={post.id}></LikeButton>
-                            <Text>{post.count}</Text>
-                            <Bookmark postId={post.id}></Bookmark>
-                          </Box>
-                        </Box>
-                      ) : (
-                        <p>Loading user data...</p>
-                      )}
-                    </li>
-                  ))}
-                </ul>
+                        ) : (
+                          <p>Loading user data...</p>
+                        )}
+                      </Card>
+                    ))}
+                  </Box>
+                </Box>
               </Box>
-            </Box>
-          </TabPanel>
+            </TabPanel>
 
-          <TabPanel>
-            <Box className="post_all">
-              <Box>
-                <ul className="post">
-                  {followPost.map((post) => (
-                    <li className="postlist" key={post.id}>
-                      {followUserData[post.user_id] ? (
-                        <Box>
-                          <Box m="20px 0 0 20px" display={"flex"}>
+            <TabPanel>
+              <Box className="post_all">
+                <Box>
+                  <ul className="post">
+                    {followPost.map((post) => (
+                      <li className="postlist" key={post.id}>
+                        {followUserData[post.user_id] ? (
+                          <Box>
+                            <Box m="20px 0 0 20px" display={"flex"}>
+                              <Link
+                                href={`/user_prof/${post.user_id}`}
+                                display={"flex"}
+                                textDecoration={"none"}
+                                color={"black"}
+                              >
+                                <Image
+                                  w={50}
+                                  h={50}
+                                  borderRadius={100}
+                                  src={
+                                    followUserData[post.user_id].prof_image
+                                      ? `http://127.0.0.1:5000/prof_image/${
+                                          followUserData[post.user_id]
+                                            .prof_image
+                                        }`
+                                      : "not_profileicon.jpg"
+                                  }
+                                  alt="prof image"
+                                />
+                                <Text mt={10} marginLeft={10}>
+                                  {followUserData[post.user_id].name}
+                                </Text>
+                              </Link>
+                            </Box>
+                            <Text mt={-50} ml={620}>
+                              {post.created_at}
+                            </Text>
                             <Link
-                              href={`/user_prof/${post.user_id}`}
-                              display={"flex"}
-                              textDecoration={"none"}
+                              href={`/post_detail/${post.id}`}
+                              textDecoration="none"
                               color={"black"}
+                              display={"inline-block"}
+                              mt={30}
+                              ml={350}
                             >
-                              <Image
-                                w={50}
-                                h={50}
-                                borderRadius={100}
-                                src={
-                                  followUserData[post.user_id].prof_image
-                                    ? `http://127.0.0.1:5000/prof_image/${followUserData[post.user_id].prof_image}`
-                                    : "not_profileicon.jpg"
-                                }
-                                alt="prof image"
-                              />
-                              <Text mt={10} marginLeft={10}>
-                                {followUserData[post.user_id].name}
-                              </Text>
+                              <Center>
+                                <Text>{post.post}</Text>
+                              </Center>
                             </Link>
+                            <Box display={"flex"} mt={-20} ml={700}>
+                              <LikeButton postId={post.id}></LikeButton>
+                              <Bookmark postId={post.id}></Bookmark>
+                            </Box>
                           </Box>
-                          <Text mt={-50} ml={620}>
-                          {post.created_at}
-                          </Text>
-                          <Link
-                            href={`/post_detail/${post.id}`}
-                            textDecoration="none"
-                            color={"black"}
-                            display={"inline-block"}
-                            mt={30}
-                            ml={350}
-                          >
-                            <Center><Text>{post.post}</Text></Center>
-                          </Link>
-                          <Box display={"flex"} ml={700}>
-                            <LikeButton postId={post.id}></LikeButton>
-                            <Bookmark postId={post.id}></Bookmark>
-                          </Box>
-                        </Box>
-                      ) : (
-                        <p>Loading user data...</p>
-                      )}
-                    </li>
-                  ))}
-                </ul>
+                        ) : (
+                          <p>Loading user data...</p>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </Box>
               </Box>
-            </Box>
-          </TabPanel>
-        </TabPanels>
-      </Tabs></VStack>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </VStack>
 
       <Box className="post_circle">
         <Post />

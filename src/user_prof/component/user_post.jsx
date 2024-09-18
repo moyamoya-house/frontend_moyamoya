@@ -72,17 +72,24 @@ const UserMoyamoya = ({ userId }) => {
                         textDecoration={"none"}
                         color={"black"}
                       >
-                        <Image
-                          w={50}
-                          h={50}
-                          borderRadius={100}
-                          src={
-                            userData.prof_image
-                              ? `http://127.0.0.1:5000/prof_image/${userData.prof_image}`
-                              : "not_profileicon.jpg"
-                          }
-                          alt="prof image"
-                        />
+                        { userData.prof_image ? (
+                            <Image
+                            w={50}
+                            h={50}
+                            borderRadius={100}
+                            src={`http://127.0.0.1:5000/prof_image/${userData.prof_image}`}
+                            alt="prof_image"
+                            >
+                            </Image>
+                        ) : (
+                            <Image
+                            w={50}
+                            h={50}
+                            borderRadius={100}
+                            src="/not_profileicon.jpg"
+                            alt="prof_image"
+                            ></Image>
+                        )}
                         <Text mt={10} marginLeft={10}>
                           {userData.name}
                         </Text>
