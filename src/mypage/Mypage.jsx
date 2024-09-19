@@ -69,7 +69,7 @@ const Mypage  = () => {
                 </Box>
                 <h1 className="title">{useData.name}</h1>
                 <Text mb={20}>{useData.prof_comment}</Text>
-            <Link href="/prof_edit" display={"flex"} w={200} h={50} textDecoration={"none"} color={"black"} alignItems={"center"} justifyContent={"center"} textAlign={"center"} m='-100px 0 50px 700px' backgroundColor='#dcdcdc' _hover={{opacity: 0.4}} >
+                <Link href="/prof_edit" display={"flex"} w={200} h={50} textDecoration={"none"} color={"black"} alignItems={"center"} justifyContent={"center"} textAlign={"center"} m='-100px 0 50px 700px' backgroundColor='#dcdcdc' _hover={{opacity: 0.4}} >
                     + プロフ編集
                 </Link>
                 <Follow />

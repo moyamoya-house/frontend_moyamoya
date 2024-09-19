@@ -5,7 +5,6 @@ import {
   Link,
   Text,
   Image,
-  Center,
   Tabs,
   TabPanels,
   Tab,
@@ -233,12 +232,12 @@ const PostAll = () => {
             <TabPanel>
               <Box className="post_all">
                 <Box>
-                  <ul className="post">
+                  <Box className="post">
                     {followPost.map((post) => (
-                      <li className="postlist" key={post.id}>
+                      <Card className="postlist" key={post.id}>
                         {followUserData[post.user_id] ? (
                           <Box>
-                            <Box m="20px 0 0 20px" display={"flex"}>
+                            <CardHeader w="100%" m="10px 0 0 20px" display={"flex"}>
                               <Link
                                 href={`/user_prof/${post.user_id}`}
                                 display={"flex"}
@@ -252,8 +251,7 @@ const PostAll = () => {
                                   src={
                                     followUserData[post.user_id].prof_image
                                       ? `http://127.0.0.1:5000/prof_image/${
-                                          followUserData[post.user_id]
-                                            .prof_image
+                                          followUserData[post.user_id].prof_image
                                         }`
                                       : "not_profileicon.jpg"
                                   }
@@ -263,33 +261,36 @@ const PostAll = () => {
                                   {followUserData[post.user_id].name}
                                 </Text>
                               </Link>
-                            </Box>
-                            <Text mt={-50} ml={620}>
-                              {post.created_at}
-                            </Text>
-                            <Link
-                              href={`/post_detail/${post.id}`}
-                              textDecoration="none"
-                              color={"black"}
-                              display={"inline-block"}
-                              mt={30}
-                              ml={350}
-                            >
-                              <Center>
-                                <Text>{post.post}</Text>
-                              </Center>
-                            </Link>
-                            <Box display={"flex"} mt={-20} ml={700}>
-                              <LikeButton postId={post.id}></LikeButton>
-                              <Bookmark postId={post.id}></Bookmark>
-                            </Box>
+                              <Text ml={500}>
+                                {post.created_at.split("-").join("/")}
+                              </Text>
+                            </CardHeader>
+                            <CardBody>
+                              <Link
+                                href={`/post_detail/${post.id}`}
+                                textDecoration="none"
+                                color={"black"}
+                                display={"inline-block"}
+                                mt={30}
+                                ml={350}
+                              >
+                                  <Text>{post.post}</Text>
+                              </Link>
+                            </CardBody>
+                            <CardFooter>
+                              <Box display={"flex"} mt={-20} ml={700}>
+                                <LikeButton postId={post.id}></LikeButton>
+                                <Text>{post.count}</Text>
+                                <Bookmark postId={post.id}></Bookmark>
+                              </Box>
+                            </CardFooter>
                           </Box>
                         ) : (
                           <p>Loading user data...</p>
                         )}
-                      </li>
+                      </Card>
                     ))}
-                  </ul>
+                  </Box>
                 </Box>
               </Box>
             </TabPanel>
