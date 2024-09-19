@@ -1,6 +1,7 @@
 import { Box, Image } from "@yamada-ui/react";
 import { useState, useEffect } from "react";
 import io from "socket.io-client";
+import './css/chat.css';
 
 const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
   const [message, setMessage] = useState("");
@@ -36,32 +37,37 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
   };
 
   return (
-    <Box ml={300}>
-      <h1>ユーザーチャット</h1>
+    <Box ml={300} w={800} height="100%">
       {receiverId && (
-        <Box mb={4}>
-          <h2>チャット相手</h2>
-          <Image src={receiverImage ? `http://127.0.0.1:5000/prof_image/${receiverImage}` : '/not_profileicon.jpg'} alt="Profile" />
-          <h3>{receiverName}</h3>
+        <Box display={"flex"} w="100%" h={60} backgroundColor={"gray"}>
+          <Image src={receiverImage ? `http://127.0.0.1:5000/prof_image/${receiverImage}` : '/not_profileicon.jpg'} alt="Profile" w={50} h={50} borderRadius={100} mt={10} />
+          <h3 mt={110}>{receiverName}</h3>
         </Box>
       )}
       <div>
-        {messages.map((msg, index) => (
-          <div key={index}>
+      {messages.map((msg, index) => (
+          <div
+            key={index}
+            className={`message ${msg.send_user_id === userId ? 'sent' : 'received'}`}
+          >
+
             <strong>{msg.sender}:</strong> {msg.message}{" "}
             <em>({msg.chat_at})</em>
           </div>
         ))}
       </div>
 
-      <input
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        type="text"
-        placeholder="メッセージを入力"
-      />
+      <Box display={"flex"} bottom={110} position={"fixed"}>
+        <input
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          type="text"
+          placeholder="メッセージを入力"
+          className="chat_input"
+        />
 
-      <button onClick={sendMessage}>メッセージ送信</button>
+        <button onClick={sendMessage} className="chat_btn">送信</button>
+      </Box>
     </Box>
   );
 };
