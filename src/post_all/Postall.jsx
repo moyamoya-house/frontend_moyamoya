@@ -141,7 +141,9 @@ const PostAll = () => {
   return (
     <>
       <h1 className="postalltitle">モヤモヤ投稿一覧</h1>
-      <VStack>
+      <Box display={"flex"}>
+      <Sidebar />
+      <VStack ml={-170}>
         <Tabs variant="line">
           <Tab
             width={300}
@@ -298,10 +300,10 @@ const PostAll = () => {
         </Tabs>
       </VStack>
 
+      </Box>
       <Box className="post_circle">
         <Post />
       </Box>
-      <Sidebar />
     </>
   );
 };
