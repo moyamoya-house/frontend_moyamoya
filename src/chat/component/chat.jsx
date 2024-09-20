@@ -13,6 +13,27 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
     query: { token: encodeURIComponent(token) }
   });
 
+  const fetchChatHistory = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:5000/chat_send',{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        }
+      });
+      const data = await response.json();
+      setMessages(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (receiverId) {
+      fetchChatHistory();
+    }
+  }, [receiverId]);
+
   useEffect(() => {
     socket.on("receive_message", (data) => {
       setMessages((prevMessages) => [...prevMessages, data]);
@@ -45,21 +66,22 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
         </Box>
       )}
       <div>
-      {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={`message ${msg.send_user_id === userId ? 'sent' : 'received'}`}
-          >
+      <div>
+  {messages.map((msg, index) => (
+    <div
+      key={index}
+      className={`message ${msg.send_user_id === userId ? 'sent' : 'received'}`}
+    >
+      <strong>{msg.user_name}:</strong> {msg.message}{" "}
+      <em>({msg.timestamp})</em>
+    </div>
+  ))}
+</div>
 
-            <strong>{msg.sender}:</strong> {msg.message}{" "}
-            <em>({msg.chat_at})</em>
-          </div>
-        ))}
       </div>
 
       <Box display={"flex"} bottom={110} position={"fixed"}>
         <input
-          value={message}
           onChange={(e) => setMessage(e.target.value)}
           type="text"
           placeholder="メッセージを入力"
