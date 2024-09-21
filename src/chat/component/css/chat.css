@@ -35,3 +35,40 @@
 .chat_input, .chat_btn {
     margin-left: 15px;
 }
+
+.message {
+    margin-top: 15px;
+    min-height: 70px;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chatspan {
+    display: inline-block;
+    width: 500px;
+    min-height: 70px;
+    background-color: rgba(71, 71, 74, 1);
+    border-radius: 50px;
+    color: rgba(255, 255, 255, 0.78);
+    margin: 0 20px;
+}
+
+.chatmessage {
+    display: block;
+    padding: 30px;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    overflow-wrap: break-word;
+}
+
+.send {
+    margin-left: auto;
+    text-align: center;
+}
+
+.received {
+    text-align: center;
+    margin-right: auto;
+}

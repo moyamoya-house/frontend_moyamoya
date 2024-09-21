@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@mediapipe/tasks-vision": "^0.10.16",
     "@react-three/drei": "^9.111.5",
     "@react-three/fiber": "^8.17.6",
     "@testing-library/jest-dom": "^5.17.0",
