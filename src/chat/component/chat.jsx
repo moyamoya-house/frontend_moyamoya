@@ -1,4 +1,4 @@
-import { Box, Image } from "@yamada-ui/react";
+import { Box, Image, Text } from "@yamada-ui/react";
 import { useState, useEffect, useCallback } from "react";
 import io from "socket.io-client";
 import "./css/chat.css";
@@ -60,7 +60,7 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
   return (
     <Box ml={300} w={800} height="100%">
       {receiverId && (
-        <Box display={"flex"} w="100%" h={60} backgroundColor={"gray"}>
+        <Box display={"flex"} w="100%" h={60} borderBottom="1px solid #000" mb={10}>
           <Image
             src={
               receiverImage
@@ -73,7 +73,7 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
             borderRadius={100}
             mt={10}
           />
-          <h3 mt={110}>{receiverName}</h3>
+          <Text w={200} mt={20} ml={20} h={40}>{receiverName}</Text>
         </Box>
       )}
       <div>
@@ -85,6 +85,7 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
                 msg.send_user_id === userId ? "sent" : "received"
               }`}
             >
+              <Image></Image>
               <span className="chatspan">
                 <p className="chatmessag">{msg.message} </p>
               </span>

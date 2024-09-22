@@ -44,7 +44,7 @@ const ChatAll = () => {
         const selectedUser = users.find(user => user.id === id);
         if (selectedUser) {
             setReceiver(id);
-            setReceiverName(selectedUser.name);
+            setReceiverName(selectedUser.user_name);
             setReceiverImage(selectedUser.prof_image);
         }
     };
