@@ -51,7 +51,7 @@ const ChatAll = () => {
 
     return (
         <>
-            <Box w={1100} h="71vh" m={"100px auto 0 auto"}>
+            <Box w={1000} h="84vh" m={"100px auto 0 auto"}>
                 <UserSelect users={users} onSelectUser={handleUserSelect}></UserSelect>
                 <Chat receiverId={receiverId} userId={userId} receiverName={receiverName} receiverImage={receiverImage}></Chat>
             </Box>

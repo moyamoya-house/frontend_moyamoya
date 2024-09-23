@@ -36,17 +36,23 @@
     margin-left: 15px;
 }
 
+.message_chat {
+    height: 60vh;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+}
+
 .message {
     margin-top: 15px;
     display: flex;
     align-items: center;
 }
 
-.sent {
+.message .sent {
     justify-content: flex-end;
 }
 
-.received {
+.message .received {
     justify-content: flex-start;
 }
 

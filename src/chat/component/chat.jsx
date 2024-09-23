@@ -15,7 +15,7 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
 
   const fetchChatHistory = useCallback(async () => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/chat_send', {
+      const response = await fetch(`http://127.0.0.1:5000/chat_send?receiverId=${receiverId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -26,7 +26,7 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
     } catch (error) {
       console.error(error);
     }
-  }, [token]);
+  }, [token,receiverId]);
 
   useEffect(() => {
     if (receiverId) {
@@ -58,8 +58,8 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
   };
 
   return (
-    <Box ml={300} w={800} height="100%">
-      {receiverId && (
+    <Box ml={300} w={800} h="84vh">
+      {receiverId ? (
         <Box display={"flex"} w="100%" h={60} borderBottom="1px solid #000" mb={10}>
           <Image
             src={
@@ -75,17 +75,31 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
           />
           <Text w={200} mt={20} ml={20} h={40}>{receiverName}</Text>
         </Box>
+      ) : (
+        <Box display={"flex"} w="100%" h={60} borderBottom="1px solid #000" mb={10}>
+        <Text w={300} mt={20} ml={20} h={40}>ユーザーを選択してください</Text>
+      </Box>
       )}
       <div>
-        <div>
+        <div className="message_chat">
           {messages.map((msg, index) => (
             <div
               key={index}
               className={`message ${
-                msg.send_user_id === userId ? "sent" : "received"
+                msg.send_user_id === userId.user_id ? "sent" : "received"
               }`}
             >
-              <Image></Image>
+              <Image
+                src={
+                  msg.receiver_user_id === userId.user_id
+                    ? `http://127.0.0.1:5000/prof_image/${userId.prof_image}` // 自分のプロフィール画像
+                    : `http://127.0.0.1:5000/prof_image/${receiverImage}` // 相手のプロフィール画像
+                }
+                alt="Profile"
+                w={50}
+                h={50}
+                borderRadius={100}
+              />
               <span className="chatspan">
                 <p className="chatmessag">{msg.message} </p>
               </span>
@@ -95,7 +109,7 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
         </div>
       </div>
 
-      <Box display={"flex"} bottom={110} position={"fixed"}>
+      <Box display={"flex"} bottom={10}>
         <input
           onChange={(e) => setMessage(e.target.value)}
           type="text"
