@@ -1,11 +1,12 @@
 .chat_input {
-    display: block;
+    display: inline-block;
     vertical-align: middle;
     min-height: 50px;
     width: 500px;
     padding-left: 30px;
     background-color: rgba(71, 71, 74, 1);
     -webkit-appearance: none;
+    appearance: none;
     outline: none;
     border-radius: 0;
     border: 1px solid rgba(71, 71, 74, 1);
@@ -15,13 +16,14 @@
 }
 
 .chat_btn {
-    display: block;
+    display: inline-block;
     vertical-align: middle;
     height: 50px;
     width: 90px;
     font-size: 1.3rem;
     background-color:rgba(71,71,74,1) ;
     -webkit-appearance: none;
+    appearance: none;
     outline: none;
     border-radius: 0;
     border: 1px solid rgba(71,71,74,1);
@@ -72,7 +74,6 @@
     margin: 0 auto;
     font-size: 1.2rem;
 }
-
 
 .sent .chatspan::after {
     content: "";

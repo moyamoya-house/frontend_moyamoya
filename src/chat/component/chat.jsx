@@ -86,12 +86,12 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
             <div
               key={index}
               className={`message ${
-                msg.send_user_id === userId.user_id ? "sent" : "received"
+                msg.send_user_id === userId ? "sent" : "received"
               }`}
             >
               <Image
                 src={
-                  msg.receiver_user_id === userId.user_id
+                  msg.send_user_id === userId
                     ? `http://127.0.0.1:5000/prof_image/${userId.prof_image}` // 自分のプロフィール画像
                     : `http://127.0.0.1:5000/prof_image/${receiverImage}` // 相手のプロフィール画像
                 }
