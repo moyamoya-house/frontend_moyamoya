@@ -23,12 +23,8 @@ const ProfEdit = ({ useData }) => {
         if (preview) formData.append('profimage',preview);
         if (secondImage) formData.append('secondimage',secondImage);
 
-        const token = localStorage.getItem('token');
         const response = await fetch(`http://127.0.0.1:5000/users/${useData.id}`,{
             method: 'PUT',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
             body: formData,
         });
 
