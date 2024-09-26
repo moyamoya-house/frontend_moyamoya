@@ -31,7 +31,6 @@
     text-align: center;
     vertical-align: middle;
     color: rgba(255, 255, 255, 0.78);
-  
 }
 
 .chat_input, .chat_btn {
@@ -82,7 +81,7 @@
     right: -10px;
     border-width: 10px;
     border-style: solid;
-    border-color: transparent transparent transparent rgba(71, 71, 74, 1); /* 三角形を作る */
+    border-color: transparent transparent transparent rgba(71, 71, 74, 1);
 }
 
 .received .chatspan::before {
@@ -92,5 +91,5 @@
     left: -10px;
     border-width: 10px;
     border-style: solid;
-    border-color: transparent rgba(71, 71, 74, 1) transparent transparent; /* 三角形を作る */
+    border-color: transparent rgba(71, 71, 74, 1) transparent transparent;
 }

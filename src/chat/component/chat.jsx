@@ -101,7 +101,7 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
                 borderRadius={100}
               />
               <span className="chatspan">
-                <p className="chatmessag">{msg.message} </p>
+                <p className="chatmessage">{msg.message} </p>
               </span>
               <em>({msg.timestamp})</em>
             </div>
