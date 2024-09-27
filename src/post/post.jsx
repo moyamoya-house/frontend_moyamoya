@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 const Post = () => {
   const [post, setPost] = useState('');
+  const [tag, setTag] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ const Post = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ post }),
+      body: JSON.stringify({ post,tag }),
     });
     if (response.ok) {
       const data = await response.json();
@@ -75,6 +76,12 @@ const Post = () => {
                       height: '50px'
                     }}
                 />
+                <textarea
+                    type="text"
+                    placeholder="タグ付け"
+                    value={tag}
+                    onChange={(e) => setTag(e.target.value)}
+                    ></textarea>
                 <Box w={600}>
                     <Button type="submit" w='90%' h={50} m="40px auto 0 30px" colorScheme="secondary" border='none' bg='lightskyblue' borderRadius={10} >投稿!</Button>
                 </Box>
