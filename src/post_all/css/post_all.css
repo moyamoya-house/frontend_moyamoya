@@ -6,11 +6,11 @@
 }
 
 .postlist {
-    list-style: none;
-    width: 95%;
-    height: 200px;
-    border: 1px solid #000;
-    margin: 0 auto;
+  list-style: none;
+  width: 95%;
+  height: 200px;
+  border: 1px solid #000;
+  margin: 0 auto;
 }
 
 .post_circle {

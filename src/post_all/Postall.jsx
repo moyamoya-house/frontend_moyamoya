@@ -134,6 +134,25 @@ const PostAll = () => {
     }
   }, [followPost]);
 
+  const HashTag = (text) => {
+    const hashTagRegex = /#[\w]+/g;
+    return text.split(hashTagRegex).map((part,index) => {
+      const match = text.match(hashTagRegex);
+      if (match && match[index - 1]) {
+        const hashtag = match[index - 1];
+        return (
+          <>
+            {part}
+            <Link href={`/hashtags/${hashtag.slice(1)}`} color="blue">
+              {hashtag}
+            </Link>
+          </>
+        );
+      };
+      return part;
+    });
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -197,7 +216,7 @@ const PostAll = () => {
                                   {userData[post.user_id].name}
                                 </Text>
                               </Link>
-                              <Text ml={500}>
+                              <Text ml={450}>
                                 {post.created_at.split("-").join("/")}
                               </Text>
                             </CardHeader>
@@ -208,13 +227,12 @@ const PostAll = () => {
                                 color={"black"}
                                 display={"inline-block"}
                                 mt={30}
-                                ml={350}
                               >
-                                  <Text>{post.post}</Text>
+                                  <Text>{HashTag(post.post)}</Text>
                               </Link>
                             </CardBody>
                             <CardFooter>
-                              <Box display={"flex"} mt={-20} ml={700}>
+                              <Box display={"flex"} mt={-20} ml={650}>
                                 <LikeButton postId={post.id}></LikeButton>
                                 <Text>{post.count}</Text>
                                 <Bookmark postId={post.id}></Bookmark>
