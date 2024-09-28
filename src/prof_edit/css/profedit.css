@@ -1,0 +1,47 @@
+.proform {
+    width: 1500px;
+    max-width: 80%;
+    height: auto;
+    margin: -20px auto 0 auto;
+}
+
+.label {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+}
+
+.editbox {
+    width: 60%;
+    height: auto;
+    margin: -100px 20px 0 auto;
+}
+
+.username {
+    margin-bottom: 20px;
+    font-size: x-large;
+}
+
+.comment {
+    margin-bottom: 20px;
+    font-size: x-large;
+}
+
+.password {
+    margin-bottom: 50px;
+    font-size: x-large;
+}
+
+.email {
+    margin-bottom: 20px;
+    font-size: x-large;
+}
+
+.btn {
+    width: 100%;
+    height: 40px;
+    margin: 0 0 30px 0;
+    border: none;
+    border-radius: 10px;
+    background-color: lightskyblue;
+}

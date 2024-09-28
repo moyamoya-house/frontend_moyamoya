@@ -1,0 +1,16 @@
+.follow {
+    width: 200px;
+    height: 50px;
+}
+
+.follow_button {
+    width: 200px;
+    height: 50px;
+    background-color: #dcdcdc;
+    display: block;
+    margin: -90px 0 50px 700px;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}

@@ -1,0 +1,78 @@
+.postalltitle {
+  width: 1500px;
+  max-width: 70%;
+  margin: 125px auto 30px auto;
+  border-bottom: 1px solid #000;
+}
+
+.postlist {
+  list-style: none;
+  width: 95%;
+  height: 200px;
+  border: 1px solid #000;
+  margin: 0 auto;
+}
+
+.post_circle {
+  position: fixed;
+  bottom: 25px;
+  right: 15px;
+  z-index: 1000;
+}
+
+.post_all {
+  width: 1500px;
+  max-width: 70%;
+  margin: 20px auto 30px auto;
+  height: 77vh;
+  overflow-y: scroll;
+}
+
+.post_all::-webkit-scrollbar {
+  width: 5px;
+  background-color: #23efcd;
+  border-radius: 5px;
+}
+.post_all::-webkit-scrollbar-thumb {
+  background: #d8f5fa;
+  width: 3px;
+  border-radius: 5px;
+}
+
+.post {
+  margin: 0 auto;
+}
+
+
+/* スマホサイズ (480px以下) */
+@media (max-width: 480px) {
+  .postalltitle {
+    width: 100%;
+    font-size: 1.2em;
+    margin: 60px auto 10px auto;
+    padding: 0 10px;
+  }
+
+  .postlist {
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+  }
+
+  .post_circle {
+    bottom: 15px;
+    right: 10px;
+  }
+
+  .post_all {
+    width: 100%;
+    max-width: 100%;
+    margin: 10px auto;
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .post_all::-webkit-scrollbar {
+    display: none; /* スクロールバーを非表示 */
+  }
+}
