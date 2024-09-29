@@ -35,7 +35,8 @@ const Mypage  = () => {
                         <Image src={`http://127.0.0.1:5000/second_image/${useData.second_image}`}></Image>
                     ) : (
                         <Box h={300} bg={"aquamarine"}></Box>
-                    )}                </Box>
+                    )}
+                </Box>
                 <Box position="relative" display="flex" >
                 <Box 
                     w={160} 
