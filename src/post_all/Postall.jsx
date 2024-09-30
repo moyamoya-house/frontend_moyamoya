@@ -216,7 +216,7 @@ const PostAll = () => {
                                   {userData[post.user_id].name}
                                 </Text>
                               </Link>
-                              <Text ml={450}>
+                              <Text ml={600}>
                                 {post.created_at.split("-").join("/")}
                               </Text>
                             </CardHeader>
@@ -232,7 +232,7 @@ const PostAll = () => {
                               </Link>
                             </CardBody>
                             <CardFooter>
-                              <Box display={"flex"} mt={-20} ml={650}>
+                              <Box display={"flex"} mt={-20} ml={750}>
                                 <LikeButton postId={post.id}></LikeButton>
                                 <Text>{post.count}</Text>
                                 <Bookmark postId={post.id}></Bookmark>
