@@ -29,7 +29,7 @@ const Pots = () => {
 
 const Pot = () => {
   return (
-    <Box w={1000}>
+    <Box h={1000}>
     <Canvas>
       <ambientLight intensity={0.5} />
       <directionalLight position={[10, 10, 5]} />

@@ -31,7 +31,7 @@ const SpeechText = () => {
 
     return (
         <>
-            <Box>
+            <Box mt={1000}>
                 <button onClick={handleListen}>
                     {listening? '音声入力開始': '音声入力停止'}
                 </button>
