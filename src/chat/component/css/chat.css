@@ -45,6 +45,7 @@
 
 .message_send {
     margin-top: 15px;
+    margin-right: 5px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -52,6 +53,7 @@
 
 .message_receive {
     margin-top: 15px;
+    margin-left: 5px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
