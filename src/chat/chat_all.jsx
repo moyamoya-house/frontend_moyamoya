@@ -6,6 +6,7 @@ import Chat from "./component/chat";
 const ChatAll = () => {
     const [receiverId, setReceiver] = useState(null);
     const [userId, setUser] = useState(null);
+    const [myImage, setMyImage] = useState("");
     const [receiverName, setReceiverName] = useState("");
     const [receiverImage, setReceiverImage] = useState("");
     const [users, setUsers] = useState([]);
@@ -21,7 +22,8 @@ const ChatAll = () => {
             });
             if (response.ok) {
                 const data = await response.json();
-                setUser(data);
+                setUser(data.id);
+                setMyImage(data.prof_image);
             }
         };
         fetchUserData();
@@ -53,7 +55,7 @@ const ChatAll = () => {
         <>
             <Box w={1000} h="84vh" m={"100px auto 0 auto"}>
                 <UserSelect users={users} onSelectUser={handleUserSelect}></UserSelect>
-                <Chat receiverId={receiverId} userId={userId} receiverName={receiverName} receiverImage={receiverImage}></Chat>
+                <Chat receiverId={receiverId} userId={userId} receiverName={receiverName} receiverImage={receiverImage} myImage={myImage}></Chat>
             </Box>
         </>
     )

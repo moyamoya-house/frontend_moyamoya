@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import io from "socket.io-client";
 import "./css/chat.css";
 
-const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
+const Chat = ({ receiverId, userId, receiverName, receiverImage, myImage }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const token = localStorage.getItem("token");
@@ -92,7 +92,7 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage }) => {
               <Image
                 src={
                   msg.send_user_id === userId
-                    ? `http://127.0.0.1:5000/prof_image/${userId.prof_image}` // 自分のプロフィール画像
+                    ? `http://127.0.0.1:5000/prof_image/${myImage}` // 自分のプロフィール画像
                     : `http://127.0.0.1:5000/prof_image/${receiverImage}` // 相手のプロフィール画像
                 }
                 alt="Profile"
