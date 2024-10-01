@@ -83,18 +83,30 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage, myImage }) => {
       <div>
         <div className="message_chat">
           {messages.map((msg, index) => (
+            msg.send_user_id === userId ? (
             <div
               key={index}
-              className={`message ${
-                msg.send_user_id === userId ? "sent" : "received"
-              }`}
+              className={"message_send"}
+            >
+              <em>({msg.timestamp})</em>
+              <span className="chatspan">
+                <p className="chatmessage">{msg.message} </p>
+              </span>
+              <Image
+                src={`http://127.0.0.1:5000/prof_image/${myImage}`} // 自分のプロフィール画像
+                alt="Profile"
+                w={50}
+                h={50}
+                borderRadius={100}
+              />
+            </div>
+          ): (
+            <div
+              key={index}
+              className={"message_receive"}
             >
               <Image
-                src={
-                  msg.send_user_id === userId
-                    ? `http://127.0.0.1:5000/prof_image/${myImage}` // 自分のプロフィール画像
-                    : `http://127.0.0.1:5000/prof_image/${receiverImage}` // 相手のプロフィール画像
-                }
+                src={ `http://127.0.0.1:5000/prof_image/${receiverImage}`} // 相手のプロフィール画像
                 alt="Profile"
                 w={50}
                 h={50}
@@ -105,6 +117,7 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage, myImage }) => {
               </span>
               <em>({msg.timestamp})</em>
             </div>
+            )
           ))}
         </div>
       </div>
