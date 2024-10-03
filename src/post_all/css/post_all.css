@@ -13,20 +13,39 @@
   margin: 0 auto;
 }
 
+/* CSS */
 .post_circle {
-  position: fixed;
+  position: absolute; /* fixedからabsoluteへ変更 */
   bottom: 25px;
   right: 15px;
   z-index: 1000;
 }
 
 .post_all {
+  position: relative; /* 親要素にrelativeを指定 */
   width: 1500px;
   max-width: 70%;
   margin: 20px auto 30px auto;
   height: 77vh;
   overflow-y: scroll;
 }
+
+/* スマホサイズ (480px以下) */
+@media (max-width: 480px) {
+  .post_circle {
+    bottom: 15px;
+    right: 10px;
+  }
+
+  .post_all {
+    width: 100%;
+    max-width: 100%;
+    margin: 10px auto;
+    height: auto;
+    overflow-y: visible;
+  }
+}
+
 
 .post_all::-webkit-scrollbar {
   width: 5px;
@@ -41,38 +60,4 @@
 
 .post {
   margin: 0 auto;
-}
-
-
-/* スマホサイズ (480px以下) */
-@media (max-width: 480px) {
-  .postalltitle {
-    width: 100%;
-    font-size: 1.2em;
-    margin: 60px auto 10px auto;
-    padding: 0 10px;
-  }
-
-  .postlist {
-    width: 100%;
-    height: auto;
-    margin: 10px 0;
-  }
-
-  .post_circle {
-    bottom: 15px;
-    right: 10px;
-  }
-
-  .post_all {
-    width: 100%;
-    max-width: 100%;
-    margin: 10px auto;
-    height: auto;
-    overflow-y: visible;
-  }
-
-  .post_all::-webkit-scrollbar {
-    display: none; /* スクロールバーを非表示 */
-  }
 }
