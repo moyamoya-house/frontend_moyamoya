@@ -8,6 +8,18 @@
     flex-direction: column;
 }
 
+.userbox::-webkit-scrollbar {
+    width: 5px;
+    background-color: rgba(7, 7, 7, 0);
+    border-radius: 5px;
+}
+
+.userbox::-webkit-scrollbar-thumb {
+    background-color: rgba(238, 191, 191, 0.993);
+    width: 3px;
+    border-radius: 5px;
+}
+
 .usermap {
     font-size: 1.5rem;
     margin: 0 auto 0 auto;
