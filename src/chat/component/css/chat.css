@@ -43,6 +43,18 @@
     margin-bottom: 10px;
 }
 
+.message_chat::-webkit-scrollbar {
+    width: 5px;
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+.message_chat::-webkit-scrollbar-thumb {
+    background-color: #060925;
+    width: 3px;
+    border-radius: 5px;
+}
+
 .message_send {
     margin-top: 15px;
     margin-right: 5px;
