@@ -12,6 +12,7 @@ import PostDetail from './post_detail/post_detail';
 import UserProf from './user_prof/user_prof';
 import Pot from './Pots/Pot';
 import ChatAll from './chat/chat_all';
+import Notification from './notification/notification';
 import HashTagPost from './hash_tag/hash_tag';
 import './App.css';
 
@@ -45,7 +46,7 @@ const App = () => {
     <Router>
         <Routes>
           <Route path="/login" element={<Login></Login>} />
-          <Route path="/signup" element={<Signup></Signup>} />signup
+          <Route path="/signup" element={<Signup></Signup>} />
           <Route path="*" element={<Navigate to="/login" />} />
           <Route path='/top' element={<Top></Top>} />
           <Route path='/mypage' element={<Mypage></Mypage>} />
@@ -56,6 +57,7 @@ const App = () => {
           <Route path='/pots' element={<Pot></Pot>}></Route>
           <Route path='/chat' element={<ChatAll></ChatAll>}></Route>
           <Route path='/hashtags/:hashtag' element={<HashTagPost></HashTagPost>}></Route>
+          <Route path='/notification' element={<Notification></Notification>}></Route>
         </Routes>
     </Router>
     <Footer></Footer>
