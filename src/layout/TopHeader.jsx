@@ -42,9 +42,9 @@ const TopHeader = () => {
             <Image src="/PotCom_logo_typography.png" alt="pot" h={100}></Image>
           </Link>
           <Box display="flex" mt={25}>
-            <Box>
+            <Link href="/notification">
               <i class="fas fa-regular fa-bell" style={{ fontSize: '35px', margin: '10px 10px 0 0' }}></i>
-            </Box>
+            </Link>
             <Button
               onClick={onOpen}
               w={50}
