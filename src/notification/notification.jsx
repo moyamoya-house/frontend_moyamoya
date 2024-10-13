@@ -22,7 +22,7 @@ const Notification = () => {
         fetchNotificationData();
     },[]);
     return (
-        <Box mt={120}>
+        <Box w={1500} maxW="80%" margin="130px auto 0 auto">
             {notification.length > 0 ? (
                 notification.map((noti, index) => (
                     <Box key={index} mb={4}>
