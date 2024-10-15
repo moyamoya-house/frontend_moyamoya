@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Box } from "@yamada-ui/react";
 import UserSelect from "./component/user_select";
 import Chat from "./component/chat";
+import CreateChatGroup from "./component/group";
 
 const ChatAll = () => {
     const [receiverId, setReceiver] = useState(null);
@@ -56,6 +57,7 @@ const ChatAll = () => {
             <Box w={1000} h="84vh" m={"100px auto 0 auto"}>
                 <UserSelect users={users} onSelectUser={handleUserSelect}></UserSelect>
                 <Chat receiverId={receiverId} userId={userId} receiverName={receiverName} receiverImage={receiverImage} myImage={myImage}></Chat>
+                <CreateChatGroup users={users}></CreateChatGroup>
             </Box>
         </>
     )
