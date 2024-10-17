@@ -64,7 +64,7 @@ const TopHeader = () => {
               ></Image>
             ) : (
               <Image
-              src='/not-profileicon.jpg'
+              src='/not_profileicon.jpg'
               alt="prof_image"
               w={50}
               h={50}
