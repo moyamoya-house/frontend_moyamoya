@@ -3,7 +3,15 @@ import { useState, useEffect, useCallback } from "react";
 import io from "socket.io-client";
 import "./css/chat.css";
 
-const Chat = ({ receiverId, userId, receiverName, receiverImage, myImage }) => {
+const Chat = ({
+  receiverId,
+  userId,
+  receiverName,
+  receiverImage,
+  myImage,
+  groupId,
+  groupName,
+}) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const token = localStorage.getItem("token");
@@ -15,24 +23,27 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage, myImage }) => {
 
   const fetchChatHistory = useCallback(async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/chat_send?receiverId=${receiverId}`, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `http://127.0.0.1:5000/chat_send?receiverId=${receiverId}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const data = await response.json();
       setMessages(data);
     } catch (error) {
       console.error(error);
     }
-  }, [token,receiverId]);
+  }, [token, receiverId]);
 
   useEffect(() => {
     if (receiverId) {
       fetchChatHistory();
     }
-  }, [receiverId,fetchChatHistory]);
+  }, [receiverId, fetchChatHistory]);
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
@@ -45,22 +56,29 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage, myImage }) => {
   }, [socket]);
 
   const sendMessage = () => {
-    if (receiverId) {
+    if (groupId || receiverId) {
       socket.emit("send_message", {
         message: message,
         send_user_id: userId,
         receiver_user_id: receiverId,
+        group_id: groupId,
       });
       setMessage("");
     } else {
-      alert("チャット相手が選択されていません");
+      alert("チャット相手またはグループが選択されていません");
     }
   };
 
   return (
     <Box ml={300} w={800} h="84vh">
-      {receiverId ? (
-        <Box display={"flex"} w="100%" h={60} borderBottom="1px solid #000" mb={10}>
+      {receiverId || groupId ? (
+        <Box
+          display={"flex"}
+          w="100%"
+          h={60}
+          borderBottom="1px solid #000"
+          mb={10}
+        >
           <Image
             src={
               receiverImage
@@ -73,52 +91,56 @@ const Chat = ({ receiverId, userId, receiverName, receiverImage, myImage }) => {
             borderRadius={100}
             mt={10}
           />
-          <Text w={200} mt={20} ml={20} h={40}>{receiverName}</Text>
+          <Text w={200} mt={20} ml={20} h={40}>
+            {receiverName || groupName}
+          </Text>
         </Box>
       ) : (
-        <Box display={"flex"} w="100%" h={60} borderBottom="1px solid #000" mb={10}>
-        <Text w={300} mt={20} ml={20} h={40}>ユーザーを選択してください</Text>
-      </Box>
+        <Box
+          display={"flex"}
+          w="100%"
+          h={60}
+          borderBottom="1px solid #000"
+          mb={10}
+        >
+          <Text w={300} mt={20} ml={20} h={40}>
+            ユーザーまたはグループを選択してください
+          </Text>
+        </Box>
       )}
       <div>
         <div className="message_chat">
-          {messages.map((msg, index) => (
+          {messages.map((msg, index) =>
             msg.send_user_id === userId ? (
-            <div
-              key={index}
-              className={"message_send"}
-            >
-              <em>({msg.timestamp})</em>
-              <span className="chatspan">
-                <p className="chatmessage">{msg.message} </p>
-              </span>
-              <Image
-                src={`http://127.0.0.1:5000/prof_image/${myImage}`} // 自分のプロフィール画像
-                alt="Profile"
-                w={50}
-                h={50}
-                borderRadius={100}
-              />
-            </div>
-          ): (
-            <div
-              key={index}
-              className={"message_receive"}
-            >
-              <Image
-                src={ `http://127.0.0.1:5000/prof_image/${receiverImage}`} // 相手のプロフィール画像
-                alt="Profile"
-                w={50}
-                h={50}
-                borderRadius={100}
-              />
-              <span className="chatspan">
-                <p className="chatmessage">{msg.message} </p>
-              </span>
-              <em>({msg.timestamp})</em>
-            </div>
+              <div key={index} className={"message_send"}>
+                <em>({msg.timestamp})</em>
+                <span className="chatspan">
+                  <p className="chatmessage">{msg.message} </p>
+                </span>
+                <Image
+                  src={`http://127.0.0.1:5000/prof_image/${myImage}`} // 自分のプロフィール画像
+                  alt="Profile"
+                  w={50}
+                  h={50}
+                  borderRadius={100}
+                />
+              </div>
+            ) : (
+              <div key={index} className={"message_receive"}>
+                <Image
+                  src={`http://127.0.0.1:5000/prof_image/${receiverImage}`} // 相手のプロフィール画像
+                  alt="Profile"
+                  w={50}
+                  h={50}
+                  borderRadius={100}
+                />
+                <span className="chatspan">
+                  <p className="chatmessage">{msg.message} </p>
+                </span>
+                <em>({msg.timestamp})</em>
+              </div>
             )
-          ))}
+          )}
         </div>
       </div>
 

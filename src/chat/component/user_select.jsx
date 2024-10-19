@@ -31,8 +31,8 @@ const UserSelect = ({ users, group, onSelectUser, onSelectGroup }) => {
           group.length > 0 ? (
             group.map((group) => (
               <button
-                key={group.id}
-                onClick={() => onSelectGroup(group.id)}
+                key={group.group_id}
+                onClick={() => onSelectGroup(group.group_id)}
                 className="selectbutton"
               >
                 {group.group_name}

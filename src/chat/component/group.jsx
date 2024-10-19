@@ -18,20 +18,14 @@ const CreateChatGroup = ({ users }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
-  // チェックボックスの選択状態を管理
-  const handleCheckboxChange = (e) => {
-    const userId = e.target.value;
-    if (e.target.checked) {
-      // チェックされた場合、ユーザーIDを追加
-      setSelectedUsers((prevSelectedUsers) => [...prevSelectedUsers, userId]);
-    } else {
-      // チェックが外れた場合、ユーザーIDを削除
-      setSelectedUsers((prevSelectedUsers) =>
-        prevSelectedUsers.filter((id) => id !== userId)
+    // ユーザー選択の処理
+    const handleUserSelect = (userId) => {
+      setSelectedUsers(prevSelected => 
+          prevSelected.includes(userId) 
+          ? prevSelected.filter(id => id !== userId)  // 選択解除
+          : [...prevSelected, userId]  // 選択
       );
-    }
   };
-
   console.log(selectedUsers);
 
   // グループ作成の処理
@@ -91,7 +85,7 @@ const CreateChatGroup = ({ users }) => {
                   type="checkbox"
                   value={user.id}
                   checked={selectedUsers.includes(user.user_id)}
-                  onChange={handleCheckboxChange}
+                  onChange={handleUserSelect}
                 />
                 {user.user_name} {/* ユーザー名を表示 */}
               </label>

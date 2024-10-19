@@ -12,11 +12,13 @@ const ChatAll = () => {
     const [receiverImage, setReceiverImage] = useState("");
     const [users, setUsers] = useState([]);
     const [group, setGroup] = useState([]);
+    const [groupId, setGroupId] = useState(null);  // グループIDを管理する状態
+    const [groupName, setGroupName] = useState("");  // グループ名を管理する状態
 
     useEffect(() => {
         const fetchUserData = async () => {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://127.0.0.1:5000/mypage',{
+            const response = await fetch('http://127.0.0.1:5000/mypage', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -33,7 +35,7 @@ const ChatAll = () => {
 
     useEffect(() => {
         const fetchUsersData = async () => {
-            const response = await fetch('http://127.0.0.1:5000/users',{
+            const response = await fetch('http://127.0.0.1:5000/users', {
                 method: 'GET',
             });
             if (response.ok) {
@@ -47,7 +49,7 @@ const ChatAll = () => {
     useEffect(() => {
         const fetchGroupData = async () => {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://127.0.0.1:5000/groupchat',{
+            const response = await fetch('http://127.0.0.1:5000/groupchat', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -59,7 +61,7 @@ const ChatAll = () => {
             }
         };
         fetchGroupData();
-    },[]);
+    }, []);
 
     const handleUserSelect = (id) => {
         const selectedUser = users.find(user => user.id === id);
@@ -67,25 +69,44 @@ const ChatAll = () => {
             setReceiver(id);
             setReceiverName(selectedUser.user_name);
             setReceiverImage(selectedUser.prof_image);
+            setGroupId(null);  // グループ選択をリセット
+            setGroupName("");
         }
     };
 
     const handleGroupSelect = (id) => {
-        const selectedGroup = group.find(group => group.id === id);
+        const selectedGroup = group.find(group => group.group_id === id);
         if (selectedGroup) {
-            setReceiver(id);
-            setReceiverName(selectedGroup.group_name);
+            setGroupId(id);
+            setGroupName(selectedGroup.group_name);
+            setReceiver(null);  // ユーザー選択をリセット
+            setReceiverName("");
+            setReceiverImage("");
         }
     };
 
     return (
         <>
             <Box w={1000} h="84vh" m={"100px auto 0 auto"}>
-                <UserSelect users={users} onSelectUser={handleUserSelect} group={group} onSelectGroup={handleGroupSelect}></UserSelect>
-                <Chat receiverId={receiverId} userId={userId} receiverName={receiverName} receiverImage={receiverImage} myImage={myImage}></Chat>
-                <CreateChatGroup users={users}></CreateChatGroup>
+                <UserSelect 
+                    users={users} 
+                    onSelectUser={handleUserSelect} 
+                    group={group} 
+                    onSelectGroup={handleGroupSelect} 
+                />
+                <Chat 
+                    receiverId={receiverId} 
+                    userId={userId} 
+                    receiverName={receiverName} 
+                    receiverImage={receiverImage} 
+                    myImage={myImage} 
+                    groupId={groupId}        // グループIDを渡す
+                    groupName={groupName}    // グループ名を渡す
+                />
+                <CreateChatGroup users={users} />
             </Box>
         </>
     )
 }
+
 export default ChatAll;
