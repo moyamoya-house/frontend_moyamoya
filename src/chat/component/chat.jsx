@@ -23,21 +23,35 @@ const Chat = ({
 
   const fetchChatHistory = useCallback(async () => {
     try {
-      const response = await fetch(
-        `http://127.0.0.1:5000/chat_send?receiverId=${receiverId}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      let url = "";
+  
+      // グループチャットか個人チャットかを判定
+      if (groupId) {
+        url = `http://127.0.0.1:5000/chat_send?groupId=${groupId}`;
+      } else if (receiverId) {
+        url = `http://127.0.0.1:5000/chat_send?receiverId=${receiverId}`;
+      }
+  
+      if (!url) {
+        console.error("receiverId または groupId が必要です");
+        return;
+      }
+  
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
       const data = await response.json();
       setMessages(data);
     } catch (error) {
       console.error(error);
     }
-  }, [token, receiverId]);
+  }, [token, receiverId, groupId]);
+  
+  
 
   useEffect(() => {
     if (receiverId) {
