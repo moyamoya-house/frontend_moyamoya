@@ -27,7 +27,7 @@ const Chat = ({
   
       // グループチャットか個人チャットかを判定
       if (groupId) {
-        url = `http://127.0.0.1:5000/chat_send?groupId=${groupId}`;
+        url = `http://127.0.0.1:5000/chat_send_group?group_id=${groupId}`;
       } else if (receiverId) {
         url = `http://127.0.0.1:5000/chat_send?receiverId=${receiverId}`;
       }
@@ -58,6 +58,13 @@ const Chat = ({
       fetchChatHistory();
     }
   }, [receiverId, fetchChatHistory]);
+
+  useEffect(() => {
+    if (groupId) {
+      fetchChatHistory();
+    }
+  }, [groupId, fetchChatHistory]);
+  
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
