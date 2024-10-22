@@ -20,13 +20,14 @@ const CreateChatGroup = ({ users }) => {
   const navigate = useNavigate();
 
     // ユーザー選択の処理
-    const handleUserSelect = (userId) => {
-      setSelectedUsers(prevSelected => 
-          prevSelected.includes(userId) 
-          ? prevSelected.filter(id => id !== userId)  // 選択解除
-          : [...prevSelected, userId]  // 選択
+    const handleUserSelect = (e) => {
+      const userId = parseInt(e.target.value, 10); // inputのvalueからユーザーIDを取得
+      setSelectedUsers((prevSelected) =>
+        prevSelected.includes(userId)
+          ? prevSelected.filter((id) => id !== userId) // 選択解除
+          : [...prevSelected, userId] // 選択
       );
-  };
+    };
   console.log(selectedUsers);
 
   // グループ作成の処理
@@ -81,8 +82,7 @@ const CreateChatGroup = ({ users }) => {
           />
           <Input
             type="file"
-            value={groupimage}
-            onChange={(e) => setGroupImage(e.target.value)}
+            onChange={(e) => setGroupImage(e.target.files[0])}
           />
           <h3>メンバー選択</h3>
           <VStack align="start">
@@ -91,7 +91,7 @@ const CreateChatGroup = ({ users }) => {
                 <input
                   type="checkbox"
                   value={user.id}
-                  checked={selectedUsers.includes(user.user_id)}
+                  checked={selectedUsers.includes(user.id)}
                   onChange={handleUserSelect}
                 />
                 {user.user_name} {/* ユーザー名を表示 */}
