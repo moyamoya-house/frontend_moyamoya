@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 const CreateChatGroup = ({ users }) => {
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [groupname, setGroupName] = useState("");
+  const [groupimage, setGroupImage] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
@@ -41,6 +42,7 @@ const CreateChatGroup = ({ users }) => {
         body: JSON.stringify({
           group_name: groupname,
           user_ids: selectedUsers,
+          group_image: groupimage,
         }), // JSONに変換してリクエストボディとして送信
       })
         .then((response) => {
@@ -66,7 +68,7 @@ const CreateChatGroup = ({ users }) => {
     <>
       <Button onClick={onOpen}>グループ作成</Button>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} w={300} h={500} bg={"white"}>
         <ModalOverlay bg="rgba(0, 0, 0, 0.6)" />
         <ModalHeader>グループチャット作成</ModalHeader>
         <ModalBody>
@@ -76,6 +78,11 @@ const CreateChatGroup = ({ users }) => {
             onChange={(e) => setGroupName(e.target.value)}
             placeholder="グループ名を入力"
             mb={4}
+          />
+          <Input
+            type="file"
+            value={groupimage}
+            onChange={(e) => setGroupImage(e.target.value)}
           />
           <h3>メンバー選択</h3>
           <VStack align="start">
