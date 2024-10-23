@@ -27,7 +27,7 @@ const Signup = () => {
         console.log(data);
 
         if (response.ok) {
-            alert(data+'この内容でいいですか？');
+            alert(data[0]+'この内容でいいですか？');
             history("/login");
         }
     };
