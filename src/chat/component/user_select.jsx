@@ -35,6 +35,10 @@ const UserSelect = ({ users, group, onSelectUser, onSelectGroup }) => {
                 onClick={() => onSelectGroup(group.group_id)}
                 className="selectbutton"
               >
+                <Image
+                  className="userimage"
+                  src={group.group_image ? `http://127.0.0.1:5000/group_image/${group.group_image}`: '/not_profileicon.jpg'}
+                />
                 {group.group_name}
               </button>
             ))

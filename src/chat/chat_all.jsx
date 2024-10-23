@@ -14,6 +14,7 @@ const ChatAll = () => {
     const [group, setGroup] = useState([]);
     const [groupId, setGroupId] = useState(null);  // グループIDを管理する状態
     const [groupName, setGroupName] = useState("");  // グループ名を管理する状態
+    const [groupImage, setGroupImage] = useState("");
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -79,6 +80,7 @@ const ChatAll = () => {
         if (selectedGroup) {
             setGroupId(id);
             setGroupName(selectedGroup.group_name);
+            setGroupImage(selectedGroup.group_image);
             setReceiver(null);  // ユーザー選択をリセット
             setReceiverName("");
             setReceiverImage("");
@@ -102,6 +104,7 @@ const ChatAll = () => {
                     myImage={myImage} 
                     groupId={groupId}        // グループIDを渡す
                     groupName={groupName}    // グループ名を渡す
+                    groupImage={groupImage}
                 />
                 <CreateChatGroup users={users} />
             </Box>
