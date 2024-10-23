@@ -19,52 +19,53 @@ const CreateChatGroup = ({ users }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
-    // ユーザー選択の処理
-    const handleUserSelect = (e) => {
-      const userId = parseInt(e.target.value, 10); // inputのvalueからユーザーIDを取得
-      setSelectedUsers((prevSelected) =>
+  // ユーザー選択の処理
+  const handleUserSelect = (e) => {
+    const userId = parseInt(e.target.value, 10); // inputのvalueからユーザーIDを取得
+    setSelectedUsers(
+      (prevSelected) =>
         prevSelected.includes(userId)
           ? prevSelected.filter((id) => id !== userId) // 選択解除
           : [...prevSelected, userId] // 選択
-      );
-    };
+    );
+  };
   console.log(selectedUsers);
 
-  // グループ作成の処理
   const handleCreateGroup = () => {
     const token = localStorage.getItem("token");
+    const formData = new FormData();  // FormDataオブジェクトを作成
+  
+    formData.append("group_name", groupname);  // グループ名を追加
+    formData.append("group_image", groupimage);  // 画像ファイルを追加
+    selectedUsers.forEach((userId) => formData.append("user_ids[]", userId));  // ユーザーIDを追加
+  
     if (groupname && selectedUsers.length > 0) {
       fetch("http://127.0.0.1:5000/group", {
-        method: "POST", // POSTメソッドを指定
+        method: "POST",
         headers: {
-          "Content-Type": "application/json", // リクエストのデータ形式をJSONと指定
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,  // 認証トークンをヘッダに追加
         },
-        body: JSON.stringify({
-          group_name: groupname,
-          user_ids: selectedUsers,
-          group_image: groupimage,
-        }), // JSONに変換してリクエストボディとして送信
+        body: formData,  // FormDataをリクエストボディに設定
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("グループ作成に失敗しました");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("グループ作成成功", data);
-          navigate("/chat");
-          onClose();
-        })
-        .catch((error) => {
-          console.error("グループ作成失敗:", error);
-        });
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("グループ作成に失敗しました");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("グループ作成成功", data);
+        navigate("/chat");
+        onClose();
+      })
+      .catch((error) => {
+        console.error("グループ作成失敗:", error);
+      });
     } else {
       alert("グループ名とメンバーを選択してください。");
     }
   };
-
+  
   return (
     <>
       <Button onClick={onOpen}>グループ作成</Button>
