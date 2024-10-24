@@ -70,9 +70,9 @@ const CreateChatGroup = ({ users }) => {
     <>
       <Button onClick={onOpen}>グループ作成</Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} w={300} h={500} bg={"white"}>
+      <Modal isOpen={isOpen} onClose={onClose} w={500} h={350} bg={"white"}>
         <ModalOverlay bg="rgba(0, 0, 0, 0.6)" />
-        <ModalHeader>グループチャット作成</ModalHeader>
+        <ModalHeader mt={50}>グループチャット作成</ModalHeader>
         <ModalBody>
           <Input
             type="text"
