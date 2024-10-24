@@ -138,7 +138,7 @@ const Chat = ({
           borderBottom="1px solid #000"
           mb={10}
         >
-          <Text w={300} mt={20} ml={20} h={40}>
+          <Text w={500} mt={20} ml={20} h={40}>
             ユーザーまたはグループを選択してください
           </Text>
         </Box>
@@ -146,7 +146,7 @@ const Chat = ({
 
       <div>
         <div className="message_chat">
-          {messages.map((msg, index) =>
+        {messages.map((msg, index) =>
             msg.send_user_id === userId ? (
               <div key={index} className={"message_send"}>
                 <em>({msg.timestamp})</em>
@@ -163,8 +163,9 @@ const Chat = ({
               </div>
             ) : (
               <div key={index} className={"message_receive"}>
+                {/* グループチャットの場合は送信者の画像を表示 */}
                 <Image
-                  src={`http://127.0.0.1:5000/prof_image/${receiverImage}`} // 相手のプロフィール画像
+                  src={`http://127.0.0.1:5000/prof_image/${msg.profile_image}`} // 送信者のプロフィール画像
                   alt="Profile"
                   w={50}
                   h={50}
