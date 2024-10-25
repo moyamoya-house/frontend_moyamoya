@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Image, Button, VStack } from "@yamada-ui/react";
+import { Box, Image, Button, VStack, Text } from "@yamada-ui/react";
 import './css/user_select.css';
 
 const UserSelect = ({ users, group, onSelectUser, onSelectGroup }) => {
@@ -39,7 +39,8 @@ const UserSelect = ({ users, group, onSelectUser, onSelectGroup }) => {
                   className="userimage"
                   src={group.group_image ? `http://127.0.0.1:5000/group_image/${group.group_image}`: '/not_profileicon.jpg'}
                 />
-                {group.group_name}
+                <Text ml={30}>{group.group_name}</Text>
+                
               </button>
             ))
           ) : (
@@ -59,7 +60,8 @@ const UserSelect = ({ users, group, onSelectUser, onSelectGroup }) => {
                   src={user.prof_image ? `http://127.0.0.1:5000/prof_image/${user.prof_image}` : '/not_profileicon.jpg'}
                   alt="プロフィール画像"
                 />
-                {user.name}
+                <Text ml={30}>{user.user_name}</Text>
+                
               </button>
             ))
           ) : (
