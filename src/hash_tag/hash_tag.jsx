@@ -23,6 +23,7 @@ import {
 
 const HashTagPost = () => {
   const { hashtag } = useParams();
+  console.log(hashtag);
 
   const [post, setPost] = useState([]);
   const [followPost, setFollowPost] = useState([]);
@@ -36,26 +37,24 @@ const HashTagPost = () => {
     setBgColor(index);
   };
   useEffect(() => {
-    const fetchHashtagPosts = async () => {
-      try {
-        const response = await fetch(
-          `http://127.0.0.1:5000/hashtags/${hashtag}`,{
-            method: 'GET'
+    if (hashtag) { // hashtag があるか確認
+      const fetchHashtagPosts = async () => {
+        try {
+          const response = await fetch(`http://127.0.0.1:5000/hashtags/${hashtag}`);
+          if (response.ok) {
+            const data = await response.json();
+            setPost(data);
+          } else {
+            console.error("Failed to fetch posts");
           }
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setPost(data);
-        } else {
-          console.error("Failed to fetch posts");
+        } catch (error) {
+          console.error("Error fetching posts:", error);
+        } finally {
+          setLoading(false);
         }
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchHashtagPosts();
+      };
+      fetchHashtagPosts();
+    }
   }, [hashtag]);
 
     // 投稿に対するユーザー情報を取得
