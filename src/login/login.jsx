@@ -64,6 +64,10 @@ const Login = () => {
                     <Box m={40}>
                         <Link href='/signup' textDecoration={"none"} textColor={"black"} w='80%' h={50} bg='lightskyblue' borderRadius={10} m='20px auto' textAlign='center' display="flex" alignItems={'center'} justifyContent={'center'}>新規登録へ</Link>
                     </Box>
+
+                    <Box m={40}>
+                        <Link href='/password_reset' textDecoration={"none"} textColor={"black"} w='80%' h={50} bg='lightskyblue' borderRadius={10} m='20px auto' textAlign='center' display="flex" alignItems={'center'} justifyContent={'center'}>パスワードを忘れた方へ</Link>
+                    </Box>
                 </form>
             </Box>
         </>
