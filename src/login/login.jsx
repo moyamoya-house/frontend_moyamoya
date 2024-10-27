@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Text, Input, Center, Button,Link } from "@yamada-ui/react";
+import { Box, Text, Input, Button,Link } from "@yamada-ui/react";
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -57,13 +57,13 @@ const Login = () => {
                         />
                     </Box>
                     {/* loginbutton */}
-                    <Center>
+                    <Box m={40}>
                         <Button type="submit" w='80%' padding={10} h={50} m='20px auto' colorScheme="secondary" border='none' bg='lightskyblue' borderRadius={10}>ログイン</Button>
-                    </Center>
+                    </Box>
                     {/* signupbutton */}
-                    <Center>
+                    <Box m={40}>
                         <Link href='/signup' textDecoration={"none"} textColor={"black"} w='80%' h={50} bg='lightskyblue' borderRadius={10} m='20px auto' textAlign='center' display="flex" alignItems={'center'} justifyContent={'center'}>新規登録へ</Link>
-                    </Center>
+                    </Box>
                 </form>
             </Box>
         </>
