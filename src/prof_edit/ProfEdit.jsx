@@ -4,7 +4,7 @@ import { Box } from '@yamada-ui/react';
 import './css/profedit.css';
 
 const ProfEdit = ({ useData }) => {
-    const [username, setUsername] = useState(useData.name);
+    const [name, setUsername] = useState(useData.name);
     const [password, setPassword] = useState(useData.password);
     const [email, setEmail] = useState(useData.email);
     const [comment, setComment] = useState(useData.prof_comment);
@@ -16,7 +16,7 @@ const ProfEdit = ({ useData }) => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append('name',username);
+        formData.append('name',name);
         formData.append('password', password);
         formData.append('comment', comment);
         formData.append('email',email);
@@ -25,6 +25,9 @@ const ProfEdit = ({ useData }) => {
 
         const response = await fetch(`http://127.0.0.1:5000/users/${useData.id}`,{
             method: 'PUT',
+            headers: {
+                'Content-type': 'application/json',
+            },
             body: formData,
         });
 
@@ -62,13 +65,13 @@ const ProfEdit = ({ useData }) => {
 
     return (
         <>
-            <form onSubmit={handleEditSubmit} className="proform">
+            <form onSubmit={handleEditSubmit} className="proform" encType="multipart/form-data">
             <h1>プロフィール編集</h1>
                 <div>
                 <input
                     type="file"
                     style={{ display: "none" }}
-                    id="imageInput"
+                    id="imagebackInput"
                     onChange={handlesecondimage}
                 />
                 <label htmlFor="imageInput">
@@ -121,7 +124,7 @@ const ProfEdit = ({ useData }) => {
                 <div className="editbox">
                     <Box className="username">
                         <label>ユーザーネーム：</label>
-                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                        <input type="text" value={name} onChange={(e) => setUsername(e.target.value)} />
                     </Box>
                     <div className="email">
                         <label>Email:</label>
