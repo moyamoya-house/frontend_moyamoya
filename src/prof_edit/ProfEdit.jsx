@@ -25,11 +25,9 @@ const ProfEdit = ({ useData }) => {
 
         const response = await fetch(`http://127.0.0.1:5000/users/${useData.id}`,{
             method: 'PUT',
-            headers: {
-                'Content-type': 'application/json',
-            },
             body: formData,
         });
+        console.log(formData);
 
         if (response.ok) {
             const data = await response.json();
@@ -44,24 +42,19 @@ const ProfEdit = ({ useData }) => {
     const handlesecondimage = (e) => {
         const file = e.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setSecondImage(reader.result);
-            };
-            reader.readAsDataURL(file);
+            setSecondImage(URL.createObjectURL(file));
+            setSecondImage(file);
         }
     };
 
     const handleProfImage = (e) => {
         const file = e.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setPreview(reader.result);
-            };
-            reader.readAsDataURL(file);
+            setPreview(URL.createObjectURL(file));
+            setPreview(file); // ファイルオブジェクトも保持
         }
     };
+    
 
     return (
         <>
@@ -74,7 +67,7 @@ const ProfEdit = ({ useData }) => {
                     id="imagebackInput"
                     onChange={handlesecondimage}
                 />
-                <label htmlFor="imageInput">
+                <label htmlFor="imagebackInput">
                     <div
                     style={{
                         width: "100%",
