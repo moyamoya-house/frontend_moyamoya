@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box } from "@yamada-ui/react";
+import { Box, Input, Text } from "@yamada-ui/react";
 import { useNavigate } from "react-router-dom";
 
 const PasswordReset = () => {
@@ -26,34 +26,70 @@ const PasswordReset = () => {
 
   return (
     <>
-      <Box w={1500} maxW="80%" m="0 auto 0 auto" mt={110}>
+      <Box w={500} h={500} m="0px auto 20px" border='1px solid #000' mt={120} boxShadow='10px 10px 5px gray'>
         <form
           onSubmit={handlePasswordReset}
-          style={{
-            width: "500px",
-            border: "1px solid #000",
-            borderRadius: "10px",
-          }}
         >
-          <input
-            type="text"
-            placeholder="ユーザーネームを入力"
-            value={user_name}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="パスワードを入力"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="パスワード再入力"
-            value={password_confilm}
-            onChange={(e) => setConfilm(e.target.value)}
-          />
-          <button>再設定</button>
+          <Text textAlign={"center"} fontSize="1.5rem" fontWeight="bold">
+            パスワードリセット
+          </Text>
+          <Box display={"flex"} m={40}>
+            <Text>username</Text>
+            <Input
+              type="text"
+              placeholder="ユーザーネームを入力"
+              value={user_name}
+              onChange={(e) => setUsername(e.target.value)}
+              w='80%'
+              padding={10}
+              borderRadius={5}
+              maxLength={20}
+              h={10}
+              mt={13}
+            />
+          </Box>
+          <Box display={"flex"} m={40}>
+            <Text mr={10}>新しいパスワード</Text>
+            <Input
+              type="password"
+              placeholder="パスワードを入力"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              w='60%'
+              padding={10}
+              borderRadius={5}
+              maxLength={20}
+              h={10}
+              mt={13}
+            />
+          </Box>
+          <Box display={"flex"} m={40}>
+            <Text>パスワード再入力</Text>
+            <Input
+              type="password"
+              placeholder="パスワード再入力"
+              value={password_confilm}
+              onChange={(e) => setConfilm(e.target.value)}
+              w='60%'
+              padding={10}
+              borderRadius={5}
+              maxLength={20}
+              h={10}
+              mt={13}
+            />
+          </Box>
+          <button
+            style={{
+              width: "85%",
+              height: "50px",
+              margin: "0 auto 0 35px",
+              border: "none",
+              backgroundColor: "lightskyblue",
+              borderRadius: "10px"
+            }}
+          >
+            再設定
+          </button>
         </form>
       </Box>
     </>
