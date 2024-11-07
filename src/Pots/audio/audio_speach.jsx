@@ -67,7 +67,7 @@ const SpeechText = () => {
 
     return (
         <>
-            <Box mt={300}>
+            <Box mt={100}>
                 <button onClick={handleListen}>
                     {listening ? '音声入力停止' : '音声入力開始'}
                 </button>
