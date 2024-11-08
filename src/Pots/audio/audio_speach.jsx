@@ -51,11 +51,11 @@ const SpeechText = () => {
 
   // 録音データをMP3形式でサーバーに送信する関数
   const handleSave = async () => {
-    const blob = new Blob(audioChunks, { type: "audio/mp3" });
+    const blob = new Blob(audioChunks, { type: "audio/webm" }); // WebM形式で保存
     setAudioURL(URL.createObjectURL(blob));
 
     const formData = new FormData();
-    formData.append("audio", blob, "audio.mp3"); // MP3ファイルとして送信
+    formData.append("audio", blob, "audio.webm"); // WebMファイルとして送信
 
     try {
       const response = await fetch("http://127.0.0.1:5000/audio", {
@@ -95,8 +95,9 @@ const SpeechText = () => {
         {result && (
           <div>
             <h3>Analysis Result:</h3>
-            <p>Text: {result.text}</p>
-            <p>Sentiment: {result.classification}</p>
+            <p>Text: {result.classification.text}</p>
+            <p>Sentiment: {result.classification.classification}</p>
+            <p>Voltage: {result.classification.voltage}</p>
           </div>
         )}
       </Box>
