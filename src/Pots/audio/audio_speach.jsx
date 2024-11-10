@@ -4,12 +4,13 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import { Box } from "@yamada-ui/react";
 
-const SpeechText = () => {
+const SpeechText = ( {username} ) => {
   const [isListening, setIsListening] = useState(false);
   const [mediaRecorder, setMediaRecorder] = useState(null);
   const [audioChunks, setAudioChunks] = useState([]);
   const [audioURL, setAudioURL] = useState(null);
   const [result, setResult] = useState(null);
+  const [recordCount, setRecordCount] = useState(1);
 
   // 音声認識の状態やテキストを取得
   const {
@@ -33,6 +34,8 @@ const SpeechText = () => {
       setIsListening(false);
     } else {
       // 音声認識と録音を開始
+      resetTranscript();
+      setAudioChunks([]);
       SpeechRecognition.startListening({ continuous: true });
       setIsListening(true);
 
@@ -55,7 +58,9 @@ const SpeechText = () => {
     setAudioURL(URL.createObjectURL(blob));
 
     const formData = new FormData();
-    formData.append("audio", blob, "audio.webm"); // WebMファイルとして送信
+    const fileName = `${username}_record${recordCount}.webm`; // ファイル名作成
+    formData.append("audio", blob, fileName);
+    console.log(fileName);
 
     try {
       const response = await fetch("http://127.0.0.1:5000/audio", {
@@ -67,6 +72,7 @@ const SpeechText = () => {
         const data = await response.json();
         setResult(data);
         alert("音声が保存されました");
+        setRecordCount((prev) => prev+1);
       } else {
         alert("音声の保存に失敗しました");
       }

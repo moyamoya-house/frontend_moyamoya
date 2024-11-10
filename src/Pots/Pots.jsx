@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { MeshDistortMaterial, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
@@ -23,7 +23,7 @@ const Pots = () => {
   const latheGeometry = new THREE.LatheGeometry(points, 64); // 滑らかな回転体
 
   // 底面の円を作成
-  const bottomGeometry = new THREE.CircleGeometry(0.8, 64); // 底面の円のサイズは0.8
+  //const bottomGeometry = new THREE.CircleGeometry(0.8, 64); // 底面の円のサイズは0.8
 
   // useFrameで壺を回転
   useFrame(() => {
@@ -52,6 +52,24 @@ const Pots = () => {
 };
 
 const Pot = () => {
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://127.0.0.1:5000/mypage", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setUsername(data.name);
+      }
+    };
+    fetchUser();
+  },[]);
   return (
     <Box w={1000} mt={130} display={"flex"}>
       <Box w={400} h={450}>
@@ -63,7 +81,7 @@ const Pot = () => {
         </Canvas>
       </Box>
       <Box>
-        <SpeechText />
+        <SpeechText username={username} />
       </Box>
     </Box>
   );
