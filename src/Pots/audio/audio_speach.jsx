@@ -58,13 +58,17 @@ const SpeechText = ( {username} ) => {
     setAudioURL(URL.createObjectURL(blob));
 
     const formData = new FormData();
-    const fileName = `${username}_record${recordCount}.webm`; // ファイル名作成
+    const fileName = `${username}${recordCount}.webm`; // ファイル名作成
     formData.append("audio", blob, fileName);
     console.log(fileName);
 
     try {
+      const token = localStorage.getItem('token');
       const response = await fetch("http://127.0.0.1:5000/audio", {
         method: "POST",
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
         body: formData,
       });
 
