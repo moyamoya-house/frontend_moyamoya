@@ -4,7 +4,7 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import { Box } from "@yamada-ui/react";
 
-const SpeechText = ( {username} ) => {
+const SpeechText = ({ username }) => {
   const [isListening, setIsListening] = useState(false);
   const [mediaRecorder, setMediaRecorder] = useState(null);
   const [audioChunks, setAudioChunks] = useState([]);
@@ -15,7 +15,6 @@ const SpeechText = ( {username} ) => {
   // 音声認識の状態やテキストを取得
   const {
     transcript,
-    listening,
     resetTranscript,
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
@@ -63,11 +62,11 @@ const SpeechText = ( {username} ) => {
     console.log(fileName);
 
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       const response = await fetch("http://127.0.0.1:5000/audio", {
         method: "POST",
         headers: {
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: formData,
       });
@@ -76,7 +75,7 @@ const SpeechText = ( {username} ) => {
         const data = await response.json();
         setResult(data);
         alert("音声が保存されました");
-        setRecordCount((prev) => prev+1);
+        setRecordCount((prev) => prev + 1);
       } else {
         alert("音声の保存に失敗しました");
       }
@@ -88,15 +87,26 @@ const SpeechText = ( {username} ) => {
   return (
     <>
       <Box mt={100}>
-        <button onClick={handleListen}>
-          {listening ? "音声入力停止" : "音声入力開始"}
+        <button
+          onClick={handleListen}
+          style={{
+            width: "100px",
+            height: "100px",
+            border: "1px solid #000",
+            borderRadius: "100%",
+          }}
+        >
+          {/* <i className={`fas ${isListening ? 'fa-circle-stop' : 'fa-circle'} play-button-background`}></i> */}
+          <i
+            className={`fas ${
+              isListening ? "fa-stop" : "fa-play"
+            } play-button-overlay`}
+          ></i>
         </button>
         <button onClick={resetTranscript}>リセット</button>
         <button onClick={handleSave} disabled={!audioChunks.length}>
           保存
         </button>
-
-        <p>{listening ? "入力中..." : "停止中"}</p>
 
         <h1>入力結果:</h1>
         <p>{transcript}</p>

@@ -93,7 +93,7 @@ const Top = () => {
                         </Center>
                     </Box>
                     <Box className='link'>
-                        <Link href='/potcom' textDecoration={'none'} display={'inline-block'} color={'black'}>愚痴の壺</Link>
+                        <Link href='/pots' textDecoration={'none'} display={'inline-block'} color={'black'}>愚痴の壺</Link>
                     </Box>
                 </Box>
             </Box>
