@@ -1,15 +1,15 @@
 module.exports = {
-  devtool: false,
+  // 既存の設定
   module: {
     rules: [
       {
-        test: /\.js$/,
-        enforce: 'pre',
-        use: ['source-map-loader'],
+        test: /\.m?js$/,
+        enforce: "pre",
+        use: ["source-map-loader"],
         exclude: [
-          /node_modules\/@mediapipe/, 
-          /node_modules\/@react-three\/drei/
-        ], // @mediapipeと@react-three/dreiを無視
+          // ソースマップ警告を無視するモジュール
+          /node_modules\/@mediapipe\/tasks-vision/
+        ],
       },
     ],
   },
