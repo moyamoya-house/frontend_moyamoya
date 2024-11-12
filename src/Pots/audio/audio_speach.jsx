@@ -2,7 +2,16 @@ import { useState } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import { Box } from "@yamada-ui/react";
+import {
+  Box,
+  Button,
+  useDisclosure,
+  Modal,
+  Text,
+  ModalOverlay,
+  ModalHeader,
+  ModalBody,
+} from "@yamada-ui/react";
 
 const SpeechText = ({ username }) => {
   const [isListening, setIsListening] = useState(false);
@@ -11,13 +20,11 @@ const SpeechText = ({ username }) => {
   const [audioURL, setAudioURL] = useState(null);
   const [result, setResult] = useState(null);
   const [recordCount, setRecordCount] = useState(1);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   // 音声認識の状態やテキストを取得
-  const {
-    transcript,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
+  const { transcript, resetTranscript, browserSupportsSpeechRecognition } =
+    useSpeechRecognition();
 
   // ブラウザが音声認識に対応していない場合の処理
   if (!browserSupportsSpeechRecognition) {
@@ -86,41 +93,73 @@ const SpeechText = ({ username }) => {
 
   return (
     <>
-      <Box mt={100}>
-        <button
-          onClick={handleListen}
-          style={{
-            width: "100px",
-            height: "100px",
-            border: "1px solid #000",
-            borderRadius: "100%",
-          }}
-        >
-          {/* <i className={`fas ${isListening ? 'fa-circle-stop' : 'fa-circle'} play-button-background`}></i> */}
-          <i
-            className={`fas ${
-              isListening ? "fa-stop" : "fa-play"
-            } play-button-overlay`}
-          ></i>
-        </button>
-        <button onClick={resetTranscript}>リセット</button>
-        <button onClick={handleSave} disabled={!audioChunks.length}>
-          保存
-        </button>
+      <Button
+        onClick={onOpen}
+        width={100}
+        height={100}
+        border={"none"}
+        borderRadius={100}
+        variant={"ghost"}
+        cursor={"pointer"}
+        fontSize={30}
+        backgroundColor={"lightskyblue"}
+      >
+        音声録音
+      </Button>
 
-        <h1>入力結果:</h1>
-        <p>{transcript}</p>
-        {audioURL && <audio controls src={audioURL}></audio>}
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        background={"white"}
+        border="1px solid #000"
+        borderRadius={10}
+      >
+        <ModalOverlay bg="rgba(0,0,0,0.6)"></ModalOverlay>
+        <ModalHeader>
+          <Text m={"0 auto"}>発散させたいこと</Text>
+        </ModalHeader>
 
-        {result && (
-          <div>
-            <h3>Analysis Result:</h3>
-            <p>Text: {result.classification.text}</p>
-            <p>Sentiment: {result.classification.classification}</p>
-            <p>Voltage: {result.classification.voltage}</p>
-          </div>
-        )}
-      </Box>
+        <ModalBody width={1200} maxW="80%" height={400}>
+          <Box mt={30} display={"flex"} m="0 auto">
+            <Box>
+              <button
+                onClick={handleListen}
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  border: "1px solid #000",
+                  borderRadius: "100%",
+                }}
+              >
+                {/* <i className={`fas ${isListening ? 'fa-circle-stop' : 'fa-circle'} play-button-background`}></i> */}
+                <i
+                  className={`fas ${
+                    isListening ? "fa-stop" : "fa-play"
+                  } play-button-overlay`}
+                ></i>
+              </button>
+              <button onClick={resetTranscript}>リセット</button>
+              <button onClick={handleSave} disabled={!audioChunks.length}>
+                保存
+              </button>
+            </Box>
+            <Box>
+              <h1>入力結果:</h1>
+              <p>{transcript}</p>
+              {audioURL && <audio controls src={audioURL}></audio>}
+
+              {result && (
+                <div>
+                  <h3>Analysis Result:</h3>
+                  <p>Text: {result.classification.text}</p>
+                  <p>Sentiment: {result.classification.classification}</p>
+                  <p>Voltage: {result.classification.voltage}</p>
+                </div>
+              )}
+            </Box>
+          </Box>
+        </ModalBody>
+      </Modal>
     </>
   );
 };
