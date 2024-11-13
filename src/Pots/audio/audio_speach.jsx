@@ -7,7 +7,7 @@ import {
   Button,
   useDisclosure,
   Modal,
-  Text,
+  CloseButton,
   ModalOverlay,
   ModalHeader,
   ModalBody,
@@ -20,26 +20,22 @@ const SpeechText = ({ username }) => {
   const [audioURL, setAudioURL] = useState(null);
   const [result, setResult] = useState(null);
   const [recordCount, setRecordCount] = useState(1);
+  const [isSaved, setIsSaved] = useState(false); // Track save status
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  // 音声認識の状態やテキストを取得
   const { transcript, resetTranscript, browserSupportsSpeechRecognition } =
     useSpeechRecognition();
 
-  // ブラウザが音声認識に対応していない場合の処理
   if (!browserSupportsSpeechRecognition) {
     return <div>ブラウザが音声認識をサポートしていません。</div>;
   }
 
-  // 録音の開始/停止を切り替える関数
   const handleListen = () => {
     if (isListening) {
-      // 音声認識と録音を停止
       SpeechRecognition.stopListening();
       mediaRecorder.stop();
       setIsListening(false);
     } else {
-      // 音声認識と録音を開始
       resetTranscript();
       setAudioChunks([]);
       SpeechRecognition.startListening({ continuous: true });
@@ -58,15 +54,20 @@ const SpeechText = ({ username }) => {
     }
   };
 
-  // 録音データをMP3形式でサーバーに送信する関数
   const handleSave = async () => {
-    const blob = new Blob(audioChunks, { type: "audio/webm" }); // WebM形式で保存
+    if (isSaved) {
+      // If "戻る" is clicked, close the modal and reset the save status
+      onClose();
+      setIsSaved(false);
+      return;
+    }
+
+    const blob = new Blob(audioChunks, { type: "audio/webm" });
     setAudioURL(URL.createObjectURL(blob));
 
     const formData = new FormData();
-    const fileName = `${username}${recordCount}.webm`; // ファイル名作成
+    const fileName = `${username}${recordCount}.webm`;
     formData.append("audio", blob, fileName);
-    console.log(fileName);
 
     try {
       const token = localStorage.getItem("token");
@@ -83,6 +84,7 @@ const SpeechText = ({ username }) => {
         setResult(data);
         alert("音声が保存されました");
         setRecordCount((prev) => prev + 1);
+        setIsSaved(true); // Set to true when save is successful
       } else {
         alert("音声の保存に失敗しました");
       }
@@ -101,7 +103,7 @@ const SpeechText = ({ username }) => {
         borderRadius={100}
         variant={"ghost"}
         cursor={"pointer"}
-        fontSize={30}
+        fontSize={20}
         backgroundColor={"lightskyblue"}
       >
         音声録音
@@ -109,55 +111,77 @@ const SpeechText = ({ username }) => {
 
       <Modal
         isOpen={isOpen}
-        onClose={onClose}
         background={"white"}
         border="1px solid #000"
         borderRadius={10}
       >
+        <CloseButton
+          onClick={onClose}
+          position="absolute"
+          top="10px"
+          left="10px"
+          width={60}
+          height={60}
+          borderRadius={100}
+          border={"none"}
+          onMouseOver={(e) => (e.target.style.color = "darkred")}
+          onMouseOut={(e) => (e.target.style.color = "lightcoral")}
+        ></CloseButton>
         <ModalOverlay bg="rgba(0,0,0,0.6)"></ModalOverlay>
         <ModalHeader>
-          <Text m={"0 auto"}>発散させたいこと</Text>
+          <h1
+            style={{
+              margin: "0 auto",
+            }}
+          >
+            発散させたいこと
+          </h1>
         </ModalHeader>
 
         <ModalBody width={1200} maxW="80%" height={400}>
           <Box mt={30} display={"flex"} m="0 auto">
-            <Box>
+            <Box mt={50} ml={100}>
               <button
                 onClick={handleListen}
                 style={{
-                  width: "100px",
-                  height: "100px",
+                  width: "300px",
+                  height: "300px",
                   border: "1px solid #000",
                   borderRadius: "100%",
                 }}
               >
-                {/* <i className={`fas ${isListening ? 'fa-circle-stop' : 'fa-circle'} play-button-background`}></i> */}
                 <i
                   className={`fas ${
                     isListening ? "fa-stop" : "fa-play"
                   } play-button-overlay`}
+                  style={{ fontSize: "150px" }}
                 ></i>
               </button>
-              <button onClick={resetTranscript}>リセット</button>
-              <button onClick={handleSave} disabled={!audioChunks.length}>
-                保存
-              </button>
+              {/* <button onClick={resetTranscript}>リセット</button> */}
             </Box>
-            <Box>
+            <Box ml={200}>
               <h1>入力結果:</h1>
               <p>{transcript}</p>
-              {audioURL && <audio controls src={audioURL}></audio>}
+              <audio controls src={audioURL || ""} disabled={!audioURL} />
 
-              {result && (
-                <div>
-                  <h3>Analysis Result:</h3>
-                  <p>Text: {result.classification.text}</p>
-                  <p>Sentiment: {result.classification.classification}</p>
-                  <p>Voltage: {result.classification.voltage}</p>
-                </div>
-              )}
+              <div>
+                <h3>Analysis Result:</h3>
+                <p>Text: {result ? result.classification.text : ""}</p>
+                <p>
+                  Sentiment:{" "}
+                  {result ? result.classification.classification : ""}
+                </p>
+                <p>Voltage: {result ? result.classification.voltage : ""}</p>
+              </div>
             </Box>
           </Box>
+          <button
+            onClick={handleSave}
+            disabled={!audioChunks.length}
+            style={{ width: "90%", backgroundColor: "lightskyblue", border: "none" , margin: "10px auto 0 80px", borderRadius: "10px" }}
+          >
+            {isSaved ? "戻る" : "保存"}
+          </button>
         </ModalBody>
       </Modal>
     </>
