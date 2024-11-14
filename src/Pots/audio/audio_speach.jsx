@@ -178,7 +178,7 @@ const SpeechText = ({ username }) => {
           <button
             onClick={handleSave}
             disabled={!audioChunks.length}
-            style={{ width: "90%", backgroundColor: "lightskyblue", border: "none" , margin: "10px auto 0 80px", borderRadius: "10px" }}
+            style={{ width: "90%", backgroundColor: "lightskyblue", border: "none" , margin: "10px auto 0 80px", borderRadius: "10px", cursor: "pointer" }}
           >
             {isSaved ? "戻る" : "保存"}
           </button>
