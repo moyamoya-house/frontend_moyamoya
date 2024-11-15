@@ -1,5 +1,6 @@
+"use client";
 import { useEffect, useState } from "react";
-import { Box, Card, Link, Image, CardHeader, CardBody, CardFooter, Text } from "@yamada-ui/react";
+import { Box, Card, Link, Image, CardHeader, CardBody,  Text } from "@yamada-ui/react";
 
 const AudioAll = () => {
   const [audioData, setAudioData] = useState([]);
@@ -61,7 +62,7 @@ const AudioAll = () => {
     <>
       <h1>PotCom一覧</h1>
       <Box>
-        {audioData.map((audio) => {
+        {audioData.map((audio) => (
             <Card key={audio.id}>
                 {userData[audio.user_id] ? (
                     <Box>
@@ -105,10 +106,10 @@ const AudioAll = () => {
                     <p>Loading</p>
                 )}
             </Card>
-        })}
+        ))}
       </Box>
     </>
   );
 };
 
-export default AudioAll();
+export default AudioAll;
