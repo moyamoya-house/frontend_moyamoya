@@ -4,6 +4,7 @@ import { MeshDistortMaterial, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { Box } from "@yamada-ui/react";
 import SpeechText from "./audio/audio_speach";
+import AudioAll from "./audio/audio_all";
 
 const Pots = () => {
   const ref = useRef();
@@ -79,6 +80,9 @@ const Pot = () => {
           <Pots />
           <OrbitControls />
         </Canvas>
+      </Box>
+      <Box>
+        <AudioAll />
       </Box>
       <Box>
         <SpeechText username={username} />
