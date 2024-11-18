@@ -55,8 +55,8 @@ const Post = () => {
         +
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} background={"white"} border='1px solid #000'borderRadius={10}>
-        <CloseButton></CloseButton>
+      <Modal isOpen={isOpen} background={"white"} border='1px solid #000'borderRadius={10}>
+        <CloseButton onClick={onClose} top={10} left={10}></CloseButton>
         <ModalOverlay bg="rgba(0, 0, 0, 0.6)" /> {/* Set the background to gray with opacity */}
         <ModalHeader>
           <Text m={'0 auto'}>モヤモヤ投稿</Text>
