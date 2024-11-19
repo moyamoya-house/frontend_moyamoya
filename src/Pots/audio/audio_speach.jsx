@@ -98,9 +98,9 @@ const SpeechText = ({ username }) => {
       <Button
         onClick={onOpen}
         width={100}
-        height={100}
+        height={60}
         border={"none"}
-        borderRadius={100}
+        borderRadius={10}
         variant={"ghost"}
         cursor={"pointer"}
         fontSize={20}

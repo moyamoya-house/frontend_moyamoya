@@ -1,0 +1,17 @@
+.audio_all {
+  width: 750px;
+  margin-bottom: 10px;
+  height: 77vh;
+  overflow-y: scroll;
+}
+
+.audio_all::-webkit-scrollbar {
+    width: 5px;
+    background-color: #23efcd;
+    border-radius: 5px;
+}
+.audio_all::-webkit-scrollbar-thumb {
+    background: #d8f5fa;
+    width: 3px;
+    border-radius: 5px;
+}
