@@ -7,24 +7,23 @@
 
 .postlist {
   list-style: none;
-  width: 95%;
+  width: 850px;
   height: 200px;
   border: 1px solid #000;
-  margin: 0 auto;
+  margin: 0 auto 0 auto;
 }
 
 /* CSS */
 .post_circle {
-  position: absolute; /* fixedからabsoluteへ変更 */
+  position: fixed; /* fixedからabsoluteへ変更 */
   bottom: 25px;
   right: 15px;
   z-index: 1000;
 }
 
 .post_all {
-  position: relative; /* 親要素にrelativeを指定 */
   width: 1500px;
-  max-width: 70%;
+  max-width: 80%;
   margin: 20px auto 30px auto;
   height: 77vh;
   overflow-y: scroll;
@@ -59,5 +58,5 @@
 }
 
 .post {
-  margin: 0 auto;
+  margin: 0 auto 0 auto;
 }

@@ -63,10 +63,14 @@ const AudioAll = () => {
       <h1>PotCom一覧</h1>
       <Box>
         {audioData.map((audio) => (
-            <Card key={audio.id}>
+            <Card key={audio.id} listStyle={"none"} w={"95%"} h={150} border={"1px solid #000"} m={"0 auto"}>
                 {userData[audio.user_id] ? (
                     <Box>
-                        <CardHeader>
+                        <CardHeader
+                          w={"100%"}
+                          m={"0 0 0 20px"}
+                          display={"flex"}
+                        >
                             <Link
                                 href={`/user_prof/${audio.user_id}`}
                                 display={"flex"}
@@ -82,24 +86,14 @@ const AudioAll = () => {
                                         ? `http://127.0.0.1:5000/prof_image/${userData[audio.user_id].prof_image}`
                                     : "not_profileicon.jpg"}
                                 />
-                                <Text>
+                                <Text mt={10} ml={10}>
                                     {userData[audio.user_id].name}
                                 </Text>
                             </Link>
-                            <Text>{audio.created_at.split("-").join("/")}</Text>
+                            <Text ml={500}>{audio.created_at.split("-").join("/")}</Text>
                         </CardHeader>
                         <CardBody>
                             <audio controls src={`http://127.0.0.1:5000/audiofile/${audio.user_id}/${audio.audio}`} disabled={!audio.audio}></audio>
-                            <h3>分析結果</h3>
-                            <Box>
-                                <p>音声テキスト: {audio.classification}</p>
-                            </Box>
-                            <Box>
-                                <p>感情: {audio.stress_level}</p>
-                            </Box>
-                            <Box>
-                                <p>精度: {audio.emotion_score}</p>
-                            </Box>
                         </CardBody>
                     </Box>
                 ): (

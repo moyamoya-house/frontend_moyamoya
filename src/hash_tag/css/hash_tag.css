@@ -1,11 +1,11 @@
-.postalltitle {
+.hashalltitle {
     width: 1500px;
     max-width: 70%;
     margin: 125px auto 30px auto;
     border-bottom: 1px solid #000;
   }
   
-  .postlist {
+  .hashlist {
     list-style: none;
     width: 95%;
     height: 200px;
@@ -13,14 +13,14 @@
     margin: 0 auto;
   }
   
-  .post_circle {
+  .hash_circle {
     position: fixed;
     bottom: 25px;
     right: 15px;
     z-index: 1000;
   }
   
-  .post_all {
+  .hash_all {
     width: 1500px;
     max-width: 70%;
     margin: 20px auto 30px auto;
@@ -28,18 +28,18 @@
     overflow-y: scroll;
   }
   
-  .post_all::-webkit-scrollbar {
+  .hash_all::-webkit-scrollbar {
     width: 5px;
     background-color: #23efcd;
     border-radius: 5px;
   }
-  .post_all::-webkit-scrollbar-thumb {
+  .hash_all::-webkit-scrollbar-thumb {
     background: #d8f5fa;
     width: 3px;
     border-radius: 5px;
   }
   
-  .post {
+  .hash {
     margin: 0 auto;
   }
   

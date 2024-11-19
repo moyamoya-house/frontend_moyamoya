@@ -159,7 +159,7 @@ const HashTagPost = () => {
 
   return (
     <>
-      <h1 className="postalltitle">モヤモヤ投稿一覧</h1>
+      <h1 className="hashalltitle">モヤモヤ投稿一覧</h1>
       <Box display={"flex"}>
         <Sidebar />
         <VStack ml={-170}>
@@ -185,9 +185,9 @@ const HashTagPost = () => {
 
             <TabPanels>
               <TabPanel>
-                <Box className="post_all">
+                <Box className="hash_all">
                   <Box>
-                    <Box className="post">
+                    <Box className="hash">
                       {post.map((post) => (
                         <Card className="postlist" key={post.id}>
                           {userData[post.user_id] ? (
