@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Box, Card, Link, Image, CardHeader, CardBody,  Text } from "@yamada-ui/react";
+import "../audio/css/audio_all.css";
 
 const AudioAll = () => {
   const [audioData, setAudioData] = useState([]);
@@ -59,16 +60,16 @@ const AudioAll = () => {
     return <p>Loading...</p>;
   }
   return (
-    <>
+    <Box>
       <h1>PotCom一覧</h1>
-      <Box>
+      <Box className="audio_all">
         {audioData.map((audio) => (
-            <Card key={audio.id} listStyle={"none"} w={"95%"} h={150} border={"1px solid #000"} m={"0 auto"}>
+            <Card key={audio.id} listStyle={"none"} w={650} h={150} border={"1px solid #000"} m={"0 auto 0 10px"}>
                 {userData[audio.user_id] ? (
                     <Box>
                         <CardHeader
                           w={"100%"}
-                          m={"0 0 0 20px"}
+                          m={"5px 0 0 20px"}
                           display={"flex"}
                         >
                             <Link
@@ -90,10 +91,12 @@ const AudioAll = () => {
                                     {userData[audio.user_id].name}
                                 </Text>
                             </Link>
-                            <Text ml={500}>{audio.created_at.split("-").join("/")}</Text>
+                            <Text ml={300}>{audio.created_at.split("-").join("/")}</Text>
                         </CardHeader>
                         <CardBody>
-                            <audio controls src={`http://127.0.0.1:5000/audiofile/${audio.user_id}/${audio.audio}`} disabled={!audio.audio}></audio>
+                          <Box w={"700px"}>
+                            <audio controls src={`http://127.0.0.1:5000/audiofile/${audio.user_id}/${audio.audio}`} disabled={!audio.audio} style={{"margin": "10px 0 0 200px"}}></audio>
+                          </Box>
                         </CardBody>
                     </Box>
                 ): (
@@ -102,7 +105,7 @@ const AudioAll = () => {
             </Card>
         ))}
       </Box>
-    </>
+    </Box>
   );
 };
 

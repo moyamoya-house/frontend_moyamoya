@@ -81,10 +81,10 @@ const Pot = () => {
           <OrbitControls />
         </Canvas>
       </Box>
-      <Box>
+      <Box ml={100}>
         <AudioAll />
       </Box>
-      <Box>
+      <Box position={"fixed"} w={100} h={"auto"} top={110} right={50}>
         <SpeechText username={username} />
       </Box>
     </Box>
