@@ -175,8 +175,7 @@ const PostAll = () => {
   return (
     <>
       <h1 className="postalltitle">モヤモヤ投稿一覧</h1>
-      <Box display={"flex"}>
-        <Box w="15%" h={"auto"} backgroundColor={"gray.100"} zIndex={1}>
+        <Box w="15%" h={"auto"} position={"fixed"}>
           <Input
             placeholder="Search"
             value={query}
@@ -186,7 +185,7 @@ const PostAll = () => {
         </Box>
         <Box>
           <VStack ml={-170}>
-            <Tabs variant="line">
+            <Tabs variant="line" ml={150}>
               <Tab
                 width={300}
                 margin="0 auto 0 auto"
@@ -243,7 +242,7 @@ const PostAll = () => {
                                       {userData[post.user_id].name}
                                     </Text>
                                   </Link>
-                                  <Text ml={600}>
+                                  <Text ml={500}>
                                     {post.created_at.split("-").join("/")}
                                   </Text>
                                 </CardHeader>
@@ -353,7 +352,6 @@ const PostAll = () => {
         <Box className="post_circle">
           <Post />
         </Box>
-      </Box>
     </>
   );
 };
