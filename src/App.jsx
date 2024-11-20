@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-do
 import Signup from './login/signup';
 import TopHeader from './layout/TopHeader';
 import Footer from './layout/Footer';
-import Login from './login/login';
+import Login from './login/login.tsx';
 import Top from './top/Top';
 import Mypage from './mypage/Mypage';
 import ProfileEditPage from './prof_edit/ProfEditPage';
@@ -13,7 +13,7 @@ import UserProf from './user_prof/user_prof';
 import Pot from './Pots/Pots';
 import ChatAll from './chat/chat_all';
 import Notification from './notification/notification';
-import HashTagPost from './hash_tag/hash_tag';
+import HashTagPost from './hash_tag/hash_tag.tsx';
 import PasswordReset from './password_reset/password_reset';
 import './App.css';
 

@@ -20,13 +20,22 @@ import {
   CardBody,
   CardFooter,
 } from "@yamada-ui/react";
+import React from "react";
+
+interface Moyamoya {
+  id: number;
+  post: string;
+  user_id: number;
+  created_at: string;
+  count: number;
+}
 
 const HashTagPost = () => {
   const { hashtag } = useParams();
   console.log(hashtag);
 
-  const [post, setPost] = useState([]);
-  const [followPost, setFollowPost] = useState([]);
+  const [post, setPost] = useState<Moyamoya[]>([]);
+  const [followPost, setFollowPost] = useState<Moyamoya[]>([]);
   const [userData, setUserData] = useState({});
   const [followUserData, setFollowUserData] = useState({});
   const [loading, setLoading] = useState(true);

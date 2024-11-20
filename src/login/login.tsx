@@ -50,7 +50,7 @@ const Login = () => {
               w="90%"
               padding={10}
               borderRadius={5}
-              maxLength="20"
+              maxLength={20}
             />
           </Box>
           {/* パスワード */}
