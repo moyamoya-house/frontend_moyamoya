@@ -5,8 +5,16 @@ import Follow from "../follow/follow";
 import UserPost from "./component/user_post";
 import BookmarkPost from "./component/bookmark_post";
 
+interface User {
+    user_id: number;
+    name: string;
+    prof_image: string;
+    second_image: string;
+    prof_comment: string;
+}
+
 const Mypage  = () => {
-    const [useData, setUseData] = useState(null);
+    const [useData, setUseData] = useState<User | null>(null);
 
     useEffect(() => {
         const fetchUserData = async () => {
