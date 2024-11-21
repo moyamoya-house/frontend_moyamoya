@@ -1,5 +1,5 @@
 import { Text, Box, Center, Image, Link } from '@yamada-ui/react';
-import { useEffect, useState } from 'react';
+import React,{ useEffect, useState } from 'react';
 import Baloon from './component/baloon';
 import BaloonTopRight from './component/baloon-topright';
 import BaloonTopLeft from './component/baloon-topleft';
