@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React,{ useState } from "react";
 import { Box, Input, Text } from "@yamada-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +8,7 @@ const PasswordReset = () => {
   const [password_confilm, setConfilm] = useState("");
   const redirect = useNavigate();
 
-  const handlePasswordReset = async (e) => {
+  const handlePasswordReset = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const response = await fetch("http://127.0.0.1:5000/password_reset", {
       method: "PUT",

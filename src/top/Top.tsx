@@ -1,9 +1,9 @@
 import { Text, Box, Center, Image, Link } from '@yamada-ui/react';
 import React,{ useEffect, useState } from 'react';
-import Baloon from './component/baloon';
-import BaloonTopRight from './component/baloon-topright';
-import BaloonTopLeft from './component/baloon-topleft';
-import BaloonBottomRight from './component/baloon-bottomright';
+import Baloon from './component/baloon.tsx';
+import BaloonTopRight from './component/baloon-topright.tsx';
+import BaloonTopLeft from './component/baloon-topleft.tsx';
+import BaloonBottomRight from './component/baloon-bottomright.tsx';
 import './css/top.css';
 
 const Top = () => {
