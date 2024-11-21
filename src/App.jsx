@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
 import Signup from './login/signup.tsx';
 import TopHeader from './layout/TopHeader.tsx';
-import Footer from './layout/Footer';
+import Footer from './layout/Footer.tsx';
 import Login from './login/login.tsx';
 import Top from './top/Top';
 import Mypage from './mypage/Mypage.tsx';
