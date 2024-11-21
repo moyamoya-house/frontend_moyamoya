@@ -4,7 +4,7 @@ import Signup from './login/signup.tsx';
 import TopHeader from './layout/TopHeader.tsx';
 import Footer from './layout/Footer.tsx';
 import Login from './login/login.tsx';
-import Top from './top/Top';
+import Top from './top/Top.tsx';
 import Mypage from './mypage/Mypage.tsx';
 import ProfileEditPage from './prof_edit/ProfEditPage';
 import PostAll from './post_all/Postall';
