@@ -6,8 +6,8 @@ const Signup = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const [profimage, setProfimage] = useState(null);
-    const [preview, setPreview] = useState(null);
+    const [profimage, setProfimage] = useState<File | undefined>(undefined);
+    const [preview, setPreview] = useState<string | null>(null);
     const history = useNavigate();
 
     const handleSignup = async (e) => {
@@ -17,7 +17,10 @@ const Signup = () => {
         formData.append('username',username);
         formData.append('password',password);
         formData.append('email',email);
-        formData.append('profimage',profimage);
+
+        if (profimage) {
+            formData.append('profimage',profimage);
+        }
 
         const response = await fetch('http://127.0.0.1:5000/users',{
             method: 'POST',
@@ -33,13 +36,17 @@ const Signup = () => {
     };
 
     // 画像プレビュー
-    const handleImagePreview = (e) => {
-        const file = e.target.files[0];
-        setProfimage(file);
+    const handleImagePreview = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        setProfimage(file || undefined);
+    
         const render = new FileReader();
         render.onloadend = () => {
-            setPreview(render.result);
+            if (typeof render.result === 'string') {
+                setPreview(render.result);
+            }
         };
+    
         if (file) {
             render.readAsDataURL(file);
         } else {
@@ -91,7 +98,7 @@ const Signup = () => {
             </Box>
             {/* 画像 */}
             <Flex alignItems="center" m={40} justifyContent="space-between">
-                    <Button as="label" htmlFor="file-upload" cursor="pointer" bg="orange" color="white" p={2} borderRadius={5} hover={{ bg: "blue.600" }}>
+                    <Button as="label" htmlFor="file-upload" cursor="pointer" bg="orange" color="white" p={2} borderRadius={5} _hover={{ bg: "blue.600" }}>
                         プロフ画像をアップロード
                     </Button>
                     <Input
