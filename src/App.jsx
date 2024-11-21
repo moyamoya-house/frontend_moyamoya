@@ -14,7 +14,7 @@ import Pot from './Pots/Pots';
 import ChatAll from './chat/chat_all';
 import Notification from './notification/notification';
 import HashTagPost from './hash_tag/hash_tag.tsx';
-import PasswordReset from './password_reset/password_reset';
+import PasswordReset from './password_reset/password_reset.tsx';
 import './App.css';
 
 const App = () => {
