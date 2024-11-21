@@ -5,7 +5,7 @@ import TopHeader from './layout/TopHeader';
 import Footer from './layout/Footer';
 import Login from './login/login.tsx';
 import Top from './top/Top';
-import Mypage from './mypage/Mypage';
+import Mypage from './mypage/Mypage.tsx';
 import ProfileEditPage from './prof_edit/ProfEditPage';
 import PostAll from './post_all/Postall';
 import PostDetail from './post_detail/post_detail';
