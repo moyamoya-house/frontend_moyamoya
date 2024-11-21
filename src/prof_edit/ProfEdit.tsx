@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React,{ useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box } from '@yamada-ui/react';
 import './css/profedit.css';
@@ -8,8 +8,10 @@ const ProfEdit = ({ useData }) => {
     const [password, setPassword] = useState(useData.password);
     const [email, setEmail] = useState(useData.email);
     const [comment, setComment] = useState(useData.prof_comment);
-    const [secondImage, setSecondImage] = useState(null);
-    const [preview, setPreview] = useState(null);
+    const [secondImage, setSecondImage] = useState<string | null>(null);
+    const [preview, setPreview] = useState<string | null>(null);
+    const [selectedSecondFile, setSelectedSecondFile] = useState<File | null>(null);
+    const [selectedPreviewFile, setSelectedPreviewFile] = useState<File | null>(null);
     const history = useNavigate();
 
     const handleEditSubmit = async (e) => {
@@ -39,22 +41,23 @@ const ProfEdit = ({ useData }) => {
         }
     }
 
-    const handlesecondimage = (e) => {
-        const file = e.target.files[0];
+    const handlesecondimage = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
         if (file) {
-            setSecondImage(URL.createObjectURL(file));
-            setSecondImage(file);
-        }
-    };
-
-    const handleProfImage = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setPreview(URL.createObjectURL(file));
-            setPreview(file); // ファイルオブジェクトも保持
+            const url = URL.createObjectURL(file);
+            setSecondImage(url);
+            setSelectedSecondFile(file); // ファイルデータも保持
         }
     };
     
+    const handleProfImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const url = URL.createObjectURL(file);
+            setPreview(url);
+            setSelectedPreviewFile(file); // ファイルデータも保持
+        }
+    };
 
     return (
         <>
