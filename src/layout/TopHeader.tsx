@@ -11,12 +11,17 @@ import {
   Link,
 } from "@yamada-ui/react";
 import "./css/layout.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 
+interface User {
+  user_id: number;
+  name: string;
+  prof_image: string;
+}
 
 const TopHeader = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<User | null>(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -43,7 +48,7 @@ const TopHeader = () => {
           </Link>
           <Box display="flex" mt={25}>
             <Link href="/notification" textDecoration={"none"} color={"black"}>
-              <i class="fas fa-regular fa-bell" style={{ fontSize: '35px', margin: '10px 10px 0 0' }}></i>
+              <i className="fas fa-regular fa-bell" style={{ fontSize: '35px', margin: '10px 10px 0 0' }}></i>
             </Link>
             <Button
               onClick={onOpen}
