@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import ProfileEdit from './ProfEdit';
+import ProfEdit from './ProfEdit.tsx';
 import { Box } from '@yamada-ui/react';
 
+export interface User {
+  user_id: number;
+  name: string;
+  prof_image: string;
+  second_image: string;
+  prof_comment: string;
+  password: string;
+  email: string;
+}
+
 const ProfileEditPage = () => {
-  const [useData, setUserData] = useState(null);
+  const [useData, setUserData] = useState<User | null>(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -26,7 +36,7 @@ const ProfileEditPage = () => {
     <Box>
       {useData ? (
         <Box mt={150}>
-        <ProfileEdit useData={useData} />
+        <ProfEdit useData={useData} />
         </Box>
       ) : (
         <div>Loading...</div>

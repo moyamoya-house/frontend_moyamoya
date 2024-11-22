@@ -1,8 +1,13 @@
 import { Box } from "@yamada-ui/react";
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
+
+interface Tag {
+  tag: string;
+  count: number;
+}
 
 const Sidebar = () => {
-  const [trend, setTrend] = useState([]);
+  const [trend, setTrend] = useState<Tag[]>([]);
 
   useEffect(() => {
     fetch("http://127.0.0.1:5000/hashtag_trend")

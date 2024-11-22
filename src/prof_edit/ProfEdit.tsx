@@ -1,35 +1,37 @@
 import React,{ useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box } from '@yamada-ui/react';
+import { User } from "./ProfEditPage.tsx";
 import './css/profedit.css';
 
-const ProfEdit = ({ useData }) => {
-    const [name, setUsername] = useState(useData.name);
+interface ProfEditProps {
+    useData: User;
+}
+
+const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
+    const [username, setUsername] = useState(useData.name);
     const [password, setPassword] = useState(useData.password);
     const [email, setEmail] = useState(useData.email);
     const [comment, setComment] = useState(useData.prof_comment);
     const [secondImage, setSecondImage] = useState<string | null>(null);
     const [preview, setPreview] = useState<string | null>(null);
-    const [selectedSecondFile, setSelectedSecondFile] = useState<File | null>(null);
-    const [selectedPreviewFile, setSelectedPreviewFile] = useState<File | null>(null);
     const history = useNavigate();
 
-    const handleEditSubmit = async (e) => {
+    const handleEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append('name',name);
+        formData.append('name',username);
         formData.append('password', password);
         formData.append('comment', comment);
         formData.append('email',email);
         if (preview) formData.append('profimage',preview);
         if (secondImage) formData.append('secondimage',secondImage);
 
-        const response = await fetch(`http://127.0.0.1:5000/users/${useData.id}`,{
+        const response = await fetch(`http://127.0.0.1:5000/users/${useData.user_id}`,{
             method: 'PUT',
             body: formData,
         });
-        console.log(formData);
 
         if (response.ok) {
             const data = await response.json();
@@ -44,33 +46,37 @@ const ProfEdit = ({ useData }) => {
     const handlesecondimage = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            const url = URL.createObjectURL(file);
-            setSecondImage(url);
-            setSelectedSecondFile(file); // ファイルデータも保持
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setSecondImage(reader.result as string);
+            };
+            reader.readAsDataURL(file);
         }
     };
-    
+
     const handleProfImage = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            const url = URL.createObjectURL(file);
-            setPreview(url);
-            setSelectedPreviewFile(file); // ファイルデータも保持
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreview(reader.result as string);
+            };
+            reader.readAsDataURL(file);
         }
     };
 
     return (
         <>
-            <form onSubmit={handleEditSubmit} className="proform" encType="multipart/form-data">
+            <form onSubmit={handleEditSubmit} className="proform">
             <h1>プロフィール編集</h1>
                 <div>
                 <input
                     type="file"
                     style={{ display: "none" }}
-                    id="imagebackInput"
+                    id="imageInput"
                     onChange={handlesecondimage}
                 />
-                <label htmlFor="imagebackInput">
+                <label htmlFor="imageInput">
                     <div
                     style={{
                         width: "100%",
@@ -120,7 +126,7 @@ const ProfEdit = ({ useData }) => {
                 <div className="editbox">
                     <Box className="username">
                         <label>ユーザーネーム：</label>
-                        <input type="text" value={name} onChange={(e) => setUsername(e.target.value)} />
+                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
                     </Box>
                     <div className="email">
                         <label>Email:</label>

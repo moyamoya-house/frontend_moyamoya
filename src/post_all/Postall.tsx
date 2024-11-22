@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import {
   Box,
   Link,
@@ -17,20 +17,28 @@ import {
   Input,
 } from "@yamada-ui/react";
 import Post from "../post/post";
-import Sidebar from "./component/sidebar";
+import Sidebar from "./component/sidebar.tsx";
 import LikeButton from "../nice/nice";
 import Bookmark from "../bookmark/bookmark";
 import "./css/post_all.css";
 
+interface Moyamoya {
+  id: number;
+  post: string;
+  user_id: number;
+  created_at: string;
+  count: number;
+}
+
 const PostAll = () => {
-  const [postData, setPostData] = useState([]);
-  const [followPost, setFollowPost] = useState([]);
+  const [postData, setPostData] = useState<Moyamoya[]>([]);
+  const [followPost, setFollowPost] = useState<Moyamoya[]>([]);
   const [userData, setUserData] = useState({});
   const [followUserData, setFollowUserData] = useState({});
   const [loading, setLoading] = useState(true);
   const [bgColor, setBgColor] = useState(0);
   const [query, setQuery] = useState("");
-  const [filterpost, setFilterPost] = useState([]);
+  const [filterpost, setFilterPost] = useState<Moyamoya[]>([]);
 
   // ボタンクリック時に背景色を変更する関数
   const handleTabClick = (index) => {
