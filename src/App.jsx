@@ -7,7 +7,7 @@ import Login from './login/login.tsx';
 import Top from './top/Top.tsx';
 import Mypage from './mypage/Mypage.tsx';
 import ProfileEditPage from './prof_edit/ProfEditPage.tsx';
-import PostAll from './post_all/Postall';
+import PostAll from './post_all/Postall.tsx';
 import PostDetail from './post_detail/post_detail';
 import UserProf from './user_prof/user_prof';
 import Pot from './Pots/Pots';
