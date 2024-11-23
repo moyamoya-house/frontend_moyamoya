@@ -9,7 +9,7 @@ import {
   Box,
   CloseButton
 } from "@yamada-ui/react";
-import { useState } from "react";
+import React,{ useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Post = () => {
@@ -17,7 +17,7 @@ const Post = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
-  const handleCreateMoyamoya = async (e) => {
+  const handleCreateMoyamoya = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
     const response = await fetch("http://127.0.0.1:5000/moyamoya", {
@@ -63,9 +63,8 @@ const Post = () => {
         </ModalHeader>
 
         <ModalBody width={600} height={200}>
-            <form onSubmit={handleCreateMoyamoya} width={600} m={'0 auto'}>
+            <form onSubmit={handleCreateMoyamoya} style={{width: "600px", margin: '0 auto'}}>
                 <textarea
-                    type="text"
                     placeholder="発散させたいこと"
                     value={post}
                     onChange={(e) => setPost(e.target.value)}

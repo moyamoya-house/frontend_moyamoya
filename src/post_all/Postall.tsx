@@ -16,7 +16,7 @@ import {
   CardFooter,
   Input,
 } from "@yamada-ui/react";
-import Post from "../post/post";
+import Post from "../post/post.tsx";
 import Sidebar from "./component/sidebar.tsx";
 import LikeButton from "../nice/nice";
 import Bookmark from "../bookmark/bookmark";
