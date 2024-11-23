@@ -22,7 +22,7 @@ import LikeButton from "../nice/nice";
 import Bookmark from "../bookmark/bookmark";
 import "./css/post_all.css";
 
-interface Moyamoya {
+export interface Moyamoya {
   id: number;
   post: string;
   user_id: number;

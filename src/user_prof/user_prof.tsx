@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Box, Image, Text, Tabs, TabPanels, TabPanel, Tab } from "@yamada-ui/react";
 import Followbutton from "./follow_button/follow_button";
 import UserFollow from "../follow/user_follow";
-import UserMoyamoya from "./component/user_post";
+import UserMoyamoya from "./component/user_post.tsx";
 import UserBookmark from "./component/user_bookmark";
 import { User } from "../prof_edit/ProfEditPage";
 
