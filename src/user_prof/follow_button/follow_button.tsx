@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import '../css/follow_button.css';
 import { Button } from "@yamada-ui/react";
 const Followbutton = ({ userId }) => {
