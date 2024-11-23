@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { Box, Image, Text, Link, Center } from "@yamada-ui/react";
 import LikeButton from "../../nice/nice";
 import Bookmark from "../../bookmark/bookmark";
 import './css/user_post.css';
+import { Moyamoya } from "../../post_all/Postall";
+import { User } from "../../prof_edit/ProfEditPage";
 
 const UserMoyamoya = ({ userId }) => {
-    const [moyamoyaData , setMoyamoya] = useState([]);
-    const [userData, setUseData] = useState(null);
+    const [moyamoyaData , setMoyamoya] = useState<Moyamoya[]>([]);
+    const [userData, setUseData] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -56,6 +58,10 @@ const UserMoyamoya = ({ userId }) => {
 
     if (loading) {
         return <p>Loading</p>;
+    }
+
+    if (!userData) {
+      return <p>ユーザーデータがないです</p>;
     }
 
     return (
