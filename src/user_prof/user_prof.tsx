@@ -4,7 +4,7 @@ import { Box, Image, Text, Tabs, TabPanels, TabPanel, Tab } from "@yamada-ui/rea
 import Followbutton from "./follow_button/follow_button";
 import UserFollow from "../follow/user_follow";
 import UserMoyamoya from "./component/user_post.tsx";
-import UserBookmark from "./component/user_bookmark";
+import UserBookmark from "./component/user_bookmark.tsx";
 import { User } from "../prof_edit/ProfEditPage";
 
 const UserProf = () => {
