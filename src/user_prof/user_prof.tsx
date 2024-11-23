@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Box, Image, Text, Tabs, TabPanels, TabPanel, Tab } from "@yamada-ui/react";
 import Followbutton from "./follow_button/follow_button";
 import UserFollow from "../follow/user_follow";
 import UserMoyamoya from "./component/user_post";
 import UserBookmark from "./component/user_bookmark";
+import { User } from "../prof_edit/ProfEditPage";
 
 const UserProf = () => {
     const { id } = useParams();
-    const [userData, setUseData] = useState(null);
+    const [userData, setUseData] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -85,9 +86,9 @@ const UserProf = () => {
                     </Box>
                 </Box>
                 <h1>{userData.name}</h1>
-                <UserFollow userId={userData.id} />
+                <UserFollow userId={userData.user_id} />
                 <Text>{userData.prof_comment}</Text>
-                <Followbutton userId={userData.id} />
+                <Followbutton userId={userData.user_id} />
 
                 <Tabs>
                     <Tab
@@ -109,11 +110,11 @@ const UserProf = () => {
 
                     <TabPanels>
                         <TabPanel>
-                            <UserMoyamoya userId={userData.id} />
+                            <UserMoyamoya userId={userData.user_id} />
                         </TabPanel>
 
                         <TabPanel>
-                            <UserBookmark userId={userData.id} />
+                            <UserBookmark userId={userData.user_id} />
                         </TabPanel>
                     </TabPanels>
                 </Tabs>

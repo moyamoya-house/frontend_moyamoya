@@ -9,7 +9,7 @@ import Mypage from './mypage/Mypage.tsx';
 import ProfileEditPage from './prof_edit/ProfEditPage.tsx';
 import PostAll from './post_all/Postall.tsx';
 import PostDetail from './post_detail/post_detail';
-import UserProf from './user_prof/user_prof';
+import UserProf from './user_prof/user_prof.tsx';
 import Pot from './Pots/Pots';
 import ChatAll from './chat/chat_all';
 import Notification from './notification/notification';
