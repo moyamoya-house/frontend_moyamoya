@@ -7,10 +7,10 @@ import SpeechText from "./audio/audio_speach";
 import AudioAll from "./audio/audio_all";
 
 const Pots = () => {
-  const ref = useRef();
+  const ref = useRef<THREE.Mesh>(null);
 
   // 壺の形を定義（輪郭）
-  const points = [];
+  const points: THREE.Vector2[] = [];
   points.push(new THREE.Vector2(0.8, -3)); // 底の部分
   points.push(new THREE.Vector2(2, -2.5)); // 下部
   points.push(new THREE.Vector2(3.5, -1)); // 広がり部分
@@ -28,8 +28,11 @@ const Pots = () => {
 
   // useFrameで壺を回転
   useFrame(() => {
-    ref.current.rotation.y += 0.01; // Y軸周りに回転
+    if (ref.current) {
+      ref.current.rotation.y += 0.01; // Y軸周りに回転
+    }
   });
+  
 
   return (
     <>
