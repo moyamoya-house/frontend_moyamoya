@@ -12,7 +12,7 @@ import PostDetail from './post_detail/post_detail';
 import UserProf from './user_prof/user_prof.tsx';
 import Pot from './Pots/Pots';
 import ChatAll from './chat/chat_all.tsx';
-import Notification from './notification/notification';
+import Notification from './notification/notification.tsx';
 import HashTagPost from './hash_tag/hash_tag.tsx';
 import PasswordReset from './password_reset/password_reset.tsx';
 import './App.css';
