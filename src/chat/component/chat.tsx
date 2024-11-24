@@ -1,7 +1,16 @@
 import { Box, Image, Text } from "@yamada-ui/react";
-import { useState, useEffect, useCallback } from "react";
+import React,{ useState, useEffect, useCallback } from "react";
 import io from "socket.io-client";
 import "./css/chat.css";
+
+interface Message {
+  message: string;
+  send_user_id: number;
+  receiver_user_id?: number;
+  group_id?: number;
+  timestamp: string;
+  profile_image?: string;
+}
 
 const Chat = ({
   receiverId,
@@ -14,12 +23,12 @@ const Chat = ({
   groupImage,
 }) => {
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const token = localStorage.getItem("token");
 
-  const socket = io.connect("http://127.0.0.1:5000", {
+  const socket = io("http://127.0.0.1:5000", {
     transports: ["websocket"],
-    query: { token: encodeURIComponent(token) },
+    query: { token: encodeURIComponent(token || "") },
   });
 
   const fetchChatHistory = useCallback(async () => {
