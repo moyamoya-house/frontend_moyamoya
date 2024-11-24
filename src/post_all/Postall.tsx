@@ -19,7 +19,7 @@ import {
 import Post from "../post/post.tsx";
 import Sidebar from "./component/sidebar.tsx";
 import LikeButton from "../nice/nice";
-import Bookmark from "../bookmark/bookmark";
+import Bookmark from "../bookmark/bookmark.tsx";
 import "./css/post_all.css";
 
 export interface Moyamoya {

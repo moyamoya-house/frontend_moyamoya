@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Post from "../post/post";
 import Sidebar from "../post_all/component/sidebar.tsx";
 import LikeButton from "../nice/nice";
-import Bookmark from "../bookmark/bookmark";
+import Bookmark from "../bookmark/bookmark.tsx";
 import './css/hash_tag.css';
 import {
   Box,
