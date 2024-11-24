@@ -1,17 +1,29 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { Box } from "@yamada-ui/react";
 import UserSelect from "./component/user_select";
 import Chat from "./component/chat";
 import CreateChatGroup from "./component/group";
 
+interface User {
+    id: number;
+    user_name: string;
+    prof_image: string;
+}
+
+interface Group {
+    group_id: number;
+    group_name: string;
+    group_image: string;
+}
+
 const ChatAll = () => {
-    const [receiverId, setReceiver] = useState(null);
-    const [userId, setUser] = useState(null);
-    const [myImage, setMyImage] = useState("");
-    const [receiverName, setReceiverName] = useState("");
-    const [receiverImage, setReceiverImage] = useState("");
-    const [users, setUsers] = useState([]);
-    const [group, setGroup] = useState([]);
+    const [receiverId, setReceiver] = useState<number | null>(null);
+    const [userId, setUser] = useState<number | null>(null);
+    const [myImage, setMyImage] = useState<string>("");
+    const [receiverName, setReceiverName] = useState<string>("");
+    const [receiverImage, setReceiverImage] = useState<string>("");
+    const [users, setUsers] = useState<User[]>([]);
+    const [group, setGroup] = useState<Group[]>([]);
     const [groupId, setGroupId] = useState(null);  // グループIDを管理する状態
     const [groupName, setGroupName] = useState("");  // グループ名を管理する状態
     const [groupImage, setGroupImage] = useState("");
