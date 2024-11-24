@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box,Image, Link, Tabs, Text, Tab, TabPanels, TabPanel } from "@yamada-ui/react";
 import './css/mypage.css'
 import Follow from "../follow/follow";
-import UserPost from "./component/user_post";
+import UserPost from "./component/user_post.tsx";
 import BookmarkPost from "./component/bookmark_post";
 
 interface User {
