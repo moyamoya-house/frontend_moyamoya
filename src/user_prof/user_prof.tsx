@@ -2,7 +2,7 @@ import React,{ useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Box, Image, Text, Tabs, TabPanels, TabPanel, Tab } from "@yamada-ui/react";
 import Followbutton from "./follow_button/follow_button.tsx";
-import UserFollow from "../follow/user_follow";
+import UserFollow from "../follow/user_follow.tsx";
 import UserMoyamoya from "./component/user_post.tsx";
 import UserBookmark from "./component/user_bookmark.tsx";
 import { User } from "../prof_edit/ProfEditPage";
