@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React,{ useState } from "react";
 import {
   Button,
   Modal,
@@ -12,15 +12,24 @@ import {
 } from "@yamada-ui/react";
 import { useNavigate } from "react-router-dom";
 
-const CreateChatGroup = ({ users }) => {
-  const [selectedUsers, setSelectedUsers] = useState([]);
-  const [groupname, setGroupName] = useState("");
-  const [groupimage, setGroupImage] = useState("");
+interface User {
+  id: number;
+  user_name: string;
+}
+
+interface CreateChatGroupProps {
+  users: User[];
+}
+
+const CreateChatGroup: React.FC<CreateChatGroupProps> = ({ users }) => {
+  const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
+  const [groupname, setGroupName] = useState<string>("");
+  const [groupimage, setGroupImage] = useState<File | null>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
 
   // ユーザー選択の処理
-  const handleUserSelect = (e) => {
+  const handleUserSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const userId = parseInt(e.target.value, 10); // inputのvalueからユーザーIDを取得
     setSelectedUsers(
       (prevSelected) =>
@@ -36,9 +45,12 @@ const CreateChatGroup = ({ users }) => {
     const formData = new FormData();  // FormDataオブジェクトを作成
   
     formData.append("group_name", groupname);  // グループ名を追加
-    formData.append("group_image", groupimage);  // 画像ファイルを追加
-    selectedUsers.forEach((userId) => formData.append("user_ids[]", userId));  // ユーザーIDを追加
-  
+    if (groupimage) {
+      formData.append("group_image", groupimage);
+    }
+    selectedUsers.forEach((userId) =>
+      formData.append("user_ids[]", userId.toString())
+    );
     if (groupname && selectedUsers.length > 0) {
       fetch("http://127.0.0.1:5000/group", {
         method: "POST",
@@ -83,7 +95,7 @@ const CreateChatGroup = ({ users }) => {
           />
           <Input
             type="file"
-            onChange={(e) => setGroupImage(e.target.files[0])}
+            onChange={(e) => setGroupImage(e.target.files?.[0] || null)}
           />
           <h3>メンバー選択</h3>
           <VStack align="start">
