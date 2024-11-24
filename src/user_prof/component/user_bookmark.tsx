@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Box, Text, Link, Image, Center } from "@yamada-ui/react";
-import LikeButton from "../../nice/nice";
+import LikeButton from "../../nice/nice.tsx";
 import Bookmark from "../../bookmark/bookmark.tsx";
-import './css/user_bookmark.css';
+import "./css/user_bookmark.css";
 import { Moyamoya } from "../../post_all/Postall";
 
 export interface User {
@@ -23,9 +23,12 @@ const UserBookmark = ({ userId }: { userId: number }) => {
   useEffect(() => {
     const fetchBookmark = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:5000/user_bookmark/${userId}`, {
-          method: "GET",
-        });
+        const response = await fetch(
+          `http://127.0.0.1:5000/user_bookmark/${userId}`,
+          {
+            method: "GET",
+          }
+        );
         if (response.ok) {
           const data = await response.json();
           setBookmark(data);
@@ -45,7 +48,9 @@ const UserBookmark = ({ userId }: { userId: number }) => {
   useEffect(() => {
     const fetchBookmarkUser = async () => {
       try {
-        const userIds = [...new Set(bookmark.map((bookmark) => bookmark.user_id))];
+        const userIds = [
+          ...new Set(bookmark.map((bookmark) => bookmark.user_id)),
+        ];
         const userDataPromises = userIds.map((id) =>
           fetch(`http://127.0.0.1:5000/users/${id}`).then((response) =>
             response.json()
@@ -90,13 +95,15 @@ const UserBookmark = ({ userId }: { userId: number }) => {
                       borderRadius={100}
                       src={
                         userData && userData[post.user_id]?.prof_image
-                          ? `http://127.0.0.1:5000/prof_image/${userData[post.user_id].prof_image}`
+                          ? `http://127.0.0.1:5000/prof_image/${
+                              userData[post.user_id].prof_image
+                            }`
                           : "not_profileicon.jpg"
                       }
                       alt="プロフィール画像"
                     />
                     <Text mt={10} marginLeft={10}>
-                      {userData && userData[post.user_id]?.name }
+                      {userData && userData[post.user_id]?.name}
                     </Text>
                   </Link>
                 </Box>

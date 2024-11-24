@@ -1,8 +1,8 @@
-import React,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Link, Text, Image, Center } from "@yamada-ui/react";
-import LikeButton from "../../nice/nice";
+import LikeButton from "../../nice/nice.tsx";
 import Bookmark from "../../bookmark/bookmark.tsx";
-import './css/user_post.css';
+import "./css/user_post.css";
 import { Moyamoya } from "../../post_all/Postall";
 import { User } from "./user_post";
 
@@ -30,9 +30,13 @@ const BookmarkPost = () => {
   useEffect(() => {
     const fetchBookmarkUser = async () => {
       try {
-        const userIds = [...new Set(bookmarkData.map((bookmark) => bookmark.user_id))];
+        const userIds = [
+          ...new Set(bookmarkData.map((bookmark) => bookmark.user_id)),
+        ];
         const userDataPromises = userIds.map((id) =>
-          fetch(`http://127.0.0.1:5000/users/${id}`).then((response) => response.json())
+          fetch(`http://127.0.0.1:5000/users/${id}`).then((response) =>
+            response.json()
+          )
         );
         const users = await Promise.all(userDataPromises);
         const usermap: Record<number, User> = {};
@@ -41,7 +45,7 @@ const BookmarkPost = () => {
         });
         setUserData(usermap);
       } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error("Error fetching users:", error);
       }
     };
     if (bookmarkData.length > 0) {
@@ -50,7 +54,7 @@ const BookmarkPost = () => {
   }, [bookmarkData]);
 
   return (
-    <Box w={1500} maxWidth='80%' margin='0 auto'>
+    <Box w={1500} maxWidth="80%" margin="0 auto">
       {bookmarkData.length > 0 ? (
         <ul className="post">
           {bookmarkData.map((post) => (
@@ -69,7 +73,9 @@ const BookmarkPost = () => {
                       borderRadius={100}
                       src={
                         userData[post.user_id]?.prof_image
-                          ? `http://127.0.0.1:5000/prof_image/${userData[post.user_id]?.prof_image}`
+                          ? `http://127.0.0.1:5000/prof_image/${
+                              userData[post.user_id]?.prof_image
+                            }`
                           : "not_profileicon.jpg"
                       }
                       alt="prof image"
