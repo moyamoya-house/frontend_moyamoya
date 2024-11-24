@@ -1,12 +1,23 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { Box, Link, Text, Center, Image } from "@yamada-ui/react";
 import LikeButton from "../../nice/nice";
 import Bookmark from "../../bookmark/bookmark";
 import "./css/user_post.css";
+import { Moyamoya } from "../../post_all/Postall";
+
+export interface User {
+  user_id: number;
+  name: string;
+  prof_image: string;
+  second_image: string;
+  prof_comment: string;
+  password: string;
+  email: string;
+}
 
 const UserPost = () => {
-  const [postData, setPostData] = useState([]);
-  const [userData, setUserData] = useState({});
+  const [postData, setPostData] = useState<Moyamoya[]>([]);
+  const [userData, setUserData] = useState<User | null>(null);
 
   useEffect(() => {
     const fetchMoyamoyaData = async () => {
@@ -61,14 +72,14 @@ const UserPost = () => {
                       h={50}
                       borderRadius={100}
                       src={
-                        userData.prof_image
+                        userData && userData.prof_image
                           ? `http://127.0.0.1:5000/prof_image/${userData.prof_image}`
                           : "not_profileicon.jpg"
                       }
                       alt="prof image"
                     />
                     <Text mt={10} marginLeft={10}>
-                      {userData.name}
+                      {userData && userData.name}
                     </Text>
                   </Link>
                 </Box>
