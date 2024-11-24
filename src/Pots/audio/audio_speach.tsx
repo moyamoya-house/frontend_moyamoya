@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -12,15 +12,19 @@ import {
   ModalHeader,
   ModalBody,
 } from "@yamada-ui/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
 
-const SpeechText = ({ username }) => {
+const SpeechText = ({ username }: { username: string }) => {
   const [isListening, setIsListening] = useState(false);
-  const [mediaRecorder, setMediaRecorder] = useState(null);
-  const [audioChunks, setAudioChunks] = useState([]);
-  const [audioURL, setAudioURL] = useState(null);
-  const [result, setResult] = useState(null);
+  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
+    null
+  );
+  const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
+  const [audioURL, setAudioURL] = useState<string | null>(null);
+  const [result, setResult] = useState<any>(null);
   const [recordCount, setRecordCount] = useState(1);
-  const [isSaved, setIsSaved] = useState(false); // Track save status
+  const [isSaved, setIsSaved] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { transcript, resetTranscript, browserSupportsSpeechRecognition } =
@@ -33,7 +37,7 @@ const SpeechText = ({ username }) => {
   const handleListen = () => {
     if (isListening) {
       SpeechRecognition.stopListening();
-      mediaRecorder.stop();
+      mediaRecorder?.stop(); // null チェックを追加
       setIsListening(false);
     } else {
       resetTranscript();
@@ -56,7 +60,6 @@ const SpeechText = ({ username }) => {
 
   const handleSave = async () => {
     if (isSaved) {
-      // If "戻る" is clicked, close the modal and reset the save status
       onClose();
       setIsSaved(false);
       return;
@@ -84,7 +87,7 @@ const SpeechText = ({ username }) => {
         setResult(data);
         alert("音声が保存されました");
         setRecordCount((prev) => prev + 1);
-        setIsSaved(true); // Set to true when save is successful
+        setIsSaved(true);
       } else {
         alert("音声の保存に失敗しました");
       }
@@ -95,49 +98,12 @@ const SpeechText = ({ username }) => {
 
   return (
     <>
-      <Button
-        onClick={onOpen}
-        width={100}
-        height={60}
-        border={"none"}
-        borderRadius={10}
-        variant={"ghost"}
-        cursor={"pointer"}
-        fontSize={20}
-        backgroundColor={"lightskyblue"}
-      >
-        音声録音
-      </Button>
+      <Button onClick={onOpen}>音声録音</Button>
 
-      <Modal
-        isOpen={isOpen}
-        background={"white"}
-        border="1px solid #000"
-        borderRadius={10}
-      >
-        <CloseButton
-          onClick={onClose}
-          position="absolute"
-          top="10px"
-          left="10px"
-          width={60}
-          height={60}
-          borderRadius={100}
-          border={"none"}
-          onMouseOver={(e) => (e.target.style.color = "darkred")}
-          onMouseOut={(e) => (e.target.style.color = "lightcoral")}
-        ></CloseButton>
-        <ModalOverlay bg="rgba(0,0,0,0.6)"></ModalOverlay>
-        <ModalHeader>
-          <h1
-            style={{
-              margin: "0 auto",
-            }}
-          >
-            発散させたいこと
-          </h1>
-        </ModalHeader>
-
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <CloseButton onClick={onClose} />
+        <ModalOverlay />
+        <ModalHeader>発散させたいこと</ModalHeader>
         <ModalBody width={1200} maxW="80%" height={400}>
           <Box mt={30} display={"flex"} m="0 auto">
             <Box mt={50} ml={100}>
@@ -150,19 +116,17 @@ const SpeechText = ({ username }) => {
                   borderRadius: "100%",
                 }}
               >
-                <i
-                  className={`fas ${
-                    isListening ? "fa-stop" : "fa-play"
-                  } play-button-overlay`}
+                <FontAwesomeIcon
+                  icon={isListening ? faStop : faPlay}
                   style={{ fontSize: "150px" }}
-                ></i>
+                />
               </button>
               {/* <button onClick={resetTranscript}>リセット</button> */}
             </Box>
             <Box ml={200}>
               <h1>入力結果:</h1>
               <p>{transcript}</p>
-              <audio controls src={audioURL || ""} disabled={!audioURL} />
+              <audio controls={!!audioURL} src={audioURL || ""} />
 
               <div>
                 <h3>Analysis Result:</h3>
@@ -178,7 +142,14 @@ const SpeechText = ({ username }) => {
           <button
             onClick={handleSave}
             disabled={!audioChunks.length}
-            style={{ width: "90%", backgroundColor: "lightskyblue", border: "none" , margin: "10px auto 0 80px", borderRadius: "10px", cursor: "pointer" }}
+            style={{
+              width: "90%",
+              backgroundColor: "lightskyblue",
+              border: "none",
+              margin: "10px auto 0 80px",
+              borderRadius: "10px",
+              cursor: "pointer",
+            }}
           >
             {isSaved ? "戻る" : "保存"}
           </button>

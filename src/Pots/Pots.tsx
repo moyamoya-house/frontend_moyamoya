@@ -3,7 +3,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { MeshDistortMaterial, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { Box } from "@yamada-ui/react";
-import SpeechText from "./audio/audio_speach";
+import SpeechText from "./audio/audio_speach.tsx";
 import AudioAll from "./audio/audio_all.tsx";
 
 const Pots = () => {
