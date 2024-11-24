@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { Box, Link, Text, Image, Center } from "@yamada-ui/react";
 import LikeButton from "../../nice/nice";
 import Bookmark from "../../bookmark/bookmark";
 import './css/user_post.css';
+import { Moyamoya } from "../../post_all/Postall";
+import { User } from "./user_post";
 
 const BookmarkPost = () => {
-  const [bookmarkData, setBookmark] = useState([]);
-  const [userData, setUserData] = useState({});
+  const [bookmarkData, setBookmark] = useState<Moyamoya[]>([]);
+  const [userData, setUserData] = useState<Record<number, User>>({});
 
   useEffect(() => {
     const fetchBookmark = async () => {
@@ -21,35 +23,31 @@ const BookmarkPost = () => {
         const data = await response.json();
         setBookmark(data);
       }
-    };;
+    };
     fetchBookmark();
-  },[]);
+  }, []);
 
-  //保存した投稿のユーザー取得
   useEffect(() => {
     const fetchBookmarkUser = async () => {
-        try {
-            const userIds = [...new Set(bookmarkData.map((bookmark) => bookmark.user_id))];
-            const userDataPromises = userIds.map((id) =>
-                fetch(`http://127.0.0.1:5000/users/${id}`).then((response) =>
-                    response.json()
-                )
-            );
-            const users = await Promise.all(userDataPromises);
-            const usermap = {};
-            users.forEach((user) => {
-                usermap[user.id] = user;
-            });
-            setUserData(usermap);
-        } catch (error) {
-            console.error('Error fetching users:', error);
-        }
+      try {
+        const userIds = [...new Set(bookmarkData.map((bookmark) => bookmark.user_id))];
+        const userDataPromises = userIds.map((id) =>
+          fetch(`http://127.0.0.1:5000/users/${id}`).then((response) => response.json())
+        );
+        const users = await Promise.all(userDataPromises);
+        const usermap: Record<number, User> = {};
+        users.forEach((user) => {
+          usermap[user.user_id] = user;
+        });
+        setUserData(usermap);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
     };
     if (bookmarkData.length > 0) {
-        fetchBookmarkUser();
+      fetchBookmarkUser();
     }
   }, [bookmarkData]);
-
 
   return (
     <Box w={1500} maxWidth='80%' margin='0 auto'>
@@ -70,14 +68,14 @@ const BookmarkPost = () => {
                       h={50}
                       borderRadius={100}
                       src={
-                        userData.prof_image
-                          ? `http://127.0.0.1:5000/prof_image/${userData.prof_image}`
+                        userData[post.user_id]?.prof_image
+                          ? `http://127.0.0.1:5000/prof_image/${userData[post.user_id]?.prof_image}`
                           : "not_profileicon.jpg"
                       }
                       alt="prof image"
                     />
                     <Text mt={10} marginLeft={10}>
-                      {userData.name}
+                      {userData[post.user_id]?.name}
                     </Text>
                   </Link>
                 </Box>

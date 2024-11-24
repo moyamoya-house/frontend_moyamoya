@@ -3,7 +3,7 @@ import { Box,Image, Link, Tabs, Text, Tab, TabPanels, TabPanel } from "@yamada-u
 import './css/mypage.css'
 import Follow from "../follow/follow";
 import UserPost from "./component/user_post.tsx";
-import BookmarkPost from "./component/bookmark_post";
+import BookmarkPost from "./component/bookmark_post.tsx";
 
 interface User {
     user_id: number;
