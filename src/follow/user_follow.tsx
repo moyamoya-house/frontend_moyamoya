@@ -1,8 +1,13 @@
 import { Box, Text } from "@yamada-ui/react";
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
+
+interface Follow {
+    follower: number;
+    following: number;
+}
 
 const UserFollow = ({ userId }) => {
-    const [countFollow, setFollow] = useState(null);
+    const [countFollow, setFollow] = useState<Follow | null>(null);
 
     useEffect(() => {
         const fetchFollow = async () => {
