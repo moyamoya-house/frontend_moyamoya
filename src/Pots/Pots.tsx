@@ -4,7 +4,7 @@ import { MeshDistortMaterial, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { Box } from "@yamada-ui/react";
 import SpeechText from "./audio/audio_speach";
-import AudioAll from "./audio/audio_all";
+import AudioAll from "./audio/audio_all.tsx";
 
 const Pots = () => {
   const ref = useRef<THREE.Mesh>(null);

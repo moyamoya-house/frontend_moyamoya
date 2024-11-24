@@ -1,10 +1,20 @@
 "use client";
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { Box, Card, Link, Image, CardHeader, CardBody,  Text } from "@yamada-ui/react";
 import "../audio/css/audio_all.css";
 
+interface Audio {
+  id: number;
+  audio: number;
+  stress_level: number;
+  emotion_score: number;
+  classification: string;
+  user_id: number;
+  created_at: string;
+}
+
 const AudioAll = () => {
-  const [audioData, setAudioData] = useState([]);
+  const [audioData, setAudioData] = useState<Audio[]>([]);
   const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -95,7 +105,7 @@ const AudioAll = () => {
                         </CardHeader>
                         <CardBody>
                           <Box w={"700px"}>
-                            <audio controls src={`http://127.0.0.1:5000/audiofile/${audio.user_id}/${audio.audio}`} disabled={!audio.audio} style={{"margin": "10px 0 0 200px"}}></audio>
+                            <audio controls={!!audio.audio} src={`http://127.0.0.1:5000/audiofile/${audio.user_id}/${audio.audio}`} style={{"margin": "10px 0 0 200px"}}></audio>
                           </Box>
                         </CardBody>
                     </Box>
