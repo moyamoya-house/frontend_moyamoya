@@ -1,9 +1,28 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Box, Image, Button, VStack, Text } from "@yamada-ui/react";
 import './css/user_select.css';
 
-const UserSelect = ({ users, group, onSelectUser, onSelectGroup }) => {
-  const [showGroups, setShowGroups] = useState(false); // 表示を切り替えるためのstate
+interface User {
+  id: number;
+  user_name: string;
+  prof_image: string | null;
+}
+
+interface Group {
+  group_id: number;
+  group_name: string;
+  group_image: string | null;
+}
+
+interface UserSelectProps {
+  users: User[];
+  group: Group[];
+  onSelectUser: (userId: number) => void;
+  onSelectGroup: (groupId: number) => void;
+}
+
+const UserSelect: React.FC<UserSelectProps> = ({ users, group, onSelectUser, onSelectGroup }) => {
+  const [showGroups, setShowGroups] = useState(false);
 
   return (
     <Box className="userbox">
@@ -29,18 +48,22 @@ const UserSelect = ({ users, group, onSelectUser, onSelectGroup }) => {
         {showGroups ? (
           // グループチャット表示
           group.length > 0 ? (
-            group.map((group) => (
+            group.map((grp) => (
               <button
-                key={group.group_id}
-                onClick={() => onSelectGroup(group.group_id)}
+                key={grp.group_id}
+                onClick={() => onSelectGroup(grp.group_id)}
                 className="selectbutton"
               >
                 <Image
                   className="userimage"
-                  src={group.group_image ? `http://127.0.0.1:5000/group_image/${group.group_image}`: '/not_profileicon.jpg'}
+                  src={
+                    grp.group_image
+                      ? `http://127.0.0.1:5000/group_image/${grp.group_image}`
+                      : '/not_profileicon.jpg'
+                  }
+                  alt="グループ画像"
                 />
-                <Text ml={30}>{group.group_name}</Text>
-                
+                <Text ml={30}>{grp.group_name}</Text>
               </button>
             ))
           ) : (
@@ -49,19 +72,22 @@ const UserSelect = ({ users, group, onSelectUser, onSelectGroup }) => {
         ) : (
           // 個人チャット表示
           users.length > 0 ? (
-            users.map((user) => (
+            users.map((usr) => (
               <button
-                key={user.id}
-                onClick={() => onSelectUser(user.id)}
+                key={usr.id}
+                onClick={() => onSelectUser(usr.id)}
                 className="selectbutton"
               >
                 <Image
                   className="userimage"
-                  src={user.prof_image ? `http://127.0.0.1:5000/prof_image/${user.prof_image}` : '/not_profileicon.jpg'}
+                  src={
+                    usr.prof_image
+                      ? `http://127.0.0.1:5000/prof_image/${usr.prof_image}`
+                      : '/not_profileicon.jpg'
+                  }
                   alt="プロフィール画像"
                 />
-                <Text ml={30}>{user.user_name}</Text>
-                
+                <Text ml={30}>{usr.user_name}</Text>
               </button>
             ))
           ) : (

@@ -1,6 +1,6 @@
 import React,{ useEffect, useState } from "react";
 import { Box } from "@yamada-ui/react";
-import UserSelect from "./component/user_select";
+import UserSelect from "./component/user_select.tsx";
 import Chat from "./component/chat";
 import CreateChatGroup from "./component/group";
 
