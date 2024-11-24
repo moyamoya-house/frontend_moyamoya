@@ -1,9 +1,13 @@
 import { Box, Text } from "@yamada-ui/react";
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 
+interface NotificationData {
+    notification: string;
+    create_at: string;
+}
 
 const Notification = () => {
-    const [notification, setNotification] = useState([]);
+    const [notification, setNotification] = useState<NotificationData[]>([]);
 
     useEffect(() => {
         const fetchNotificationData = async () => {
