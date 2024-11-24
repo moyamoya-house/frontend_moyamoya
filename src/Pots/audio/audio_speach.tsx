@@ -98,12 +98,44 @@ const SpeechText = ({ username }: { username: string }) => {
 
   return (
     <>
-      <Button onClick={onOpen}>音声録音</Button>
+      <Button
+        onClick={onOpen}
+        width={100}
+        height={60}
+        border={"none"}
+        borderRadius={10}
+        variant={"ghost"}
+        cursor={"pointer"}
+        fontSize={20}
+        backgroundColor={"lightskyblue"}
+      >
+        音声録音
+      </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <CloseButton onClick={onClose} />
-        <ModalOverlay />
-        <ModalHeader>発散させたいこと</ModalHeader>
+      <Modal
+        isOpen={isOpen}
+        background={"white"}
+        border="1px solid #000"
+        borderRadius={10}
+      >
+        <CloseButton
+          onClick={onClose}
+          position="absolute"
+          top="10px"
+          left="10px"
+          width={60}
+          height={60}
+          borderRadius={100}
+          border={"none"}
+          onMouseOver={(e) => {
+            (e.target as HTMLElement).style.color = "darkred";
+          }}
+          onMouseOut={(e) => {
+            (e.target as HTMLElement).style.color = "lightcoral";
+          }}
+        ></CloseButton>
+        <ModalOverlay bg="rgba(0,0,0,0.6)"></ModalOverlay>
+        <ModalHeader m={"0 auto"} fontSize={20}>発散させたいこと</ModalHeader>
         <ModalBody width={1200} maxW="80%" height={400}>
           <Box mt={30} display={"flex"} m="0 auto">
             <Box mt={50} ml={100}>

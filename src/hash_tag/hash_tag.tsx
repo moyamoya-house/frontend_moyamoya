@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Post from "../post/post";
+import Post from "../post/post.tsx";
 import Sidebar from "../post_all/component/sidebar.tsx";
 import LikeButton from "../nice/nice.tsx";
 import Bookmark from "../bookmark/bookmark.tsx";
