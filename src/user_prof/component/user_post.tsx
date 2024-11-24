@@ -1,7 +1,7 @@
 import React,{ useEffect, useState } from "react";
 import { Box, Image, Text, Link, Center } from "@yamada-ui/react";
 import LikeButton from "../../nice/nice";
-import Bookmark from "../../bookmark/bookmark";
+import Bookmark from "../../bookmark/bookmark.tsx";
 import './css/user_post.css';
 import { Moyamoya } from "../../post_all/Postall";
 import { User } from "../../prof_edit/ProfEditPage";
