@@ -7,7 +7,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const redirect = useNavigate();
 
-  const hadlelogin = async (e) => {
+  const hadlelogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const response = await fetch("http://127.0.0.1:5000/login", {
       method: "POST",

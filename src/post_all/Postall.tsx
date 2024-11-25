@@ -19,6 +19,7 @@ import {
 import Post from "../post/post.tsx";
 import Sidebar from "./component/sidebar.tsx";
 import LikeButton from "../nice/nice.tsx";
+import { fetchPosts, fetchFollowPosts, fetchUsers } from "../hooks/useMoyamoya.ts";
 import Bookmark from "../bookmark/bookmark.tsx";
 import "./css/post_all.css";
 
@@ -49,17 +50,9 @@ const PostAll = () => {
   useEffect(() => {
     const fetchPostData = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/moyamoya", {
-          method: "GET",
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setPostData(data);
-          setLoading(false);
-        } else {
-          console.error("Failed to fetch posts");
-          setLoading(false);
-        }
+        const data = await fetchPosts();
+        setPostData(data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching posts:", error);
         setLoading(false);
@@ -68,17 +61,25 @@ const PostAll = () => {
     fetchPostData();
   }, []);
 
-  // 投稿に対するユーザー情報を取得
+  useEffect(() => {
+    const fetchFollowPostData = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+      try {
+        const data = await fetchFollowPosts(token);
+        setFollowPost(data);
+      } catch (error) {
+        console.error("Error fetching follow posts:", error);
+      }
+    };
+    fetchFollowPostData();
+  }, []);
+
   useEffect(() => {
     const fetchUsersData = async () => {
       try {
         const userIds = [...new Set(postData.map((post) => post.user_id))];
-        const userDataPromises = userIds.map((id) =>
-          fetch(`http://127.0.0.1:5000/users/${id}`).then((response) =>
-            response.json()
-          )
-        );
-        const users = await Promise.all(userDataPromises);
+        const users = await fetchUsers(userIds);
         const userMap = {};
         users.forEach((user) => {
           userMap[user.id] = user;
@@ -93,44 +94,11 @@ const PostAll = () => {
     }
   }, [postData]);
 
-  // フォロー中のユーザーの投稿を取得
   useEffect(() => {
-    const fetchFollowPost = async () => {
-      const token = localStorage.getItem("token");
-      try {
-        const response = await fetch("http://127.0.0.1:5000/moyamoya_follow", {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setFollowPost(data);
-          setLoading(false);
-        } else {
-          console.error("Failed to fetch follow posts");
-          setLoading(false);
-        }
-      } catch (error) {
-        console.error("Error fetching follow posts:", error);
-        setLoading(false);
-      }
-    };
-    fetchFollowPost();
-  }, []);
-
-  // フォロー中のユーザー情報を取得
-  useEffect(() => {
-    const fetchUsersFollowData = async () => {
+    const fetchFollowUsersData = async () => {
       try {
         const userIds = [...new Set(followPost.map((post) => post.user_id))];
-        const userDataPromises = userIds.map((id) =>
-          fetch(`http://127.0.0.1:5000/users/${id}`).then((response) =>
-            response.json()
-          )
-        );
-        const users = await Promise.all(userDataPromises);
+        const users = await fetchUsers(userIds);
         const userMap = {};
         users.forEach((user) => {
           userMap[user.id] = user;
@@ -141,9 +109,20 @@ const PostAll = () => {
       }
     };
     if (followPost.length > 0) {
-      fetchUsersFollowData();
+      fetchFollowUsersData();
     }
   }, [followPost]);
+
+  useEffect(() => {
+    if (query) {
+      const filtered = postData.filter((post) =>
+        post.post.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilterPost(filtered);
+    } else {
+      setFilterPost(postData);
+    }
+  }, [query, postData]);
 
   const HashTag = (text) => {
     const hashTagRegex = /#[\w]+/g;
@@ -163,19 +142,7 @@ const PostAll = () => {
       return part;
     });
   };
-
-  // 検索処理
-  useEffect(() => {
-    if (query) {
-      const filtered = postData.filter((post) =>
-        post.post.toLowerCase().includes(query.toLowerCase())
-      );
-      setFilterPost(filtered);
-    } else {
-      setFilterPost(postData);
-    }
-  }, [query, postData]);
-
+  
   if (loading) {
     return <p>Loading...</p>;
   }
