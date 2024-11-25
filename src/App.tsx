@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Signup from './login/signup.tsx';
 import TopHeader from './layout/TopHeader.tsx';
 import Footer from './layout/Footer.tsx';
@@ -17,7 +17,7 @@ import HashTagPost from './hash_tag/hash_tag.tsx';
 import PasswordReset from './password_reset/password_reset.tsx';
 import './App.css';
 
-const App = () => {
+const App: React.FC = () => {
   const [showTopBtn, setShowTopBtn] = useState(false);
 
   useEffect(() => {
@@ -41,32 +41,33 @@ const App = () => {
       behavior: 'smooth',
     });
   };
+
   return (
     <>
-    <TopHeader></TopHeader>
-    <Router>
+      <TopHeader />
+      <Router>
         <Routes>
-          <Route path="/login" element={<Login></Login>} />
-          <Route path="/signup" element={<Signup></Signup>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="*" element={<Navigate to="/login" />} />
-          <Route path='/top' element={<Top></Top>} />
-          <Route path='/mypage' element={<Mypage></Mypage>} />
-          <Route path='/prof_edit' element={<ProfileEditPage></ProfileEditPage>} />
-          <Route path='/post_all' element={<PostAll></PostAll>} />
-          <Route path='/post_detail/:id' element={<PostDetail></PostDetail>}></Route>
-          <Route path='/user_prof/:id' element={<UserProf></UserProf>}></Route>
-          <Route path='/pots' element={<Pot></Pot>}></Route>
-          <Route path='/chat' element={<ChatAll></ChatAll>}></Route>
-          <Route path='/hashtags/:hashtag' element={<HashTagPost></HashTagPost>}></Route>
-          <Route path='/notification' element={<Notification></Notification>}></Route>
-          <Route path='/password_reset' element={<PasswordReset />}></Route>
+          <Route path="/top" element={<Top />} />
+          <Route path="/mypage" element={<Mypage />} />
+          <Route path="/prof_edit" element={<ProfileEditPage />} />
+          <Route path="/post_all" element={<PostAll />} />
+          <Route path="/post_detail/:id" element={<PostDetail />} />
+          <Route path="/user_prof/:id" element={<UserProf />} />
+          <Route path="/pots" element={<Pot />} />
+          <Route path="/chat" element={<ChatAll />} />
+          <Route path="/hashtags/:hashtag" element={<HashTagPost />} />
+          <Route path="/notification" element={<Notification />} />
+          <Route path="/password_reset" element={<PasswordReset />} />
         </Routes>
-    </Router>
-    <Footer></Footer>
-    <a
+      </Router>
+      <Footer />
+      <a
         href="#top"
         className={`to-top ${showTopBtn ? 'show' : ''}`}
-        onClick={(e) =>{
+        onClick={(e) => {
           e.preventDefault();
           scrollToTop();
         }}
