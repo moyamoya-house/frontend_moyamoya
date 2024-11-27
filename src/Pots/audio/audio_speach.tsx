@@ -157,9 +157,8 @@ const SpeechText = ({ username }: { username: string }) => {
             </Box>
             <Box ml={200}>
               <h1>入力結果:</h1>
-              <p>{transcript}</p>
-              <audio controls={!!audioURL} src={audioURL || ""} />
 
+              <p>{audioURL ? transcript : ""}</p>
               <div>
                 <h3>Analysis Result:</h3>
                 <p>Text: {result ? result.classification.text : ""}</p>
