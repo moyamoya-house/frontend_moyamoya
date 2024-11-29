@@ -15,6 +15,7 @@ import ChatAll from './chat/chat_all.tsx';
 import Notification from './notification/notification.tsx';
 import HashTagPost from './hash_tag/hash_tag.tsx';
 import PasswordReset from './password_reset/password_reset.tsx';
+import AudioDetails from './audio_details/audio_details.tsx';
 import './App.css';
 
 const App: React.FC = () => {
@@ -61,6 +62,7 @@ const App: React.FC = () => {
           <Route path="/hashtags/:hashtag" element={<HashTagPost />} />
           <Route path="/notification" element={<Notification />} />
           <Route path="/password_reset" element={<PasswordReset />} />
+          <Route path="/audio_details/:id" element={<AudioDetails />} />
         </Routes>
       </Router>
       <Footer />
