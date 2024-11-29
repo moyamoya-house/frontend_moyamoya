@@ -118,7 +118,7 @@ const AudioAll = () => {
                   <Text ml={300}>{audio.created_at.split("-").join("/")}</Text>
                 </CardHeader>
                 <CardBody>
-                  <Link href={`/audio_details/${audio.id}`}>
+                  <Link href={`/audio_details/${audio.id}`} textDecoration={"none"} color={"black"} display={"inline-block"}>
                     <Box w={"700px"}>
                       <audio
                         controls={!!audio.audio}
