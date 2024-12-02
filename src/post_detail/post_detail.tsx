@@ -1,12 +1,25 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Box, Text, Image } from "@yamada-ui/react";
 import './css/post_detail.css';
 
+interface Moyamoya {
+    id: number;
+    post: string;
+    user_id: number;
+    created_at: string;
+    count: number;
+}
+
+interface User {
+    user_id: number;
+    user_name: string;
+    prof_image: string;
+}
 const PostDetail = () => {
     const { id } = useParams();
-    const [postData, setPostData] = useState(null);
-    const [postUser, setPostUser] = useState(null);
+    const [postData, setPostData] = useState<Moyamoya| null>(null);
+    const [postUser, setPostUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -81,7 +94,7 @@ const PostDetail = () => {
                         className="prof_image"
                         />
                     )}
-                    <Text ml={20}>{postUser.name}</Text>
+                    <Text ml={20}>{postUser.user_name}</Text>
                 </Box>
             ) : (
                 <p>Loading user data...</p>
