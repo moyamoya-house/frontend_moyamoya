@@ -98,7 +98,7 @@ const Chat = ({
   };
 
   return (
-    <Box ml={300} w={800} h="84vh">
+    <Box ml={300} w={800} h="78vh">
       {receiverId || groupId ? (
         <Box
           display={"flex"}

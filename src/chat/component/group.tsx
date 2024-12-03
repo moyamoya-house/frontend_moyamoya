@@ -1,4 +1,4 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Modal,
@@ -42,9 +42,9 @@ const CreateChatGroup: React.FC<CreateChatGroupProps> = ({ users }) => {
 
   const handleCreateGroup = () => {
     const token = localStorage.getItem("token");
-    const formData = new FormData();  // FormDataオブジェクトを作成
-  
-    formData.append("group_name", groupname);  // グループ名を追加
+    const formData = new FormData(); // FormDataオブジェクトを作成
+
+    formData.append("group_name", groupname); // グループ名を追加
     if (groupimage) {
       formData.append("group_image", groupimage);
     }
@@ -55,32 +55,46 @@ const CreateChatGroup: React.FC<CreateChatGroupProps> = ({ users }) => {
       fetch("http://127.0.0.1:5000/group", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`,  // 認証トークンをヘッダに追加
+          Authorization: `Bearer ${token}`, // 認証トークンをヘッダに追加
         },
-        body: formData,  // FormDataをリクエストボディに設定
+        body: formData, // FormDataをリクエストボディに設定
       })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("グループ作成に失敗しました");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("グループ作成成功", data);
-        navigate("/chat");
-        onClose();
-      })
-      .catch((error) => {
-        console.error("グループ作成失敗:", error);
-      });
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("グループ作成に失敗しました");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("グループ作成成功", data);
+          navigate("/chat");
+          onClose();
+        })
+        .catch((error) => {
+          console.error("グループ作成失敗:", error);
+        });
     } else {
       alert("グループ名とメンバーを選択してください。");
     }
   };
-  
+
   return (
     <>
-      <Button onClick={onOpen}>グループ作成</Button>
+      <Button
+        onClick={onOpen}
+        width={150}
+        height={30}
+        border={"none"}
+        borderRadius={10}
+        variant={"ghost"}
+        cursor={"pointer"}
+        fontSize={20}
+        backgroundColor={"lightskyblue"}
+        ml={-140}
+        mt={10}
+      >
+        グループ作成
+      </Button>
 
       <Modal isOpen={isOpen} onClose={onClose} w={500} h={350} bg={"white"}>
         <ModalOverlay bg="rgba(0, 0, 0, 0.6)" />
