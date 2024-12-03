@@ -10,6 +10,7 @@ import {
   Image,
   Link,
   CloseButton,
+  DrawerOverlay,
 } from "@yamada-ui/react";
 import "./css/layout.css";
 import React, { useEffect, useState} from "react";
@@ -89,7 +90,7 @@ const TopHeader = () => {
             bg="#fff"
             size={"xs"}
             backgroundColor={"white"}
-          >
+          ><DrawerOverlay bg="rgba(0, 0, 0, 0.6)" />
             <CloseButton onClick={onClose} w={50} h={50} borderRadius={100}></CloseButton>
             <DrawerHeader mt={50} textAlign="right">
               <h1 className="username">{userData.name}</h1>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Image, Button, VStack, Text } from "@yamada-ui/react";
-import './css/user_select.css';
+import "./css/user_select.css";
 
 interface User {
   id: number;
@@ -21,7 +21,12 @@ interface UserSelectProps {
   onSelectGroup: (groupId: number) => void;
 }
 
-const UserSelect: React.FC<UserSelectProps> = ({ users, group, onSelectUser, onSelectGroup }) => {
+const UserSelect: React.FC<UserSelectProps> = ({
+  users,
+  group,
+  onSelectUser,
+  onSelectGroup,
+}) => {
   const [showGroups, setShowGroups] = useState(false);
 
   return (
@@ -29,18 +34,20 @@ const UserSelect: React.FC<UserSelectProps> = ({ users, group, onSelectUser, onS
       <h1 className="usermap">チャット一覧</h1>
 
       {/* 個人/グループ切り替えボタン */}
-      <Box className="button-container">
+      <Box m={"0 auto"}>
         <Button
-          onClick={() => setShowGroups(false)}
-          colorScheme={!showGroups ? "blue" : "gray"}
+          onClick={() => setShowGroups((prev) => !prev)} // 状態をトグル
+          w={200}
+          h={"auto"}
+          border={"none"}
+          borderRadius={10}
+          variant={"ghost"}
+          cursor={"pointer"}
+          fontSize={20}
+          backgroundColor={"white"}
         >
-          個人チャット
-        </Button>
-        <Button
-          onClick={() => setShowGroups(true)}
-          colorScheme={showGroups ? "blue" : "gray"}
-        >
-          グループチャット
+          {showGroups ? "個人チャット" : "グループチャット"}{" "}
+          {/* 状態に応じてテキストを切り替え */}
         </Button>
       </Box>
 
@@ -59,7 +66,7 @@ const UserSelect: React.FC<UserSelectProps> = ({ users, group, onSelectUser, onS
                   src={
                     grp.group_image
                       ? `http://127.0.0.1:5000/group_image/${grp.group_image}`
-                      : '/not_profileicon.jpg'
+                      : "/not_profileicon.jpg"
                   }
                   alt="グループ画像"
                 />
@@ -69,30 +76,28 @@ const UserSelect: React.FC<UserSelectProps> = ({ users, group, onSelectUser, onS
           ) : (
             <p>グループチャットがありません</p>
           )
+        ) : // 個人チャット表示
+        users.length > 0 ? (
+          users.map((usr) => (
+            <button
+              key={usr.id}
+              onClick={() => onSelectUser(usr.id)}
+              className="selectbutton"
+            >
+              <Image
+                className="userimage"
+                src={
+                  usr.prof_image
+                    ? `http://127.0.0.1:5000/prof_image/${usr.prof_image}`
+                    : "/not_profileicon.jpg"
+                }
+                alt="プロフィール画像"
+              />
+              <Text ml={30}>{usr.user_name}</Text>
+            </button>
+          ))
         ) : (
-          // 個人チャット表示
-          users.length > 0 ? (
-            users.map((usr) => (
-              <button
-                key={usr.id}
-                onClick={() => onSelectUser(usr.id)}
-                className="selectbutton"
-              >
-                <Image
-                  className="userimage"
-                  src={
-                    usr.prof_image
-                      ? `http://127.0.0.1:5000/prof_image/${usr.prof_image}`
-                      : '/not_profileicon.jpg'
-                  }
-                  alt="プロフィール画像"
-                />
-                <Text ml={30}>{usr.user_name}</Text>
-              </button>
-            ))
-          ) : (
-            <p>個人チャットがありません</p>
-          )
+          <p>個人チャットがありません</p>
         )}
       </VStack>
     </Box>
