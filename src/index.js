@@ -4,11 +4,12 @@ import "./index.css";
 import App from "./App.tsx";
 import reportWebVitals from "./reportWebVitals";
 import { UIProvider } from "@yamada-ui/react";
+import customTheme from "./Theme.tsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <UIProvider>
+    <UIProvider theme={customTheme}>
       <App />
     </UIProvider>
   </React.StrictMode>

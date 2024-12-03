@@ -33,7 +33,7 @@ const PasswordReset = () => {
           <Text textAlign={"center"} fontSize="1.5rem" fontWeight="bold">
             パスワードリセット
           </Text>
-          <Box display={"flex"} m={10}>
+          <Box display={"flex"} m={40}>
             <Text mt={5}>username</Text>
             <Input
               type="text"
@@ -47,7 +47,7 @@ const PasswordReset = () => {
               mt={13}
             />
           </Box>
-          <Box display={"flex"} m={10}>
+          <Box display={"flex"} m={40}>
             <Text mr={10}>新しいパスワード</Text>
             <Input
               type="password"
@@ -58,9 +58,10 @@ const PasswordReset = () => {
               borderRadius={5}
               maxLength={20}
               h={10}
+              mt={13}
             />
           </Box>
-          <Box display={"flex"} m={10}>
+          <Box display={"flex"} m={40}>
             <Text>パスワード再入力</Text>
             <Input
               type="password"
@@ -71,6 +72,7 @@ const PasswordReset = () => {
               borderRadius={5}
               maxLength={20}
               h={10}
+              mt={13}
             />
           </Box>
           <button
