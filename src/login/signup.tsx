@@ -67,6 +67,7 @@ const Signup = () => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 w='90%'
+                padding={10}
                 borderRadius={5}
                 maxLength={20}
             />
@@ -79,6 +80,7 @@ const Signup = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 w='90%'
+                padding={10}
                 borderRadius={5}
             />
             </Box>
@@ -90,6 +92,7 @@ const Signup = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 w='90%'
+                padding={10}
                 borderRadius={5}
             />
             </Box>

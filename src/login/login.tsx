@@ -48,6 +48,7 @@ const Login = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               w="90%"
+              padding={10}
               borderRadius={5}
               maxLength={20}
             />
@@ -60,6 +61,7 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               w="90%"
+              padding={10}
               borderRadius={5}
             />
           </Box>
@@ -76,6 +78,7 @@ const Login = () => {
               borderRadius={10}
               display={"block"}
               textAlign={"center"}
+              textColor={"white"}
             >
               ログイン
             </Button>
