@@ -48,25 +48,23 @@ const Login = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               w="90%"
-              padding={10}
               borderRadius={5}
               maxLength={20}
             />
           </Box>
           {/* パスワード */}
-          <Box m={40}>
+          <Box m={10}>
             <Input
               type="password"
               placeholder="Passwordを入力"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               w="90%"
-              padding={10}
               borderRadius={5}
             />
           </Box>
           {/* loginbutton */}
-          <Box m={40}>
+          <Box m={10}>
             <Button
               type="submit"
               w="80%"
@@ -77,22 +75,24 @@ const Login = () => {
               bg="lightskyblue"
               borderRadius={10}
               display={"block"}
+              textAlign={"center"}
             >
               ログイン
             </Button>
           </Box>
           {/* signupbutton */}
-          <Box m={40}>
+          <Box m={10}>
             <Link
               href="/signup"
               textDecoration={"none"}
-              textColor={"black"}
+              textColor={"white"}
               w="80%"
               h={50}
               bg="lightskyblue"
               borderRadius={10}
               m="20px auto"
               textAlign="center"
+              colorScheme="secondary"
               display="flex"
               alignItems={"center"}
               justifyContent={"center"}
@@ -101,17 +101,18 @@ const Login = () => {
             </Link>
           </Box>
 
-          <Box m={40}>
+          <Box m={10}>
             <Link
               href="/password_reset"
               textDecoration={"none"}
-              textColor={"black"}
+              textColor={"white"}
               w="80%"
               h={50}
               bg="lightskyblue"
               borderRadius={10}
               m="20px auto"
               textAlign="center"
+              colorScheme="secondary"
               display="flex"
               alignItems={"center"}
               justifyContent={"center"}

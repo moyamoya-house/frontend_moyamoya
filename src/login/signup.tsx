@@ -67,37 +67,34 @@ const Signup = () => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 w='90%'
-                padding={10}
                 borderRadius={5}
                 maxLength={20}
             />
             </Box>
             {/* パスワード */}
-            <Box m={40}>
+            <Box m={10}>
             <Input
                 type='password'
                 placeholder='Password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 w='90%'
-                padding={10}
                 borderRadius={5}
             />
             </Box>
             {/* Eメール */}
-            <Box m={40}>
+            <Box m={10}>
             <Input
                 type='email'
                 placeholder='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 w='90%'
-                padding={10}
                 borderRadius={5}
             />
             </Box>
             {/* 画像 */}
-            <Flex alignItems="center" m={40} justifyContent="space-between">
+            <Flex alignItems="center" m={10} justifyContent="space-between">
                     <Button as="label" htmlFor="file-upload" cursor="pointer" bg="orange" color="white" p={2} borderRadius={5} _hover={{ bg: "blue.600" }}>
                         プロフ画像をアップロード
                     </Button>
