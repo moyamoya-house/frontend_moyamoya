@@ -33,37 +33,34 @@ const PasswordReset = () => {
           <Text textAlign={"center"} fontSize="1.5rem" fontWeight="bold">
             パスワードリセット
           </Text>
-          <Box display={"flex"} m={40}>
-            <Text>username</Text>
+          <Box display={"flex"} m={10}>
+            <Text mt={5}>username</Text>
             <Input
               type="text"
               placeholder="ユーザーネームを入力"
               value={user_name}
               onChange={(e) => setUsername(e.target.value)}
               w='80%'
-              padding={10}
               borderRadius={5}
               maxLength={20}
               h={10}
               mt={13}
             />
           </Box>
-          <Box display={"flex"} m={40}>
+          <Box display={"flex"} m={10}>
             <Text mr={10}>新しいパスワード</Text>
             <Input
               type="password"
               placeholder="パスワードを入力"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              w='60%'
-              padding={10}
+              w='55%'
               borderRadius={5}
               maxLength={20}
               h={10}
-              mt={13}
             />
           </Box>
-          <Box display={"flex"} m={40}>
+          <Box display={"flex"} m={10}>
             <Text>パスワード再入力</Text>
             <Input
               type="password"
@@ -71,11 +68,9 @@ const PasswordReset = () => {
               value={password_confilm}
               onChange={(e) => setConfilm(e.target.value)}
               w='60%'
-              padding={10}
               borderRadius={5}
               maxLength={20}
               h={10}
-              mt={13}
             />
           </Box>
           <button

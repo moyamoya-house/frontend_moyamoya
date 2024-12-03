@@ -8,7 +8,7 @@ import Top from './top/Top.tsx';
 import Mypage from './mypage/Mypage.tsx';
 import ProfileEditPage from './prof_edit/ProfEditPage.tsx';
 import PostAll from './post_all/Postall.tsx';
-import PostDetail from './post_detail/post_detail';
+import PostDetail from './post_detail/post_detail.tsx';
 import UserProf from './user_prof/user_prof.tsx';
 import Pot from './Pots/Pots.tsx';
 import ChatAll from './chat/chat_all.tsx';
