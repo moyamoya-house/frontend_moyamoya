@@ -53,7 +53,7 @@ const Login = () => {
             />
           </Box>
           {/* パスワード */}
-          <Box m={10}>
+          <Box m={40}>
             <Input
               type="password"
               placeholder="Passwordを入力"
@@ -64,7 +64,7 @@ const Login = () => {
             />
           </Box>
           {/* loginbutton */}
-          <Box m={10}>
+          <Box m={40}>
             <Button
               type="submit"
               w="80%"
@@ -81,7 +81,7 @@ const Login = () => {
             </Button>
           </Box>
           {/* signupbutton */}
-          <Box m={10}>
+          <Box m={40}>
             <Link
               href="/signup"
               textDecoration={"none"}
@@ -101,7 +101,7 @@ const Login = () => {
             </Link>
           </Box>
 
-          <Box m={10}>
+          <Box m={40}>
             <Link
               href="/password_reset"
               textDecoration={"none"}

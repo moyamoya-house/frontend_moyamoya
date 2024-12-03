@@ -72,7 +72,7 @@ const Signup = () => {
             />
             </Box>
             {/* パスワード */}
-            <Box m={10}>
+            <Box m={40}>
             <Input
                 type='password'
                 placeholder='Password'
@@ -83,7 +83,7 @@ const Signup = () => {
             />
             </Box>
             {/* Eメール */}
-            <Box m={10}>
+            <Box m={40}>
             <Input
                 type='email'
                 placeholder='email'
@@ -94,7 +94,7 @@ const Signup = () => {
             />
             </Box>
             {/* 画像 */}
-            <Flex alignItems="center" m={10} justifyContent="space-between">
+            <Flex alignItems="center" m={40} justifyContent="space-between">
                     <Button as="label" htmlFor="file-upload" cursor="pointer" bg="orange" color="white" p={2} borderRadius={5} _hover={{ bg: "blue.600" }}>
                         プロフ画像をアップロード
                     </Button>
