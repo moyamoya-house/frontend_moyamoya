@@ -41,6 +41,7 @@ const PasswordReset = () => {
               value={user_name}
               onChange={(e) => setUsername(e.target.value)}
               w='80%'
+              padding={10}
               borderRadius={5}
               maxLength={20}
               h={10}
@@ -55,6 +56,7 @@ const PasswordReset = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               w='55%'
+              padding={10}
               borderRadius={5}
               maxLength={20}
               h={10}
@@ -69,6 +71,7 @@ const PasswordReset = () => {
               value={password_confilm}
               onChange={(e) => setConfilm(e.target.value)}
               w='60%'
+              padding={10}
               borderRadius={5}
               maxLength={20}
               h={10}
