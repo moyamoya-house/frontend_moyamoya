@@ -9,6 +9,8 @@ import {
   Input,
   VStack,
   useDisclosure,
+  Text,
+  Box
 } from "@yamada-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -96,22 +98,28 @@ const CreateChatGroup: React.FC<CreateChatGroupProps> = ({ users }) => {
         グループ作成
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} w={500} h={350} bg={"white"}>
+      <Modal isOpen={isOpen} onClose={onClose} w={700} h={500} bg={"white"}>
         <ModalOverlay bg="rgba(0, 0, 0, 0.6)" />
-        <ModalHeader mt={50}>グループチャット作成</ModalHeader>
-        <ModalBody>
+        <ModalHeader mt={50}>
+          <Text m={"0 auto"}>グループチャット作成</Text>
+        </ModalHeader>
+        <ModalBody h={400}>
           <Input
             type="text"
             value={groupname}
             onChange={(e) => setGroupName(e.target.value)}
             placeholder="グループ名を入力"
             mb={4}
+            m={"0 auto"}
+            p={5}
+            w={"60%"}
           />
           <Input
             type="file"
             onChange={(e) => setGroupImage(e.target.files?.[0] || null)}
           />
-          <h3>メンバー選択</h3>
+          <h3 style={{marginTop: "100px"}}>メンバー選択</h3>
+          <Box w={"100%"} h={200}>
           <VStack align="start">
             {users.map((user) => (
               <label key={user.id}>
@@ -125,12 +133,28 @@ const CreateChatGroup: React.FC<CreateChatGroupProps> = ({ users }) => {
               </label>
             ))}
           </VStack>
+          </Box>
         </ModalBody>
-        <ModalFooter>
-          <Button onClick={handleCreateGroup} colorScheme="blue">
+        <ModalFooter w={"100%"} m={"0 auto 0 auto"}>
+          <Button
+            onClick={handleCreateGroup}
+            colorScheme="blue"
+            w={"45%"}
+            border={"none"}
+            borderRadius={5}
+            _hover={{background: "blue", color: "white"}}
+          >
             グループ作成
           </Button>
-          <Button onClick={onClose} ml={3}>
+          <Button
+            onClick={onClose}
+            ml={3}
+            w={"45%"}
+            mr={30}
+            border={"none"}
+            borderRadius={5}
+            _hover={{background: "red", color: "white"}}
+          >
             キャンセル
           </Button>
         </ModalFooter>
