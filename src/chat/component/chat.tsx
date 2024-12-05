@@ -163,7 +163,7 @@ const Chat = ({
                   <p className="chatmessage">{msg.message} </p>
                 </span>
                 <Image
-                  src={`http://127.0.0.1:5000/prof_image/${myImage}`} // 自分のプロフィール画像
+                  src={ myImage ? `http://127.0.0.1:5000/prof_image/${myImage}` : "/not_profileicon.jpg"} // 自分のプロフィール画像
                   alt="Profile"
                   w={50}
                   h={50}
@@ -174,9 +174,9 @@ const Chat = ({
               <div key={index} className={"message_receive"}>
                 {/* グループチャットの場合は送信者の画像を表示 */}
                 <Image
-                  src={`http://127.0.0.1:5000/prof_image/${
-                    msg.profile_image || receiverImage // 個人チャットでは receiverImage を使用
-                  }`}
+                  src={ msg.profile_image || receiverImage ? `http://127.0.0.1:5000/prof_image/${
+                    msg.profile_image || receiverImage// 個人チャットでは receiverImage を使用
+                  }`: "/not_profileicon.jpg"}
                   alt="Profile"
                   w={50}
                   h={50}
