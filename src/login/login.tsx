@@ -51,6 +51,7 @@ const Login = () => {
               padding={10}
               borderRadius={5}
               maxLength={20}
+              _focus={{color: "sky.100"}}
             />
           </Box>
           {/* パスワード */}
@@ -79,6 +80,8 @@ const Login = () => {
               display={"block"}
               textAlign={"center"}
               textColor={"white"}
+              cursor={"pointer"}
+              _hover={{backgroundColor: "purple"}}
             >
               ログイン
             </Button>
@@ -99,6 +102,8 @@ const Login = () => {
               display="flex"
               alignItems={"center"}
               justifyContent={"center"}
+              cursor={"pointer"}
+              _hover={{backgroundColor: "purple"}}
             >
               新規登録へ
             </Link>
@@ -119,6 +124,8 @@ const Login = () => {
               display="flex"
               alignItems={"center"}
               justifyContent={"center"}
+              cursor={"pointer"}
+              _hover={{backgroundColor: "purple"}}
             >
               パスワードを忘れた方へ
             </Link>

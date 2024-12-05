@@ -116,7 +116,7 @@ const Signup = () => {
                 </Flex>
             {/* 送信ボタン */}
             <Center>
-                <Button type='submit' w='85%' h={50} m="20px auto" colorScheme="secondary" border='none' bg='lightskyblue' borderRadius={10}>新規登録</Button>
+                <Button type='submit' w='85%' h={50} m="20px auto" colorScheme="secondary" border='none' bg='lightskyblue' borderRadius={10} cursor={'pointer'} _hover={{backgroundColor: "purple"}} color={'white'}>新規登録</Button>
             </Center>
         </form>
         </Box>
