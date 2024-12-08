@@ -9,7 +9,7 @@ interface ProfEditProps {
 }
 
 const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
-    const [username, setUsername] = useState(useData.name);
+    const [username, setUsername] = useState(useData.user_name);
     const [password, setPassword] = useState(useData.password);
     const [email, setEmail] = useState(useData.email);
     const [comment, setComment] = useState(useData.prof_comment);
@@ -28,7 +28,7 @@ const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
         if (preview) formData.append('profimage',preview);
         if (secondImage) formData.append('secondimage',secondImage);
 
-        const response = await fetch(`http://127.0.0.1:5000/users/${useData.user_id}`,{
+        const response = await fetch(`http://127.0.0.1:5000/users/${useData.id}`,{
             method: 'PUT',
             body: formData,
         });
