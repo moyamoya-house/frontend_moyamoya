@@ -8,6 +8,7 @@ interface NotificationData {
 
 const Notification = () => {
   const [notification, setNotification] = useState<NotificationData[]>([]);
+  const [selectIds, setSelectIds] = useState([]);
 
   useEffect(() => {
     const fetchNotificationData = async () => {
@@ -25,13 +26,30 @@ const Notification = () => {
     };
     fetchNotificationData();
   }, []);
+
+
   return (
     <Box w={1500} maxW="80%" margin="130px auto 0 auto">
       {notification.length > 0 ? (
         notification.map((noti, index) => (
-          <Box key={index} mb={4} w={"100%"} backgroundColor={"#3f368f00"} borderTop={"solid 1px #796de5"} borderBottom={"solid 1px #796de5"} m={"0 0 30px 0"} p={"50px 0 50px 0"}>
-            <Box  w={"100%"} h={25} backgroundColor="#796de500" display={"flex"} justifyContent={"space-between"}>
-              <Input type="checkbox" w={25} h={25} backgroundColor={"aqua"} ml={10} />
+          <Box
+            key={index}
+            mb={4}
+            w={"100%"}
+            backgroundColor={"#3f368f00"}
+            borderTop={"solid 1px #796de5"}
+            borderBottom={"solid 1px #796de5"}
+            m={"0 0 30px 0"}
+            p={"50px 0 50px 0"}
+          >
+            <Box
+              w={"100%"}
+              h={25}
+              backgroundColor="#796de500"
+              display={"flex"}
+              justifyContent={"space-between"}
+            >
+              <Input type="checkbox" ml={10} />
               <Text w={500} fontWeight={"lighter"}>
                 {noti.notification}
               </Text>

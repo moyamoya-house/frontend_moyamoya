@@ -3,8 +3,8 @@ import ProfEdit from './ProfEdit.tsx';
 import { Box } from '@yamada-ui/react';
 
 export interface User {
-  user_id: number;
-  name: string;
+  id: number;
+  user_name: string;
   prof_image: string;
   second_image: string;
   prof_comment: string;
