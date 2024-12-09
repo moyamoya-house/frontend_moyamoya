@@ -76,7 +76,7 @@ const UserBookmark = ({ userId }: { userId: number }) => {
   }
 
   return (
-    <Box w={1500} maxWidth="80%" margin="0 auto">
+    <Box w={1500} maxWidth="80%" margin="0 auto 30px auto">
       {bookmark.length > 0 ? (
         <ul className="post">
           {bookmark.map((post) => (
