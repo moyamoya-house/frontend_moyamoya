@@ -54,7 +54,7 @@ const UserPost = () => {
   }, []);
 
   return (
-    <Box w={1500} maxWidth="80%" margin="0 auto">
+    <Box w={1500} maxWidth="80%" m={"10px 0 30px 50px"}>
       {postData.length > 0 ? (
         <ul className="post">
           {postData.map((post) => (

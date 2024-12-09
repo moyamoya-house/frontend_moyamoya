@@ -85,7 +85,7 @@ const UserProf = () => {
 
                     </Box>
                 </Box>
-                <h1>{userData.user_name}</h1>
+                <h1>{userData.name}</h1>
                 <UserFollow userId={userData.id} />
                 <Text>{userData.prof_comment}</Text>
                 <Followbutton userId={userData.id} />
