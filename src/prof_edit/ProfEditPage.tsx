@@ -4,7 +4,7 @@ import { Box } from '@yamada-ui/react';
 
 export interface User {
   id: number;
-  user_name: string;
+  name: string;
   prof_image: string;
   second_image: string;
   prof_comment: string;

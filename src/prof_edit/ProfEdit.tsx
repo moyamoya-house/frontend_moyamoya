@@ -9,7 +9,7 @@ interface ProfEditProps {
 }
 
 const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
-    const [username, setUsername] = useState(useData.user_name);
+    const [username, setUsername] = useState(useData.name);
     const [password, setPassword] = useState(useData.password);
     const [email, setEmail] = useState(useData.email);
     const [comment, setComment] = useState(useData.prof_comment);
