@@ -85,10 +85,10 @@ const UserProf = () => {
 
                     </Box>
                 </Box>
-                <h1>{userData.name}</h1>
-                <UserFollow userId={userData.user_id} />
+                <h1>{userData.user_name}</h1>
+                <UserFollow userId={userData.id} />
                 <Text>{userData.prof_comment}</Text>
-                <Followbutton userId={userData.user_id} />
+                <Followbutton userId={userData.id} />
 
                 <Tabs>
                     <Tab
@@ -110,11 +110,11 @@ const UserProf = () => {
 
                     <TabPanels>
                         <TabPanel>
-                            <UserMoyamoya userId={userData.user_id} />
+                            <UserMoyamoya userId={userData.id} />
                         </TabPanel>
 
                         <TabPanel>
-                            <UserBookmark userId={userData.user_id} />
+                            <UserBookmark userId={userData.id} />
                         </TabPanel>
                     </TabPanels>
                 </Tabs>

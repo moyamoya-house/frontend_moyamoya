@@ -67,7 +67,7 @@ const UserMoyamoya = ({ userId }) => {
   }
 
   return (
-    <Box w={1500} maxWidth="80%" margin="0 auto">
+    <Box w={1500} maxWidth="80%" margin="0 auto 30px auto">
       {moyamoyaData.length > 0 ? (
         <ul className="post">
           {moyamoyaData.map((post) => (
@@ -98,7 +98,7 @@ const UserMoyamoya = ({ userId }) => {
                       ></Image>
                     )}
                     <Text mt={10} marginLeft={10}>
-                      {userData.name}
+                      {userData.user_name}
                     </Text>
                   </Link>
                 </Box>
