@@ -19,29 +19,47 @@ const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
 
     const handleEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+    
         const formData = new FormData();
-        formData.append('name',username);
+        formData.append('name', username);
         formData.append('password', password);
         formData.append('comment', comment);
-        formData.append('email',email);
-        if (preview) formData.append('profimage',preview);
-        if (secondImage) formData.append('secondimage',secondImage);
-
-        const response = await fetch(`http://127.0.0.1:5000/users/${useData.id}`,{
-            method: 'PUT',
-            body: formData,
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            history('/mypage');
-            console.log(data[0]);
-            alert('user Edit successfully');
-        } else {
-            alert('Failed to update profile');
+        formData.append('email', email);
+    
+        // プロフィール画像を追加
+        const profImageInput = document.querySelector<HTMLInputElement>('#imageInput');
+        if (profImageInput?.files?.[0]) {
+            formData.append('profimage', profImageInput.files[0]);
         }
-    }
+    
+        // 背景画像を追加
+        const secondImageInput = document.querySelector<HTMLInputElement>('#secondimageInput');
+        if (secondImageInput?.files?.[0]) {
+            formData.append('secondimage', secondImageInput.files[0]);
+        }
+    
+        try {
+            const response = await fetch(`http://127.0.0.1:5000/users/${useData.id}`, {
+                method: 'PUT',
+                body: formData,
+            });
+    
+            if (response.ok) {
+                const data = await response.json();
+                history('/mypage');
+                console.log(data);
+                alert('User edited successfully');
+            } else {
+                const error = await response.json();
+                console.error('Error:', error);
+                alert('Failed to update profile');
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+            alert('An error occurred while updating the profile');
+        }
+    };
+    
 
     const handlesecondimage = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -73,10 +91,10 @@ const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
                 <input
                     type="file"
                     style={{ display: "none" }}
-                    id="imageInput"
+                    id="secondimageInput"
                     onChange={handlesecondimage}
                 />
-                <label htmlFor="imageInput">
+                <label htmlFor="secondimageInput">
                     <div
                     style={{
                         width: "100%",
