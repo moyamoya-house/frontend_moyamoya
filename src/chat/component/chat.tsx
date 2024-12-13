@@ -1,5 +1,5 @@
-import { Box, Image, Text } from "@yamada-ui/react";
-import React,{ useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { Box, Image, Text, IconButton } from "@yamada-ui/react";
 import io from "socket.io-client";
 import "./css/chat.css";
 
@@ -24,6 +24,7 @@ const Chat = ({
 }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const token = localStorage.getItem("token");
 
   const socket = io("http://127.0.0.1:5000", {
@@ -97,16 +98,27 @@ const Chat = ({
     }
   };
 
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setUploadedImage(reader.result as string);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleImageRemove = () => {
+    setUploadedImage(null);
+  };
+
   return (
     <Box ml={300} w={800} h="78vh">
       {receiverId || groupId ? (
-        <Box
-          display={"flex"}
-          w="100%"
-          h={60}
-          borderBottom="1px solid #000"
-          mb={10}
-        >
+        <Box display={"flex"} w="100%" h={60} borderBottom="1px solid #000" mb={10}>
           {/* グループチャットか個人チャットかを判定して画像を表示 */}
           {groupId ? (
             <Image
@@ -140,13 +152,7 @@ const Chat = ({
           </Text>
         </Box>
       ) : (
-        <Box
-          display={"flex"}
-          w="100%"
-          h={60}
-          borderBottom="1px solid #000"
-          mb={10}
-        >
+        <Box display={"flex"} w="100%" h={60} borderBottom="1px solid #000" mb={10}>
           <Text w={500} mt={20} ml={20} h={40}>
             ユーザーまたはグループを選択してください
           </Text>
@@ -155,7 +161,7 @@ const Chat = ({
 
       <div>
         <div className="message_chat">
-        {messages.map((msg, index) =>
+          {messages.map((msg, index) =>
             msg.send_user_id === userId ? (
               <div key={index} className={"message_send"}>
                 <em>({msg.timestamp})</em>
@@ -163,7 +169,7 @@ const Chat = ({
                   <p className="chatmessage">{msg.message} </p>
                 </span>
                 <Image
-                  src={ myImage ? `http://127.0.0.1:5000/prof_image/${myImage}` : "/not_profileicon.jpg"} // 自分のプロフィール画像
+                  src={myImage ? `http://127.0.0.1:5000/prof_image/${myImage}` : "/not_profileicon.jpg"} // 自分のプロフィール画像
                   alt="Profile"
                   w={50}
                   h={50}
@@ -174,9 +180,9 @@ const Chat = ({
               <div key={index} className={"message_receive"}>
                 {/* グループチャットの場合は送信者の画像を表示 */}
                 <Image
-                  src={ msg.profile_image || receiverImage ? `http://127.0.0.1:5000/prof_image/${
-                    msg.profile_image || receiverImage// 個人チャットでは receiverImage を使用
-                  }`: "/not_profileicon.jpg"}
+                  src={msg.profile_image || receiverImage ? `http://127.0.0.1:5000/prof_image/${
+                    msg.profile_image || receiverImage // 個人チャットでは receiverImage を使用
+                  }` : "/not_profileicon.jpg"}
                   alt="Profile"
                   w={50}
                   h={50}
@@ -192,19 +198,50 @@ const Chat = ({
         </div>
       </div>
 
-      <Box display={"flex"} bottom={10}>
-        <input
-          onChange={(e) => setMessage(e.target.value)}
-          type="text"
-          placeholder="メッセージを入力"
-          className="chat_input"
-        />
-
-        <button onClick={sendMessage} className="chat_btn">
-          送信
-        </button>
+      <Box display={"flex"} flexDirection="column" bottom={10}>
+        <Box display={"flex"} mb={2}>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            style={{ display: 'none' }}
+            id="image-upload"
+          />
+          <label htmlFor="image-upload">
+            <Box as="span" cursor="pointer" p={2} border="1px dashed gray">
+              画像をアップロード
+            </Box>
+          </label>
+        </Box>
+        {uploadedImage && (
+          <Box position="relative" display="inline-block" mb={2} mt={5}>
+            <Image src={uploadedImage} alt="Uploaded" width="100px" height="100px" />
+            <IconButton
+              onClick={handleImageRemove}
+              position="absolute"
+              left="100px"
+              size="sm"
+              aria-label="Remove image"
+              borderRadius={"100%"}
+            >
+              &times;
+            </IconButton>
+          </Box>
+        )}
+        <Box display={"flex"}>
+          <input
+            onChange={(e) => setMessage(e.target.value)}
+            type="text"
+            placeholder="メッセージを入力"
+            className="chat_input"
+          />
+          <button onClick={sendMessage} className="chat_btn">
+            送信
+          </button>
+        </Box>
       </Box>
     </Box>
   );
 };
+
 export default Chat;
