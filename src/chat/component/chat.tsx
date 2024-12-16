@@ -10,6 +10,7 @@ interface Message {
   group_id?: number;
   timestamp: string;
   profile_image?: string;
+  image?: string;
 }
 
 const Chat = ({
@@ -24,7 +25,7 @@ const Chat = ({
 }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
-  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const [uploadedImage, setUploadedImage] = useState<{ filename: string, data: string } | null>(null);
   const token = localStorage.getItem("token");
 
   const socket = io("http://127.0.0.1:5000", {
@@ -86,13 +87,17 @@ const Chat = ({
 
   const sendMessage = () => {
     if (groupId || receiverId) {
-      socket.emit("send_message", {
+      const messageData = {
         message: message,
         send_user_id: userId,
         receiver_user_id: receiverId,
         group_id: groupId,
-      });
+        image: uploadedImage
+      };
+
+      socket.emit("send_message", messageData);
       setMessage("");
+      setUploadedImage(null); // 送信後に画像をリセット
     } else {
       alert("チャット相手またはグループが選択されていません");
     }
@@ -103,7 +108,7 @@ const Chat = ({
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      setUploadedImage(reader.result as string);
+      setUploadedImage({ filename: file.name, data: reader.result as string });
     };
 
     if (file) {
@@ -215,14 +220,14 @@ const Chat = ({
         </Box>
         {uploadedImage && (
           <Box position="relative" display="inline-block" mb={2} mt={5}>
-            <Image src={uploadedImage} alt="Uploaded" width="100px" height="100px" />
+            <Image src={uploadedImage.data} alt="Uploaded" width="100px" height="100px" />
             <IconButton
               onClick={handleImageRemove}
               position="absolute"
-              left="100px"
+              top="5px"
+              right="5px"
               size="sm"
               aria-label="Remove image"
-              borderRadius={"100%"}
             >
               &times;
             </IconButton>
