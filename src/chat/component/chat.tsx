@@ -25,7 +25,10 @@ const Chat = ({
 }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
-  const [uploadedImage, setUploadedImage] = useState<{ filename: string, data: string } | null>(null);
+  const [uploadedImage, setUploadedImage] = useState<{
+    filename: string;
+    data: string;
+  } | null>(null);
   const token = localStorage.getItem("token");
 
   const socket = io("http://127.0.0.1:5000", {
@@ -92,7 +95,7 @@ const Chat = ({
         send_user_id: userId,
         receiver_user_id: receiverId,
         group_id: groupId,
-        image: uploadedImage
+        image: uploadedImage,
       };
 
       socket.emit("send_message", messageData);
@@ -123,7 +126,13 @@ const Chat = ({
   return (
     <Box ml={300} w={800} h="78vh">
       {receiverId || groupId ? (
-        <Box display={"flex"} w="100%" h={60} borderBottom="1px solid #000" mb={10}>
+        <Box
+          display={"flex"}
+          w="100%"
+          h={60}
+          borderBottom="1px solid #000"
+          mb={10}
+        >
           {/* グループチャットか個人チャットかを判定して画像を表示 */}
           {groupId ? (
             <Image
@@ -157,7 +166,13 @@ const Chat = ({
           </Text>
         </Box>
       ) : (
-        <Box display={"flex"} w="100%" h={60} borderBottom="1px solid #000" mb={10}>
+        <Box
+          display={"flex"}
+          w="100%"
+          h={60}
+          borderBottom="1px solid #000"
+          mb={10}
+        >
           <Text w={500} mt={20} ml={20} h={40}>
             ユーザーまたはグループを選択してください
           </Text>
@@ -169,15 +184,25 @@ const Chat = ({
           {messages.map((msg, index) =>
             msg.send_user_id === userId ? (
               <div key={index} className={"message_send"}>
-                <em>({msg.timestamp})</em>
-                {msg.message? 
-                <span className="chatspan">
-                  <p className="chatmessage">{msg.message} </p>
-                </span>:
-                <Image src={`http://127.0.0.1:5000/chat_image/${msg.image}`} w={300}/>
-                }
+                <em style={{ fontSize: "12px", marginTop: "15px" }}>
+                  ({msg.timestamp})
+                </em>
+                {msg.message ? (
+                  <span className="chatspan">
+                    <p className="chatmessage">{msg.message} </p>
+                  </span>
+                ) : (
+                  <Image
+                    src={`http://127.0.0.1:5000/chat_image/${msg.image}`}
+                    w={300}
+                  />
+                )}
                 <Image
-                  src={myImage ? `http://127.0.0.1:5000/prof_image/${myImage}` : "/not_profileicon.jpg"} // 自分のプロフィール画像
+                  src={
+                    myImage
+                      ? `http://127.0.0.1:5000/prof_image/${myImage}`
+                      : "/not_profileicon.jpg"
+                  } // 自分のプロフィール画像
                   alt="Profile"
                   w={50}
                   h={50}
@@ -188,18 +213,31 @@ const Chat = ({
               <div key={index} className={"message_receive"}>
                 {/* グループチャットの場合は送信者の画像を表示 */}
                 <Image
-                  src={msg.profile_image || receiverImage ? `http://127.0.0.1:5000/prof_image/${
-                    msg.profile_image || receiverImage // 個人チャットでは receiverImage を使用
-                  }` : "/not_profileicon.jpg"}
+                  src={
+                    msg.profile_image || receiverImage
+                      ? `http://127.0.0.1:5000/prof_image/${
+                          msg.profile_image || receiverImage // 個人チャットでは receiverImage を使用
+                        }`
+                      : "/not_profileicon.jpg"
+                  }
                   alt="Profile"
                   w={50}
                   h={50}
                   borderRadius={100}
                 />
-                <span className="chatspan">
-                  <p className="chatmessage">{msg.message} </p>
-                </span>
-                <em>({msg.timestamp})</em>
+                {msg.message ? (
+                  <span className="chatspan">
+                    <p className="chatmessage">{msg.message} </p>
+                  </span>
+                ) : (
+                  <Image
+                    src={`http://127.0.0.1:5000/chat_image/${msg.image}`}
+                    w={300}
+                  />
+                )}
+                <em style={{ fontSize: "12px", marginTop: "15px" }}>
+                  ({msg.timestamp})
+                </em>
               </div>
             )
           )}
@@ -212,7 +250,7 @@ const Chat = ({
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
             id="image-upload"
           />
           <label htmlFor="image-upload">
@@ -223,7 +261,12 @@ const Chat = ({
         </Box>
         {uploadedImage && (
           <Box position="relative" display="inline-block" mb={2} mt={5}>
-            <Image src={uploadedImage.data} alt="Uploaded" width="100px" height="100px" />
+            <Image
+              src={uploadedImage.data}
+              alt="Uploaded"
+              width="100px"
+              height="100px"
+            />
             <IconButton
               onClick={handleImageRemove}
               position="absolute"
