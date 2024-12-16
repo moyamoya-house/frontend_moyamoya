@@ -170,9 +170,12 @@ const Chat = ({
             msg.send_user_id === userId ? (
               <div key={index} className={"message_send"}>
                 <em>({msg.timestamp})</em>
+                {msg.message? 
                 <span className="chatspan">
                   <p className="chatmessage">{msg.message} </p>
-                </span>
+                </span>:
+                <Image src={`http://127.0.0.1:5000/chat_image/${msg.image}`} w={300}/>
+                }
                 <Image
                   src={myImage ? `http://127.0.0.1:5000/prof_image/${myImage}` : "/not_profileicon.jpg"} // 自分のプロフィール画像
                   alt="Profile"
