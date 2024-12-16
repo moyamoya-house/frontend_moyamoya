@@ -2,13 +2,14 @@ import { Box, Input, Text } from "@yamada-ui/react";
 import React, { useEffect, useState } from "react";
 
 interface NotificationData {
+  id: number;
   notification: string;
   create_at: string;
 }
 
 const Notification = () => {
   const [notification, setNotification] = useState<NotificationData[]>([]);
-  const [selectIds, setSelectIds] = useState([]);
+  const [selectIds, setSelectIds] = useState<number[]>([]);
 
   useEffect(() => {
     const fetchNotificationData = async () => {
@@ -27,6 +28,37 @@ const Notification = () => {
     fetchNotificationData();
   }, []);
 
+  // チェックボックスの変更ハンドラー
+  const handleCheckboxChange = (id) => {
+    setSelectIds(
+      (prevSelected) =>
+        prevSelected.includes(id)
+          ? prevSelected.filter((item) => item !== id) // 解除
+          : [...prevSelected, id] // 選択
+    );
+  };
+
+  // 選択された通知を一括で既読にする
+  const markAsRead = () => {
+    fetch("/notifications/mark-as-read", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({ notification_ids: selectIds }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        // UIを更新
+        setNotification((prevNotifications) =>
+          prevNotifications.map((n) =>
+            selectIds.includes(n.id) ? { ...n, is_read: true } : n
+          )
+        );
+        setSelectIds([]); // 選択解除
+      });
+  };
 
   return (
     <Box w={1500} maxW="80%" margin="130px auto 0 auto">
@@ -49,7 +81,7 @@ const Notification = () => {
               display={"flex"}
               justifyContent={"space-between"}
             >
-              <Input type="checkbox" ml={10} />
+              <Input type="checkbox" ml={10} onChange={() => handleCheckboxChange(noti.id)} checked={selectIds.includes(noti.id)} />
               <Text w={500} fontWeight={"lighter"}>
                 {noti.notification}
               </Text>
@@ -57,6 +89,9 @@ const Notification = () => {
                 {new Date(noti.create_at).toLocaleString()}
               </Text>
             </Box>
+            <button onClick={markAsRead} disabled={selectIds.length === 0}>
+              選択を既読にする
+            </button>
           </Box>
         ))
       ) : (
