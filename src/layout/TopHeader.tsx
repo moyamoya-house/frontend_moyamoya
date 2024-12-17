@@ -11,6 +11,7 @@ import {
   Link,
   CloseButton,
   DrawerOverlay,
+  Badge,
 } from "@yamada-ui/react";
 import "./css/layout.css";
 import React, { useEffect, useState} from "react";
@@ -21,9 +22,12 @@ interface User {
   prof_image: string;
 }
 
+
+
 const TopHeader = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [userData, setUserData] = useState<User | null>(null);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -41,6 +45,19 @@ const TopHeader = () => {
     };
     fetchUserData();
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const token = localStorage.getItem("token");
+      fetch("http://127.0.0.1:5000/notification/unread-count",{
+        headers: { Authorization: `Bearer ${token}` }
+      }).then(res => res.json())
+      .then(data => setCount(data.unread_count));
+    },5000);
+    return () => clearInterval(interval);
+  },[]);
+
+
   return (
     <>
       {userData ? (
@@ -51,6 +68,7 @@ const TopHeader = () => {
           <Box display="flex" mt={25}>
             <Link href="/notification" textDecoration={"none"} color={"black"}>
               <i className="fas fa-regular fa-bell" style={{ fontSize: '35px', margin: '10px 10px 0 0' }}></i>
+              <Badge w={30} h={30} mt={-40}>{count}</Badge>
             </Link>
             <Button
               onClick={onOpen}
