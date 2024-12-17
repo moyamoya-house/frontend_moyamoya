@@ -5,6 +5,7 @@ interface NotificationData {
   id: number;
   notification: string;
   create_at: string;
+  is_read: boolean;
 }
 
 const Notification = () => {
@@ -29,7 +30,7 @@ const Notification = () => {
   }, []);
 
   // チェックボックスの変更ハンドラー
-  const handleCheckboxChange = (id) => {
+  const handleCheckboxChange = (id: number) => {
     setSelectIds(
       (prevSelected) =>
         prevSelected.includes(id)
@@ -40,7 +41,7 @@ const Notification = () => {
 
   // 選択された通知を一括で既読にする
   const markAsRead = () => {
-    fetch("/notifications/mark-as-read", {
+    fetch("http://127.0.0.1:5000/notifications/mark-as-read", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -61,43 +62,55 @@ const Notification = () => {
   };
 
   return (
-    <Box w={1500} maxW="80%" margin="130px auto 0 auto">
-      {notification.length > 0 ? (
-        notification.map((noti, index) => (
-          <Box
-            key={index}
-            mb={4}
-            w={"100%"}
-            backgroundColor={"#3f368f00"}
-            borderTop={"solid 1px #796de5"}
-            borderBottom={"solid 1px #796de5"}
-            m={"0 0 30px 0"}
-            p={"50px 0 50px 0"}
-          >
+    <>
+      <Box w={1500} maxW="80%" margin="130px auto 0 auto">
+        {notification.length > 0 ? (
+          notification.map((noti, index) => (
             <Box
+              key={index}
+              mb={4}
               w={"100%"}
-              h={25}
-              backgroundColor="#796de500"
-              display={"flex"}
-              justifyContent={"space-between"}
+              backgroundColor={"#3f368f00"}
+              borderTop={"solid 1px #796de5"}
+              borderBottom={"solid 1px #796de5"}
+              m={"0 0 30px 0"}
+              p={"50px 0 50px 0"}
             >
-              <Input type="checkbox" ml={10} onChange={() => handleCheckboxChange(noti.id)} checked={selectIds.includes(noti.id)} />
-              <Text w={500} fontWeight={"lighter"}>
-                {noti.notification}
-              </Text>
-              <Text w={150} mr={30}>
-                {new Date(noti.create_at).toLocaleString()}
-              </Text>
+              <Box
+                w={"100%"}
+                h={25}
+                backgroundColor="#796de500"
+                display={"flex"}
+                justifyContent={"space-between"}
+              >
+                <Input
+                  type="checkbox"
+                  ml={10}
+                  onChange={() => handleCheckboxChange(noti.id)}
+                  checked={selectIds.includes(noti.id)}
+                  disabled={noti.is_read} // 既読の場合はチェックボックスを無効化
+                  style={{
+                    cursor: noti.is_read ? "not-allowed" : "pointer", // グレーアウト時のスタイル
+                    opacity: noti.is_read ? 0.5 : 1, // 既読なら透明度を変更
+                  }}
+                />
+                <Text w={500} fontWeight={"lighter"}>
+                  {noti.notification}
+                </Text>
+                <Text w={150} mr={30}>
+                  {new Date(noti.create_at).toLocaleString()}
+                </Text>
+              </Box>
+              <button onClick={markAsRead} disabled={selectIds.length === 0}>
+                選択を既読にする
+              </button>
             </Box>
-            <button onClick={markAsRead} disabled={selectIds.length === 0}>
-              選択を既読にする
-            </button>
-          </Box>
-        ))
-      ) : (
-        <Text>No notifications available</Text>
-      )}
-    </Box>
+          ))
+        ) : (
+          <Text>No notifications available</Text>
+        )}
+      </Box>
+    </>
   );
 };
 
