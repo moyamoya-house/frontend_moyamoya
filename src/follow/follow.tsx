@@ -11,11 +11,6 @@ import {
 } from "@yamada-ui/react";
 import React, { useEffect, useState } from "react";
 
-interface Followed {
-  follower: number;
-  following: number;
-}
-
 interface User {
   user_id: number;
   user_name: string;
@@ -24,15 +19,21 @@ interface User {
 }
 
 const Follow = () => {
-  const [countFollow, setFollow] = useState<Followed | null>(null);
   const [user_all, setUserAll] = useState<User[]>([]);
+  const [isFollower, setIsFollower] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [countFollow, setCountFollow] = useState<{ follower: number; following: number } | null>(null);
 
-  const openModal = () => setIsOpen(true);
+  const openModal = (type: "follower" | "following") => {
+    setIsFollower(type === "following");
+    fetchUsers(type === "following" ? "follow_users" : "followed_users");
+    setIsOpen(true);
+  };
   const closeModal = () => setIsOpen(false);
 
+  // フォロー・フォロワーの数を取得
   useEffect(() => {
-    const fetchFollow = async () => {
+    const fetchFollowCount = async () => {
       const token = localStorage.getItem("token");
       try {
         const response = await fetch("http://127.0.0.1:5000/follower", {
@@ -43,100 +44,92 @@ const Follow = () => {
         });
         if (response.ok) {
           const data = await response.json();
-          console.log(data); // デバッグ用
-          setFollow(data);
+          setCountFollow(data);
         } else {
-          console.error("Failed to fetch data");
+          console.error("Failed to fetch follow counts");
         }
       } catch (error) {
-        console.error("Error fetching follow data:", error);
+        console.error("Error fetching follow count data:", error);
       }
     };
-    fetchFollow();
+    fetchFollowCount();
   }, []);
 
-  useEffect(() => {
-    const followUserAll = async () => {
-      const token = localStorage.getItem("token");
-      try {
-        const response = await fetch("http://127.0.0.1:5000/follow_users", {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data); // デバッグ用
-          setUserAll(data.following);
-        } else {
-          console.error("Failed to fetch data");
-        }
-      } catch (error) {
-        console.error("Error fetching follow data:", error);
+  // ユーザー一覧を取得
+  const fetchUsers = async (endpoint: string) => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await fetch(`http://127.0.0.1:5000/${endpoint}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setUserAll(data.following);
+      } else {
+        console.error("Failed to fetch user data");
       }
-    };
-    followUserAll();
-  }, []);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
 
   return (
     <Box>
       {countFollow ? (
         <>
-          <Box display={"flex"}>
+          <Box display="flex">
             <Link
               onClick={(e) => {
                 e.preventDefault();
-                openModal();
+                openModal("follower");
               }}
-              cursor={"pointer"}
+              cursor="pointer"
             >
               {countFollow.follower} フォロワー
             </Link>
             <Link
               onClick={(e) => {
                 e.preventDefault();
-                openModal();
+                openModal("following");
               }}
-              cursor={"pointer"}
+              cursor="pointer"
             >
               {countFollow.following} フォロー中
             </Link>
           </Box>
 
-          <Modal
-            isOpen={isOpen}
-            onClose={closeModal}
-            w={700}
-            h={500}
-            bg={"white"}
-          >
+          <Modal isOpen={isOpen} onClose={closeModal} w={700} h={500} bg="white">
             <ModalOverlay bg="rgba(0, 0, 0, 0.6)" />
-            <ModalHeader>フォロー一覧</ModalHeader>
+            <ModalHeader>
+              {isFollower ? "フォロワー一覧" : "フォロー一覧"}
+            </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               <Box>
-                {/* 配列であることを確認してからmapを実行 */}
-                {Array.isArray(user_all) && user_all.length > 0 ? (
+                {user_all.length > 0 ? (
                   user_all.map((user) => (
-                    <Box key={user.user_id}>
-                      <Link href={`/user_prof/${user.user_id}`} textDecoration={"none"} display={"inline-block"}>
-                        <Image
-                          src={
-                            user.prof_image
-                              ? `http://127.0.0.1:5000/prof_image/${user.prof_image}`
-                              : "/not_profileicon.jpg"
-                          }
-                          w={100}
-                          h={100}
-                          borderRadius={"100%"}
-                        />
-                        <Text >{user.user_name}</Text>
-                      </Link>
+                    <Box key={user.user_id} display="flex" alignItems="center" mb={4}>
+                      <Image
+                        src={
+                          user.prof_image
+                            ? `http://127.0.0.1:5000/prof_image/${user.prof_image}`
+                            : "/not_profileicon.jpg"
+                        }
+                        alt={`${user.user_name}のプロフィール画像`}
+                        boxSize="50px"
+                        borderRadius="full"
+                        mr={4}
+                      />
+                      <Box>
+                        <Text fontWeight="bold">{user.user_name}</Text>
+                      </Box>
                     </Box>
                   ))
                 ) : (
-                  <Text>フォローするユーザーがいません。</Text>
+                  <Text>{isFollower ? "フォロワーがいません。" : "フォローするユーザーがいません。"}</Text>
                 )}
               </Box>
             </ModalBody>
