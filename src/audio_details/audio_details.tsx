@@ -94,7 +94,7 @@ const AudioDetails = () => {
           <CardHeader>
             <Link>
               <Image
-                src={`http://127.0.0.1:5000/prof_image/${userId?.prof_image}`}
+                src={userId?.prof_image ? `http://127.0.0.1:5000/prof_image/${userId?.prof_image}`: "/not_profileicon.jpg"}
               />
               <Text>{userId?.user_name}</Text>
             </Link>
