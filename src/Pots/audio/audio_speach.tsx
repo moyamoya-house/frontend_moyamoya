@@ -167,6 +167,7 @@ const SpeechText = ({ username }: { username: string }) => {
                   {result ? result.classification.classification : ""}
                 </p>
                 <p>Voltage: {result ? result.classification.voltage : ""}</p>
+                <p>Solution: {result ? result.solution : ""}</p>
               </div>
             </Box>
           </Box>

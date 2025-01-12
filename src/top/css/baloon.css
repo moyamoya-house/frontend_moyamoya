@@ -1,3 +1,8 @@
+/* 吹き出し全体の親コンテナ */
+.baloon-container {
+    position: relative; /* 吹き出しの基準を固定 */
+}
+
 /* 吹き出し全体 */
 .baloon {
     position: absolute;
@@ -34,7 +39,6 @@
 
 /* 右上に配置 */
 .baloontopright {
-    top: 100px;
     right: 140px;
 }
 
@@ -50,8 +54,7 @@
 
 /* 左下に配置 */
 .baloontopleft {
-    bottom: 10px;
-    left: 130px;
+    top: 330px;
 }
 
 .baloontopleft::before {
@@ -66,7 +69,7 @@
 
 /* 右下に配置 */
 .baloonbottomright {
-    bottom: 10px;
+    top: 330px;
     right: 140px;
 }
 
