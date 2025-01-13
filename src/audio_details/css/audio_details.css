@@ -1,0 +1,64 @@
+/* audio_details.css */
+
+.audio-details {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 120px auto 20px auto;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.card-header .link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-header .link .prof_image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.card-header .link .user-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #555;
+}
+
+.card-header .created-at {
+    font-size: 14px;
+    color: #999;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body .audio {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.card-body .classification,
+.card-body .stress-level,
+.card-body .emotion-score,
+.card-body .solution {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 10px;
+}
