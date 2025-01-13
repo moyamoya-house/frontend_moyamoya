@@ -39,7 +39,7 @@
 
 /* 右上に配置 */
 .baloontopright {
-    right: 140px;
+    right: 10px;
 }
 
 .baloontopright::before {
@@ -70,7 +70,7 @@
 /* 右下に配置 */
 .baloonbottomright {
     top: 330px;
-    right: 140px;
+    right: 10px;
 }
 
 .baloonbottomright::before {

@@ -163,11 +163,10 @@ const SpeechText = ({ username }: { username: string }) => {
                 <h3>Analysis Result:</h3>
                 <p>Text: {result ? result.classification.text : ""}</p>
                 <p>
-                  Sentiment:{" "}
+                  感情:{" "}
                   {result ? result.classification.classification : ""}
                 </p>
-                <p>Voltage: {result ? result.classification.voltage : ""}</p>
-                <p>Solution: {result ? result.solution : ""}</p>
+                <p>解決策: {result ? result.solution : ""}</p>
               </div>
             </Box>
           </Box>
