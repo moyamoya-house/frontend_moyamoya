@@ -1,0 +1,97 @@
+/* サイドバー全体 */
+.sidebar-container {
+    width: 20%;
+    min-width: 250px;
+    height: auto;
+    position: fixed;
+    top: 150px;
+    left: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+  }
+  
+  /* 検索ボックス */
+  .sidebar-container input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .sidebar-container input[type="text"]:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
+  }
+  
+  /* トレンド一覧 */
+  .trend-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .trend-box h5 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .trend-box ul {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .trend-box ul li {
+    list-style: none;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .trend-box ul li:hover {
+    color: #4a90e2;
+    font-weight: bold;
+  }
+  
+  /* スクロールバーのカスタマイズ */
+  .trend-box::-webkit-scrollbar {
+    width: 6px;
+    background-color: #f1f1f1;
+  }
+  
+  .trend-box::-webkit-scrollbar-thumb {
+    background: #4a90e2;
+    border-radius: 4px;
+  }
+  
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .sidebar-container {
+      position: relative;
+      width: 100%;
+      min-width: unset;
+      top: auto;
+      left: auto;
+      margin: 10px auto;
+    }
+  
+    .trend-box {
+      margin-top: 10px;
+    }
+  }
+  
