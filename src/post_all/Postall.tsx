@@ -17,9 +17,13 @@ import {
   Input,
 } from "@yamada-ui/react";
 import Post from "../post/post.tsx";
-import Sidebar from "./component/sidebar.tsx";
+// import Sidebar from "./component/sidebar.tsx";
 import LikeButton from "../nice/nice.tsx";
-import { fetchPosts, fetchFollowPosts, fetchUsers } from "../hooks/useMoyamoya.ts";
+import {
+  fetchPosts,
+  fetchFollowPosts,
+  fetchUsers,
+} from "../hooks/useMoyamoya.ts";
 import Bookmark from "../bookmark/bookmark.tsx";
 import "./css/post_all.css";
 
@@ -142,7 +146,7 @@ const PostAll = () => {
       return part;
     });
   };
-  
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -150,14 +154,14 @@ const PostAll = () => {
   return (
     <>
       <h1 className="postalltitle">モヤモヤ投稿一覧</h1>
-      <Box w="15%" h={"auto"} position={"fixed"}>
+      {/* <Box w="15%" h={"auto"} position={"fixed"}>
         <Input
           placeholder="Search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
         <Sidebar />
-      </Box>
+      </Box> */}
       <Box>
         <VStack ml={-170}>
           <Tabs variant="line" ml={150}>
@@ -233,9 +237,16 @@ const PostAll = () => {
                                 </Link>
                               </CardBody>
                               <CardFooter>
-                                <Box display={"flex"} mt={-20} ml={750}>
+                                <Box
+                                  display={"flex"}
+                                  justifyContent={"flex-end"} /* 右端に配置 */
+                                  width={
+                                    "100%"
+                                  } /* フレックス内で幅を全体に広げる */
+                                >
                                   <LikeButton postId={post.id}></LikeButton>
-                                  <Text>{post.count}</Text>
+                                  <Text ml={2}>{post.count}</Text>{" "}
+                                  {/* ボタンとテキストの間隔を適切に設定 */}
                                   <Bookmark postId={post.id}></Bookmark>
                                 </Box>
                               </CardFooter>

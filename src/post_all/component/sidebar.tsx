@@ -1,5 +1,6 @@
 import { Box } from "@yamada-ui/react";
-import React,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import "./css/sidebar.css";
 
 interface Tag {
   tag: string;
@@ -14,13 +15,15 @@ const Sidebar = () => {
       .then((response) => response.json())
       .then((data) => setTrend(data));
   }, []);
+
+  
   return (
-    <Box>
-      <Box w={150} h={200} backgroundColor={"orange"} ml={10}>
+    <Box className="sidebar-container">
+      <Box className="trend-box">
         <h5>トレンド一覧</h5>
         <ul>
           {trend.map((tag) => (
-            <li key={tag.tag} style={{"listStyle": "none"}}>
+            <li key={tag.tag}>
               {tag.tag} ({tag.count})
             </li>
           ))}

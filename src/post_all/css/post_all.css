@@ -1,62 +1,189 @@
+/* 全体タイトル */
 .postalltitle {
-  width: 1500px;
-  max-width: 70%;
-  margin: 125px auto 30px auto;
-  border-bottom: 1px solid #000;
+  width: 100%;
+  max-width: 90%;
+  margin: 120px auto 30px auto;
+  border-bottom: 2px solid #4a90e2;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
 }
 
+/* 投稿リスト */
 .postlist {
   list-style: none;
-  width: 850px;
-  height: 200px;
-  border: 1px solid #000;
-  margin: 0 auto 0 auto;
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* CSS */
+.postlist:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* 投稿サークルボタン */
 .post_circle {
-  position: fixed; /* fixedからabsoluteへ変更 */
-  bottom: 25px;
-  right: 15px;
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
   z-index: 1000;
+  width: 60px;
+  height: 60px;
+  background-color: #4a90e2;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
 }
 
+.post_circle:hover {
+  transform: scale(1.1);
+}
+
+.post_circle img {
+  width: 30px;
+  height: 30px;
+}
+
+/* 投稿エリア */
 .post_all {
-  width: 1500px;
-  max-width: 80%;
-  margin: 20px auto 30px auto;
-  height: 77vh;
-  overflow-y: scroll;
+  width: 90%;
+  max-width: 1000px;
+  margin: 20px auto;
+  height: calc(100vh - 200px);
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* スマホサイズ (480px以下) */
-@media (max-width: 480px) {
+/* スクロールバーのカスタマイズ */
+.post_all::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f0f0f0;
+}
+
+.post_all::-webkit-scrollbar-thumb {
+  background: #4a90e2;
+  border-radius: 4px;
+}
+
+/* ユーザー情報エリア */
+.postlist .user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.postlist .user-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 2px solid #4a90e2;
+}
+
+.postlist .user-info .username {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.postlist .user-info .date {
+  font-size: 14px;
+  color: #666;
+  margin-left: auto;
+}
+
+/* 投稿本文エリア */
+.postlist .post-content {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+/* ボタンエリア */
+.postlist .post-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.postlist .post-buttons button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.postlist .post-buttons button:hover {
+  transform: translateY(-2px);
+}
+
+.postlist .post-buttons .like {
+  background-color: #ff6b6b;
+  color: #fff;
+}
+
+.postlist .post-buttons .bookmark {
+  background-color: #ffd700;
+  color: #fff;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .postlist {
+    width: 95%;
+    padding: 15px;
+  }
+
   .post_circle {
-    bottom: 15px;
-    right: 10px;
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 15px;
+  }
+
+  .post_circle img {
+    width: 25px;
+    height: 25px;
   }
 
   .post_all {
-    width: 100%;
-    max-width: 100%;
-    margin: 10px auto;
-    height: auto;
-    overflow-y: visible;
+    width: 95%;
+    height: calc(100vh - 150px);
+    padding: 10px;
   }
-}
 
+  .postlist .user-info img {
+    width: 40px;
+    height: 40px;
+  }
 
-.post_all::-webkit-scrollbar {
-  width: 5px;
-  background-color: #23efcd;
-  border-radius: 5px;
-}
-.post_all::-webkit-scrollbar-thumb {
-  background: #d8f5fa;
-  width: 3px;
-  border-radius: 5px;
-}
+  .postlist .user-info .username {
+    font-size: 16px;
+  }
 
-.post {
-  margin: 0 auto 0 auto;
+  .postlist .post-content {
+    font-size: 14px;
+  }
+
+  .postlist .post-buttons button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
 }
