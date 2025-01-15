@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Link, Text, Center, Image } from "@yamada-ui/react";
+import { Box, Link, Text, Image } from "@yamada-ui/react";
 import LikeButton from "../../nice/nice.tsx";
 import Bookmark from "../../bookmark/bookmark.tsx";
 import "./css/user_post.css";
@@ -92,11 +92,8 @@ const UserPost = () => {
                   color={"black"}
                   display={"inline-block"}
                   mt={30}
-                  ml={350}
                 >
-                  <Center>
                     <Text>{post.post}</Text>
-                  </Center>
                 </Link>
                 <Box display={"flex"} ml={700}>
                   <LikeButton postId={post.id}></LikeButton>
