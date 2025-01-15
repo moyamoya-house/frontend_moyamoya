@@ -46,7 +46,7 @@ const PostAll = () => {
   const [filterpost, setFilterPost] = useState<Moyamoya[]>([]);
 
   // ボタンクリック時に背景色を変更する関数
-  const handleTabClick = (index) => {
+  const handleTabClick = (index:number) => {
     setBgColor(index);
   };
 
@@ -171,6 +171,7 @@ const PostAll = () => {
               border={"none"}
               onClick={() => handleTabClick(0)}
               backgroundColor={bgColor === 0 ? "lightblue" : "white"}
+              color={bgColor === 0 ? "white" : "black"}
             >
               全体
             </Tab>
@@ -180,6 +181,7 @@ const PostAll = () => {
               border={"none"}
               onClick={() => handleTabClick(1)}
               backgroundColor={bgColor === 1 ? "lightblue" : "white"}
+              color={bgColor === 1 ? "white" : "black"}
             >
               フォロー中
             </Tab>
