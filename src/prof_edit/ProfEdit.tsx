@@ -1,8 +1,8 @@
-import React,{ useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box } from '@yamada-ui/react';
+import { Box } from "@yamada-ui/react";
 import { User } from "./ProfEditPage.tsx";
-import './css/profedit.css';
+import "./css/profedit.css";
 
 interface ProfEditProps {
     useData: User;
@@ -17,49 +17,69 @@ const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
     const [preview, setPreview] = useState<string | null>(null);
     const history = useNavigate();
 
+    // コンポーネント初期レンダリング時に画像データを取得
+    useEffect(() => {
+        const fetchImages = async () => {
+            try {
+                const response = await fetch(`http://127.0.0.1:5000/users/${useData.id}/images`);
+                if (response.ok) {
+                    const data = await response.json();
+                    // プロフィール画像と背景画像がDBにあれば設定
+                    if (data.profimage) setPreview(data.profimage);
+                    if (data.secondimage) setSecondImage(data.secondimage);
+                } else {
+                    console.error("Failed to fetch images");
+                }
+            } catch (error) {
+                console.error("Error fetching images:", error);
+            }
+        };
+
+        fetchImages();
+    }, [useData.id]);
+
     const handleEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-    
+
         const formData = new FormData();
-        formData.append('name', username);
-        formData.append('password', password);
-        formData.append('comment', comment);
-        formData.append('email', email);
-    
+        formData.append("name", username);
+        formData.append("password", password);
+        formData.append("comment", comment);
+        formData.append("email", email);
+
         // プロフィール画像を追加
-        const profImageInput = document.querySelector<HTMLInputElement>('#imageInput');
+        const profImageInput = document.querySelector<HTMLInputElement>("#imageInput");
         if (profImageInput?.files?.[0]) {
-            formData.append('profimage', profImageInput.files[0]);
+            formData.append("profimage", profImageInput.files[0]);
         }
-    
+
         // 背景画像を追加
-        const secondImageInput = document.querySelector<HTMLInputElement>('#secondimageInput');
+        const secondImageInput = document.querySelector<HTMLInputElement>("#secondimageInput");
         if (secondImageInput?.files?.[0]) {
-            formData.append('secondimage', secondImageInput.files[0]);
+            formData.append("secondimage", secondImageInput.files[0]);
         }
-    
+
         try {
             const response = await fetch(`http://127.0.0.1:5000/users/${useData.id}`, {
-                method: 'PUT',
+                method: "PUT",
                 body: formData,
             });
-    
+
             if (response.ok) {
                 const data = await response.json();
-                history('/mypage');
+                history("/mypage");
                 console.log(data);
-                alert('User edited successfully');
+                alert("User edited successfully");
             } else {
                 const error = await response.json();
-                console.error('Error:', error);
-                alert('Failed to update profile');
+                console.error("Error:", error);
+                alert("Failed to update profile");
             }
         } catch (error) {
-            console.error('Fetch error:', error);
-            alert('An error occurred while updating the profile');
+            console.error("Fetch error:", error);
+            alert("An error occurred while updating the profile");
         }
     };
-    
 
     const handlesecondimage = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -86,60 +106,60 @@ const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
     return (
         <>
             <form onSubmit={handleEditSubmit} className="proform">
-            <h1>プロフィール編集</h1>
+                <h1>プロフィール編集</h1>
                 <div>
-                <input
-                    type="file"
-                    style={{ display: "none" }}
-                    id="secondimageInput"
-                    onChange={handlesecondimage}
-                />
-                <label htmlFor="secondimageInput">
-                    <div
-                    style={{
-                        width: "100%",
-                        height: "180px",
-                        border: "2px dashed #000",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        cursor: "pointer",
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        backgroundImage: secondImage ? `url(${secondImage})` : "none"
-                    }}
-                    >
-                    {secondImage ? "" : "背景画像を選択"}
-                    </div>
-                </label>
+                    <input
+                        type="file"
+                        style={{ display: "none" }}
+                        id="secondimageInput"
+                        onChange={handlesecondimage}
+                    />
+                    <label htmlFor="secondimageInput">
+                        <div
+                            style={{
+                                width: "100%",
+                                height: "180px",
+                                border: "2px dashed #000",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                cursor: "pointer",
+                                backgroundSize: "cover",
+                                backgroundPosition: "center",
+                                backgroundImage: secondImage ? `url(${secondImage})` : "none",
+                            }}
+                        >
+                            {secondImage ? "" : "背景画像を選択"}
+                        </div>
+                    </label>
                 </div>
                 <div>
-                <input
-                    type="file"
-                    style={{ display: "none" }}
-                    id="imageInput"
-                    onChange={handleProfImage}
-                />
-                <label htmlFor="imageInput" className="label">
-                    <div
-                    style={{
-                        width: "150px",
-                        height: "150px",
-                        border: "2px solid #000",
-                        borderRadius: "100%",
-                        display: "flex",
-                        margin: "60px 0 0 100px",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        cursor: "pointer",
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        backgroundImage: preview ? `url(${preview})` : "none"
-                    }}
-                    >
-                    {preview ? "" : "アイコン画像を選択"}
-                    </div>
-                </label>
+                    <input
+                        type="file"
+                        style={{ display: "none" }}
+                        id="imageInput"
+                        onChange={handleProfImage}
+                    />
+                    <label htmlFor="imageInput" className="label">
+                        <div
+                            style={{
+                                width: "150px",
+                                height: "150px",
+                                border: "2px solid #000",
+                                borderRadius: "100%",
+                                display: "flex",
+                                margin: "60px 0 0 100px",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                cursor: "pointer",
+                                backgroundSize: "cover",
+                                backgroundPosition: "center",
+                                backgroundImage: preview ? `url(${preview})` : "none",
+                            }}
+                        >
+                            {preview ? "" : "アイコン画像を選択"}
+                        </div>
+                    </label>
                 </div>
                 <div className="editbox">
                     <Box className="username">
@@ -162,6 +182,7 @@ const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
                 <button type="submit" className="btn">ユーザー情報の更新</button>
             </form>
         </>
-    )
-}
+    );
+};
+
 export default ProfEdit;
