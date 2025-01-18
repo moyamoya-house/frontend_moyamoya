@@ -244,8 +244,9 @@ const Chat = ({
         </div>
       </div>
 
-      <Box display={"flex"} flexDirection="column" bottom={10}>
-        <Box display={"flex"} mb={2}>
+      <Box display="flex" flexDirection="column" alignItems="center" p={4}>
+        {/* 画像アップロード */}
+        <Box display="flex" alignItems="center" mb={4}>
           <input
             type="file"
             accept="image/*"
@@ -254,39 +255,108 @@ const Chat = ({
             id="image-upload"
           />
           <label htmlFor="image-upload">
-            <Box as="span" cursor="pointer" p={2} border="1px dashed gray">
-              画像をアップロード
-            </Box>
+            <IconButton
+              aria-label="画像をアップロード"
+              icon={<i className="fas fa-upload"></i>}
+              size="lg"
+              variant="outline"
+              colorScheme="blue"
+              as="span"
+              cursor="pointer"
+              display={"none"}
+            />
           </label>
         </Box>
+
+        {/* アップロード済み画像のプレビュー */}
         {uploadedImage && (
-          <Box position="relative" display="inline-block" mb={2} mt={5}>
+          <Box position="relative" display="inline-block" mb={4}>
             <Image
               src={uploadedImage.data}
               alt="Uploaded"
-              width="100px"
-              height="100px"
+              boxSize="120px"
+              borderRadius="md"
+              shadow="md"
             />
             <IconButton
               onClick={handleImageRemove}
               position="absolute"
-              top="5px"
-              right="5px"
+              top="-10px"
+              right="-10px"
               size="sm"
+              colorScheme="red"
               aria-label="Remove image"
-            >
-              &times;
-            </IconButton>
+              icon={<>&times;</>}
+            />
           </Box>
         )}
-        <Box display={"flex"}>
-          <input
-            onChange={(e) => setMessage(e.target.value)}
-            type="text"
-            placeholder="メッセージを入力"
-            className="chat_input"
-          />
-          <button onClick={sendMessage} className="chat_btn">
+
+        {/* メッセージ入力と送信 */}
+        <Box display="flex" alignItems="center" w="100%" maxW="600px">
+          <Box flex="1" mr={2} position="relative">
+            <input
+              type="text"
+              placeholder="メッセージを入力"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="chat_input"
+              style={{
+                width: "100%",
+                padding: "12px 16px",
+                border: "1px solid #ddd",
+                borderRadius: "24px",
+                fontSize: "16px",
+                outline: "none",
+                backgroundColor: "#f9f9f9",
+                transition: "border-color 0.2s",
+              }}
+              onFocus={(e) =>
+                (e.target.style.borderColor = "rgba(0, 123, 255, 0.5)")
+              }
+              onBlur={(e) => (e.target.style.borderColor = "#ddd")}
+            />
+            <label
+              htmlFor="image-upload"
+              style={{
+                position: "absolute",
+                right: "10px",
+                top: "50%",
+                transform: "translateY(-50%)",
+              }}
+            >
+              <IconButton
+                aria-label="画像をアップロード"
+                icon={<i className="fas fa-upload"></i>}
+                size="sm"
+                variant="ghost"
+                colorScheme="blue"
+                as="span"
+                cursor="pointer"
+              />
+            </label>
+          </Box>
+          <button
+            onClick={sendMessage}
+            className="chat_btn"
+            style={{
+              minWidth: "80px",
+              padding: "10px 16px",
+              fontSize: "16px",
+              borderRadius: "24px",
+              backgroundColor: "#007BFF",
+              color: "#fff",
+              border: "none",
+              cursor: "pointer",
+              transition: "background-color 0.2s",
+              marginLeft: "35px",
+            }}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.backgroundColor = "#0056b3")
+            }
+            onMouseOut={(e) =>
+              (e.currentTarget.style.backgroundColor = "#007BFF")
+            }
+          >
             送信
           </button>
         </Box>

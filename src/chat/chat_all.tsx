@@ -101,7 +101,7 @@ const ChatAll = () => {
 
   return (
     <>
-      <Box w={1000} h="84vh" m={"100px auto 0 auto"}>
+      <Box h="84vh" m={"100px auto 0 auto"}>
         <Box zIndex={10}>
           <UserSelect
             users={users}
