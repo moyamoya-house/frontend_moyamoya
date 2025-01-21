@@ -1,7 +1,16 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Box, Image, Text, IconButton } from "@yamada-ui/react";
+import {
+  Box,
+  Image,
+  Text,
+  IconButton,
+  Modal,
+  ModalOverlay,
+  ModalCloseButton,
+} from "@yamada-ui/react";
 import io from "socket.io-client";
 import "./css/chat.css";
+import VideoCall from "./call_video.tsx";
 
 interface Message {
   message: string;
@@ -29,6 +38,7 @@ const Chat = ({
     filename: string;
     data: string;
   } | null>(null);
+  const [isVideoCallOpen, setIsVideoCallOpen] = useState(false);
   const token = localStorage.getItem("token");
 
   const socket = io("http://127.0.0.1:5000", {
@@ -123,6 +133,14 @@ const Chat = ({
     setUploadedImage(null);
   };
 
+  const startVideoCall = () => {
+    setIsVideoCallOpen(true);
+  };
+
+  const closeVideoCall = () => {
+    setIsVideoCallOpen(false);
+  };
+
   return (
     <Box ml={300} w={800} h="78vh">
       {receiverId || groupId ? (
@@ -164,6 +182,17 @@ const Chat = ({
           <Text w={200} mt={20} ml={20} h={40}>
             {receiverName || groupName}
           </Text>
+
+          {/* ビデオ通話アイコン */}
+          <IconButton
+            aria-label="ビデオ通話を開始"
+            icon={<i className="fas fa-video"></i>}
+            size="md"
+            colorScheme="teal"
+            ml="auto"
+            mr={4}
+            onClick={startVideoCall}
+          />
         </Box>
       ) : (
         <Box
@@ -361,6 +390,13 @@ const Chat = ({
           </button>
         </Box>
       </Box>
+
+      {/* ビデオ通話モーダル */}
+      <Modal isOpen={isVideoCallOpen} onClose={closeVideoCall} size="full">
+        <ModalOverlay />
+        <ModalCloseButton />
+        <VideoCall userId={userId} groupId={groupId} />
+      </Modal>
     </Box>
   );
 };
