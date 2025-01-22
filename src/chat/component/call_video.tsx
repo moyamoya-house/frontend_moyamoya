@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import io, { Socket } from "socket.io-client";
+import io from "socket.io-client";
 //import SimplePeer from "simple-peer";
 
-const socket: Socket = io("http://localhost:5000");
 
 interface VideoCallProps {
   userId: number;
@@ -19,6 +18,12 @@ const VideoCall: React.FC<VideoCallProps> = ({
   const [sessionId, setSessionId] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
+  const token = localStorage.getItem("token");
+
+  const socket = io("http://127.0.0.1:5000", {
+    transports: ["websocket"],
+    query: { token: encodeURIComponent(token || "") },
+  });
   useEffect(() => {
     // 自分のカメラ映像を取得
     navigator.mediaDevices
@@ -46,7 +51,7 @@ const VideoCall: React.FC<VideoCallProps> = ({
     return () => {
       socket.emit("end_call", { session_id: sessionId, caller_id: userId });
     };
-  }, [sessionId, userId, groupId]);
+  }, [socket,sessionId, userId, groupId]);
 
   const toggleMute = () => {
     setIsMuted((prev) => !prev);
