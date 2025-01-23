@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 //import SimplePeer from "simple-peer";
 
-
 interface VideoCallProps {
   userId: number;
   groupId?: number;
@@ -17,6 +16,7 @@ const VideoCall: React.FC<VideoCallProps> = ({
   const [participants, setParticipants] = useState<string[]>([]);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const streamRef = useRef<MediaStream | null>(null);
 
   const token = localStorage.getItem("token");
 
@@ -24,11 +24,13 @@ const VideoCall: React.FC<VideoCallProps> = ({
     transports: ["websocket"],
     query: { token: encodeURIComponent(token || "") },
   });
+
   useEffect(() => {
     // 自分のカメラ映像を取得
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((stream) => {
+        streamRef.current = stream;
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
         }
@@ -41,6 +43,7 @@ const VideoCall: React.FC<VideoCallProps> = ({
           console.log("Call started:", data);
           setSessionId(data.session_id); // サーバーから受け取った session_id を保存
         });
+
         // 他の参加者のリストを受信
         socket.on("participants_update", (data: string[]) => {
           setParticipants(data);
@@ -51,15 +54,49 @@ const VideoCall: React.FC<VideoCallProps> = ({
     return () => {
       socket.emit("end_call", { session_id: sessionId, caller_id: userId });
     };
-  }, [socket,sessionId, userId, groupId]);
+  }, [socket, sessionId, userId, groupId]);
 
+  useEffect(() => {
+    if (streamRef.current) {
+      // カメラのオン/オフ設定
+      console.log(`Camera is ${isCameraOff ? 'off' : 'on'}`);
+      streamRef.current.getVideoTracks().forEach((track) => {
+        console.log(`Track ${track.id} enabled: ${!isCameraOff}`);
+        track.enabled = !isCameraOff;
+      });
+  
+      // 動作確認用のデバッグメッセージ
+      streamRef.current.getVideoTracks().forEach((track) => {
+        console.log(`After toggle - Track ${track.id} enabled: ${track.enabled}`);
+      });
+  
+      // Reassign the video stream to ensure it's using the updated state
+      if (videoRef.current && videoRef.current.srcObject !== streamRef.current) {
+        videoRef.current.srcObject = streamRef.current;
+      }
+    }
+  }, [isCameraOff]);
+  
+  useEffect(() => {
+    if (streamRef.current) {
+      // 音声のミュート設定
+      console.log(`Audio is ${isMuted ? 'muted' : 'unmuted'}`);
+      streamRef.current.getAudioTracks().forEach((track) => {
+        console.log(`Track ${track.id} enabled: ${!isMuted}`);
+        track.enabled = !isMuted;
+      });
+    }
+  }, [isMuted]);
+  
+  
   const toggleMute = () => {
     setIsMuted((prev) => !prev);
   };
-
+  
   const toggleCamera = () => {
     setIsCameraOff((prev) => !prev);
   };
+  
 
   const endCall = () => {
     socket.emit("end_call", { session_id: sessionId, caller_id: userId });
