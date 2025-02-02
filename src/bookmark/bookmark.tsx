@@ -51,7 +51,7 @@ const Bookmark = ({ postId }) => {
   return (
     <button
     onClick={fetchBookmarkCreate}
-    style={{ color: bookmark ? 'blue' : 'gray', fontSize:"x-large", marginLeft:'20px', border:'none', display:'block', cursor:'pointer', marginTop:'5px', backgroundColor:'white'}}
+    style={{ color: bookmark ? 'blue' : 'gray', fontSize:"x-large", marginLeft:'20px', border:'none', display:'block', cursor:'pointer', marginTop:'15px', backgroundColor:'white', height:'30px', width:'30px' }}
     >
       <i className="fas fa-regular fa-bookmark"></i>
     </button>

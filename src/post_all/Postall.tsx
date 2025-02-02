@@ -311,13 +311,18 @@ const PostAll = () => {
                                   color={"black"}
                                   display={"inline-block"}
                                   mt={30}
-                                  ml={350}
                                 >
-                                  <Text>{post.post}</Text>
+                                  <Text>{HashTag(post.post)}</Text>
                                 </Link>
                               </CardBody>
                               <CardFooter>
-                                <Box display={"flex"} mt={-20} ml={700}>
+                                <Box 
+                                  display={"flex"}
+                                  justifyContent={"flex-end"} /* 右端に配置 */
+                                  width={
+                                    "100%"
+                                  } 
+                                  >
                                   <LikeButton postId={post.id}></LikeButton>
                                   <Text>{post.count}</Text>
                                   <Bookmark postId={post.id}></Bookmark>

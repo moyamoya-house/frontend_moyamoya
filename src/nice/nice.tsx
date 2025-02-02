@@ -62,7 +62,7 @@ const LikeButton = ({ postId }) => {
     <button
     className="icon-button"
     onClick={like}
-    style={{ color: liked ? 'orange': 'gray' }}
+    style={{ color: liked ? 'orange': 'gray', height: '30px', width: '30px',marginTop: '15px' }}
     >
         <i className="fas fa-solid fa-heart"></i>
     </button>
