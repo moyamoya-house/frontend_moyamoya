@@ -166,9 +166,10 @@ const PostAll = () => {
         <VStack ml={-170}>
           <Tabs variant="line" ml={150}>
             <Tab
-              width={300}
-              margin="0 auto 0 auto"
+              width={150}
+              margin="0 -40px 0 auto"
               border={"none"}
+              cursor={"pointer"}
               onClick={() => handleTabClick(0)}
               backgroundColor={bgColor === 0 ? "lightblue" : "white"}
               color={bgColor === 0 ? "white" : "black"}
@@ -176,8 +177,9 @@ const PostAll = () => {
               全体
             </Tab>
             <Tab
-              w={300}
-              m={"0 auto 0 -110px"}
+              width={150}
+              m={"0 auto 0 60px"}
+              cursor={"pointer"}
               border={"none"}
               onClick={() => handleTabClick(1)}
               backgroundColor={bgColor === 1 ? "lightblue" : "white"}
@@ -196,36 +198,37 @@ const PostAll = () => {
                           {userData[post.user_id] ? (
                             <Box>
                               <CardHeader
-                                w="100%"
-                                m="10px 0 0 20px"
-                                display={"flex"}
+                              w="100%"
+                              m="10px 0 0 10px"
+                              display={"flex"}
+                              justifyContent={"space-between"}
                               >
-                                <Link
-                                  href={`/user_prof/${post.user_id}`}
-                                  display={"flex"}
-                                  textDecoration={"none"}
-                                  color={"black"}
-                                >
-                                  <Image
-                                    w={50}
-                                    h={50}
-                                    borderRadius={100}
-                                    src={
-                                      userData[post.user_id].prof_image
-                                        ? `http://127.0.0.1:5000/prof_image/${
-                                            userData[post.user_id].prof_image
-                                          }`
-                                        : "not_profileicon.jpg"
-                                    }
-                                    alt="prof image"
-                                  />
-                                  <Text mt={10} marginLeft={10}>
-                                    {userData[post.user_id].name}
-                                  </Text>
-                                </Link>
-                                <Text ml={500}>
-                                  {post.created_at.split("-").join("/")}
+                              <Link
+                                href={`/user_prof/${post.user_id}`}
+                                display={"flex"}
+                                textDecoration={"none"}
+                                color={"black"}
+                              >
+                                <Image
+                                w={50}
+                                h={50}
+                                borderRadius={100}
+                                src={
+                                  userData[post.user_id].prof_image
+                                  ? `http://127.0.0.1:5000/prof_image/${
+                                    userData[post.user_id].prof_image
+                                    }`
+                                  : "not_profileicon.jpg"
+                                }
+                                alt="prof image"
+                                />
+                                <Text mt={10} marginLeft={10}>
+                                {userData[post.user_id].name}
                                 </Text>
+                              </Link>
+                              <Text mt={10} marginRight={10}>
+                                {post.created_at.split("-").join("/")}
+                              </Text>
                               </CardHeader>
                               <CardBody>
                                 <Link
@@ -272,9 +275,10 @@ const PostAll = () => {
                           {followUserData[post.user_id] ? (
                             <Box>
                               <CardHeader
-                                w="100%"
-                                m="10px 0 0 20px"
-                                display={"flex"}
+                              w="100%"
+                              m="10px 0 0 10px"
+                              display={"flex"}
+                              justifyContent={"space-between"}
                               >
                                 <Link
                                   href={`/user_prof/${post.user_id}`}
@@ -300,7 +304,7 @@ const PostAll = () => {
                                     {followUserData[post.user_id].name}
                                   </Text>
                                 </Link>
-                                <Text ml={500}>
+                                <Text mt={10} marginRight={10}>
                                   {post.created_at.split("-").join("/")}
                                 </Text>
                               </CardHeader>
