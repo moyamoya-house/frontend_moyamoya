@@ -13,7 +13,7 @@ interface Moyamoya {
 
 interface User {
   user_id: number;
-  user_name: string;
+  name: string;
   prof_image: string;
 }
 const PostDetail = () => {
@@ -98,7 +98,7 @@ const PostDetail = () => {
                 className="prof_image"
               />
             )}
-            <Text className="user-name">{postUser.user_name}</Text>
+            <Text className="user-name">{postUser.name}</Text>
           </Box>
         ) : (
           <p>Loading user data...</p>
