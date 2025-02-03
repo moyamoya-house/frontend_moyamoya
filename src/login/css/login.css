@@ -1,0 +1,116 @@
+.container {
+  width: 500px;
+  height: auto;
+  margin: 0px auto 20px auto;
+  border: 1px solid #000;
+  margin-top: 120px;
+  box-shadow: 10px 10px 5px gray;
+  padding: 20px;
+}
+
+.logintitle {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.inputBox {
+  margin: 40px;
+}
+
+.input {
+  width: 90%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.buttonBox {
+  margin: 40px;
+  text-align: center;
+}
+
+.loginbutton {
+  width: 80%;
+  height: 50px;
+  margin: 20px auto;
+  background-color: lightskyblue;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.loginbutton:hover {
+  background-color: purple;
+}
+
+.buttonlink {
+  width: 80%;
+  height: 50px;
+  background-color: lightskyblue;
+  border-radius: 10px;
+  margin: 20px auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.buttonlink:hover {
+  background-color: purple;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 90%;
+    margin-top: 60px;
+  }
+
+  .input {
+    width: 100%;
+  }
+
+  .buttonBox {
+    margin: 20px;
+  }
+
+  .loginbutton {
+    width: 100%;
+  }
+
+  .buttonlink {
+    width: 100%;
+  }
+    
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    width: 90%;
+    max-width: 350px;
+    margin: 200px auto 83px auto;
+  }
+
+  .input {
+    width: 110%;
+    margin-left: -25px;
+  }
+
+  .buttonBox {
+    margin: 20px;
+  }
+
+  .loginbutton {
+    width: 80%;
+  }
+
+  .buttonlink {
+    width: 80%;
+  }
+    
+}
