@@ -4,7 +4,7 @@
 }
 
 /* モーダル本体 */
-.yamada-ui-modal {
+.modal {
   background: white;
   border-radius: 12px;
   padding: 20px;
@@ -13,7 +13,7 @@
 }
 
 /* ヘッダー */
-.yamada-ui-modal-header {
+.modal-header {
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
@@ -22,7 +22,7 @@
 }
 
 /* テキストエリア */
-textarea {
+.textarea {
   width: 100%;
   height: 80px;
   padding: 10px;
@@ -33,14 +33,18 @@ textarea {
   transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
-textarea:focus {
+.textarea:focus {
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   outline: none;
 }
 
+.btnbox {
+  width: 600px;
+}
+
 /* ボタン */
-.button {
+.submitbutton {
   width: 100%;
   height: 50px;
   background-color: lightskyblue;
@@ -53,7 +57,7 @@ textarea:focus {
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-.button:hover {
+.submitbutton:hover {
   background-color: #00aaff;
   transform: scale(1.02);
 }
@@ -78,6 +82,17 @@ textarea:focus {
   color: #007bff;
 }
 
+.modal-content {
+  margin: 0 auto;
+  width: 800px;
+  height: 200px;
+}
+
+.form {
+  width: 600px;
+  margin: 0 auto;
+}
+
 /* アニメーション */
 @keyframes fadeIn {
   from {
@@ -87,5 +102,43 @@ textarea:focus {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .modal {
+    width: 50%;
+    margin: 0 auto;
+  }
+  
+}
+
+@media screen and (max-width: 480px) {
+  .modal {
+    width: 400px;
+    margin-left: -5px;
+    padding: 5px;
+  }
+  .modal-content {
+    max-width: 400px;
+    height: auto;
+    margin: 0;
+  }
+  .textarea {
+    width: 350px;
+    height: 100px;
+    margin-left: 14px;
+  }
+  .submitbutton {
+    max-width: 350px;
+    margin-left: 10px;
+    margin-left: 25px;
+  }
+  .form {
+    width: 400px;
+  }
+
+  .btnbox {
+    width: 400px;
   }
 }

@@ -56,27 +56,23 @@ const Post = () => {
         +
       </Button>
 
-      <Modal isOpen={isOpen} background={"white"} border='1px solid #000'borderRadius={10}>
+      <Modal isOpen={isOpen} className="modal">
         <CloseButton onClick={onClose} w={20} top={10} left={10}></CloseButton>
         <ModalOverlay bg="rgba(0, 0, 0, 0.6)" /> {/* Set the background to gray with opacity */}
-        <ModalHeader>
+        <ModalHeader className="modal-header">
           <Text m={'0 auto'}>モヤモヤ投稿</Text>
         </ModalHeader>
 
-        <ModalBody width={800} height={250}>
-            <form onSubmit={handleCreateMoyamoya} style={{width: "600px", margin: '0 auto'}}>
+        <ModalBody className="modal-content">
+            <form onSubmit={handleCreateMoyamoya} className="form">
                 <textarea
                     placeholder="発散させたいこと"
                     value={post}
                     onChange={(e) => setPost(e.target.value)}
-                    style={{
-                      margin: '30px auto 0 30px',
-                      width: '530px',
-                      height: '50px'
-                    }}
+                    className="textarea"
                 />
-                <Box w={600}>
-                    <Button type="submit" w='90%' h={50} m="40px auto 0 30px" colorScheme="secondary" border='none' bg='lightskyblue' borderRadius={10} className="button" >投稿!</Button>
+                <Box className="btnbox">
+                    <Button type="submit" className="submitbutton" >投稿!</Button>
                 </Box>
             </form>
         </ModalBody>
