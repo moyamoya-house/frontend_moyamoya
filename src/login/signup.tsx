@@ -1,6 +1,7 @@
 import React,{ useState } from 'react';
 import { Box ,Input ,Button, Text, Center, Image, Flex } from '@yamada-ui/react';
 import { useNavigate } from 'react-router-dom';
+import "./css/signup.css";
 
 const Signup = () => {
     const [username, setUsername] = useState('');
@@ -55,50 +56,44 @@ const Signup = () => {
     };
 
     return (
-        <Box w={500} h={500} m="0px auto 20px" border='1px solid #000' mt={120} boxShadow='10px 10px 5px gray'>
+        <Box className="signup">
         <form onSubmit={handleSignup} encType='multipart/form-data'>
             {/* タイトル */}
-            <Text textAlign="center" fontSize='1.5rem' fontWeight='bold'>signup</Text>
+            <Text className='signuptitle'>signup</Text>
             {/* username */}
-            <Box m='40px'>
+            <Box className='usernamebox'>
             <Input
                 type='text'
                 placeholder='Username'
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                w='90%'
-                padding={10}
-                borderRadius={5}
+                className='signupinput'
                 maxLength={20}
             />
             </Box>
             {/* パスワード */}
-            <Box m={40}>
+            <Box className='usernamebox'>
             <Input
                 type='password'
                 placeholder='Password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                w='90%'
-                padding={10}
-                borderRadius={5}
+                className='signupinput'
             />
             </Box>
             {/* Eメール */}
-            <Box m={40}>
+            <Box className='usernamebox'>
             <Input
                 type='email'
                 placeholder='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                w='90%'
-                padding={10}
-                borderRadius={5}
+                className='signupinput'
             />
             </Box>
             {/* 画像 */}
             <Flex alignItems="center" m={40} justifyContent="space-between">
-                    <Button as="label" htmlFor="file-upload" cursor="pointer" bg="orange" color="white" p={2} borderRadius={5} _hover={{ bg: "blue.600" }}>
+                    <Button as="label" htmlFor="file-upload" className='imgbtn'>
                         プロフ画像をアップロード
                     </Button>
                     <Input
@@ -110,13 +105,13 @@ const Signup = () => {
                     />
                     {preview && (
                         <Box ml={4}>
-                            <Image src={preview} alt="Profile Preview" boxSize="100px" objectFit="cover" />
+                            <Image src={preview} alt="Profile Preview" className='preview' />
                         </Box>
                     )}
                 </Flex>
             {/* 送信ボタン */}
             <Center>
-                <Button type='submit' w='85%' h={50} m="20px auto" colorScheme="secondary" border='none' bg='lightskyblue' borderRadius={10} cursor={'pointer'} _hover={{backgroundColor: "purple"}} color={'white'}>新規登録</Button>
+                <Button type='submit' className='signupbutton'>新規登録</Button>
             </Center>
         </form>
         </Box>

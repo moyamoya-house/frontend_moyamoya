@@ -1,0 +1,80 @@
+/* signup.css */
+
+.signup {
+    width: 500px;
+    height: auto;
+    margin: 0px auto 20px;
+    border: 1px solid #000;
+    margin-top: 120px;
+    box-shadow: 10px 10px 5px gray;
+}
+
+.signuptitle {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.usernamebox {
+    margin: 40px;
+}
+
+.signupinput {
+    width: 90%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+form > div > input[type="file"] {
+    display: none;
+}
+
+.imgbtn {
+    cursor: pointer;
+    background-color: orange;
+    color: white;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.imgbtn:hover {
+    background-color: blue;
+}
+
+.preview {
+    margin-left: 4px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.signupbutton {
+    width: 85%;
+    height: 50px;
+    margin: 20px auto;
+    color: white;
+    background-color: lightskyblue;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.signupbutton:hover {
+    background-color: purple;
+}
+
+@media screen and (max-width: 600px) {
+    .signup {
+        width: 90%;
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+    .signup {
+        width: 90%;
+        margin: 200px auto 135px auto;
+    }
+    
+}
