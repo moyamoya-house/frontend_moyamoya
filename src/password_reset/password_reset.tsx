@@ -1,6 +1,7 @@
 import React,{ useState } from "react";
 import { Box, Input, Text } from "@yamada-ui/react";
 import { useNavigate } from "react-router-dom";
+import "./css/password_reset.css";
 
 const PasswordReset = () => {
   const [user_name, setUsername] = useState("");
@@ -26,67 +27,47 @@ const PasswordReset = () => {
 
   return (
     <>
-      <Box w={500} h={500} m="0px auto 20px" border='1px solid #000' mt={120} boxShadow='10px 10px 5px gray'>
+      <Box className="container">
         <form
           onSubmit={handlePasswordReset}
         >
-          <Text textAlign={"center"} fontSize="1.5rem" fontWeight="bold">
+          <Text className="form-title">
             パスワードリセット
           </Text>
-          <Box display={"flex"} m={40}>
-            <Text mt={5}>username</Text>
+          <Box className="input-group">
+            <Text className="input-label">ユーザー<br />ネーム</Text>
             <Input
               type="text"
               placeholder="ユーザーネームを入力"
               value={user_name}
               onChange={(e) => setUsername(e.target.value)}
-              w='80%'
-              padding={10}
-              borderRadius={5}
+              className="input-field"
               maxLength={20}
-              h={10}
-              mt={13}
             />
           </Box>
-          <Box display={"flex"} m={40}>
-            <Text mr={10}>新しいパスワード</Text>
+          <Box display={"flex"} m={20}>
+            <Text>新しい<br />パスワード</Text>
             <Input
               type="password"
               placeholder="パスワードを入力"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              w='55%'
-              padding={10}
-              borderRadius={5}
+              className="password-input"
               maxLength={20}
-              h={10}
-              mt={13}
             />
           </Box>
-          <Box display={"flex"} m={40}>
-            <Text>パスワード再入力</Text>
+          <Box display={"flex"} m={20}>
+            <Text>パスワード<br />再入力</Text>
             <Input
               type="password"
               placeholder="パスワード再入力"
               value={password_confilm}
               onChange={(e) => setConfilm(e.target.value)}
-              w='60%'
-              padding={10}
-              borderRadius={5}
+              className="confirm-password-input"
               maxLength={20}
-              h={10}
-              mt={13}
             />
           </Box>
-          <button
-            style={{
-              width: "85%",
-              height: "50px",
-              margin: "0 auto 0 35px",
-              border: "none",
-              backgroundColor: "lightskyblue",
-              borderRadius: "10px"
-            }}
+          <button className="submit-button" type="submit"
           >
             再設定
           </button>
