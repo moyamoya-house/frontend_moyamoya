@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box,Image, Link, Tabs, Text, Tab, TabPanels, TabPanel } from "@yamada-ui/react";
-import './css/mypage.css'
+import './css/mypage.css';
 import Follow from "../follow/follow.tsx";
 import UserPost from "./component/user_post.tsx";
 import BookmarkPost from "./component/bookmark_post.tsx";
@@ -37,39 +37,25 @@ const Mypage  = () => {
     return (
         <>
         {useData ? (
-            <Box w={1500} maxWidth='80%' m='0 auto' mt={100} overflow={"hidden"}>
-                <Box h={300} border='1px solid #000'>
-                {useData.second_image ? (
+            <Box className="mypage-cotainer">
+                <Box className="mypage-header">
+                    {useData.second_image ? (
                         <Image src={`http://127.0.0.1:5000/second_image/${useData.second_image}`}></Image>
                     ) : (
-                        <Box h={300} bg={"aquamarine"}></Box>
+                        <Box className="mypage-header-image"></Box>
                     )}
                 </Box>
-                <Box position="relative" display="flex" >
-                <Box 
-                    w={160} 
-                    h={160} 
-                    borderRadius={100} 
-                    mt={-90} 
-                    ml={100}
-                    bg="white" 
-                    display="flex" 
-                    justifyContent="center" 
-                    alignItems="center"
-                >
+                <Box className="mypage-profile">
+                <Box className="mypage-profile-image-container">
                     { useData.prof_image ? (
                     <Image 
-                        w={150} 
-                        h={150} 
-                        borderRadius={100} 
+                        className="mypage-profile-image"
                         src={`http://127.0.0.1:5000/prof_image/${useData.prof_image}`} 
                         alt="prof image" 
                     />
                 ) : (
                     <Image 
-                    w={150} 
-                    h={150} 
-                    borderRadius={100} 
+                    className="mypage-profile-image"
                     src='not_profileicon.jpg'
                     alt="prof image" 
                 />
@@ -77,25 +63,19 @@ const Mypage  = () => {
                 </Box>
                 </Box>
                 <h1 className="title">{useData.name}</h1>
-                <Text mb={20}>{useData.prof_comment}</Text>
-                <Link href="/prof_edit" display={"flex"} w={200} h={50} textDecoration={"none"} color={"black"} alignItems={"center"} justifyContent={"center"} textAlign={"center"} m='-100px 0 50px 700px' backgroundColor='#dcdcdc' _hover={{opacity: 0.4}} >
+                <Text className="mypage-content">{useData.prof_comment}</Text>
+                <Link href="/prof_edit" className="mypage-edit-link" >
                     + プロフ編集
                 </Link>
                 <Follow />
                 <Tabs>
                     <Tab
-                        width={300}
-                        maxW="100%"
-                        m="0 auto 0 auto"
-                        border={"none"}
+                    className="mypage-tab"
                     >
                         投稿一覧
                     </Tab>
                     <Tab
-                        width={300}
-                        maxW="100%"
-                        m="0 auto 0 auto"
-                        border={"none"}
+                    className="mypage-tab"
                     >
                         ブックマーク一覧
                     </Tab>
