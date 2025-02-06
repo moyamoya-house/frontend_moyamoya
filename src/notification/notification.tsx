@@ -1,5 +1,6 @@
-import { Box, Input, Text } from "@yamada-ui/react";
+import { Box, Input, Text, Button } from "@yamada-ui/react";
 import React, { useEffect, useState } from "react";
+import "./css/notification.css";
 
 interface NotificationData {
   id: number;
@@ -11,6 +12,8 @@ interface NotificationData {
 const Notification = () => {
   const [notification, setNotification] = useState<NotificationData[]>([]);
   const [selectIds, setSelectIds] = useState<number[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const notificationsPerPage = 10;
 
   useEffect(() => {
     const fetchNotificationData = async () => {
@@ -29,17 +32,15 @@ const Notification = () => {
     fetchNotificationData();
   }, []);
 
-  // チェックボックスの変更ハンドラー
   const handleCheckboxChange = (id: number) => {
     setSelectIds(
       (prevSelected) =>
         prevSelected.includes(id)
-          ? prevSelected.filter((item) => item !== id) // 解除
-          : [...prevSelected, id] // 選択
+          ? prevSelected.filter((item) => item !== id)
+          : [...prevSelected, id]
     );
   };
 
-  // 選択された通知を一括で既読にする
   const markAsRead = () => {
     fetch("http://127.0.0.1:5000/notifications/mark-as-read", {
       method: "POST",
@@ -51,64 +52,59 @@ const Notification = () => {
     })
       .then((res) => res.json())
       .then(() => {
-        // UIを更新
         setNotification((prevNotifications) =>
           prevNotifications.map((n) =>
             selectIds.includes(n.id) ? { ...n, is_read: true } : n
           )
         );
-        setSelectIds([]); // 選択解除
+        setSelectIds([]);
       });
   };
 
+  const indexOfLastNotification = currentPage * notificationsPerPage;
+  const indexOfFirstNotification = indexOfLastNotification - notificationsPerPage;
+  const currentNotifications = notification.slice(indexOfFirstNotification, indexOfLastNotification);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
   return (
     <>
-      <Box w={1500} maxW="80%" margin="130px auto 0 auto">
-        {notification.length > 0 ? (
-          notification.map((noti, index) => (
-            <Box
-              key={index}
-              mb={4}
-              w={"100%"}
-              backgroundColor={"#3f368f00"}
-              borderTop={"solid 1px #796de5"}
-              borderBottom={"solid 1px #796de5"}
-              m={"0 0 30px 0"}
-              p={"50px 0 50px 0"}
-            >
-              <Box
-                w={"100%"}
-                h={25}
-                backgroundColor="#796de500"
-                display={"flex"}
-                justifyContent={"space-between"}
-              >
+      <Box className="notification-container">
+        {currentNotifications.length > 0 ? (
+          currentNotifications.map((noti, index) => (
+            <Box key={index} className="notification-box">
+              <Box className="notification-header">
                 <Input
                   type="checkbox"
                   ml={10}
                   onChange={() => handleCheckboxChange(noti.id)}
                   checked={selectIds.includes(noti.id)}
-                  disabled={noti.is_read} // 既読の場合はチェックボックスを無効化
+                  disabled={noti.is_read}
                   style={{
-                    cursor: noti.is_read ? "not-allowed" : "pointer", // グレーアウト時のスタイル
-                    opacity: noti.is_read ? 0.5 : 1, // 既読なら透明度を変更
+                    cursor: noti.is_read ? "not-allowed" : "pointer",
+                    opacity: noti.is_read ? 0.5 : 1,
                   }}
                 />
-                <Text w={500} fontWeight={"lighter"}>
-                  {noti.notification}
-                </Text>
-                <Text w={150} mr={30}>
+                <Text className="notification-text">{noti.notification}</Text>
+                <Text className="notification-date">
                   {new Date(noti.create_at).toLocaleString()}
                 </Text>
               </Box>
               <button onClick={markAsRead} disabled={selectIds.length === 0}>
-                選択を既読にする
+                既読
               </button>
             </Box>
           ))
         ) : (
           <Text>No notifications available</Text>
         )}
+      </Box>
+      <Box className="pagination">
+        {Array.from({ length: Math.ceil(notification.length / notificationsPerPage) }, (_, i) => (
+          <Button key={i} onClick={() => paginate(i + 1)} disabled={currentPage === i + 1}>
+            {i + 1}
+          </Button>
+        ))}
       </Box>
     </>
   );
