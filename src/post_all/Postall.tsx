@@ -128,12 +128,13 @@ const PostAll = () => {
     }
   }, [query, postData]);
 
-  const HashTag = (text) => {
+  const HashTag = (text: string) => {
     const hashTagRegex = /#[\w]+/g;
     return text.split(hashTagRegex).map((part, index) => {
       const match = text.match(hashTagRegex);
       if (match && match[index - 1]) {
         const hashtag = match[index - 1];
+        console.log(hashtag.slice(1));
         return (
           <>
             {part}

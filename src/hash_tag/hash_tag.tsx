@@ -31,9 +31,9 @@ interface Moyamoya {
 }
 
 const HashTagPost = () => {
-  const { hashtag } = useParams();
-  console.log(hashtag);
-
+  const { hashtag } = useParams<{ hashtag: string }>();
+  const encodedHashtag = encodeURIComponent(`#${hashtag}`); 
+  console.log(encodedHashtag);
   const [post, setPost] = useState<Moyamoya[]>([]);
   const [followPost, setFollowPost] = useState<Moyamoya[]>([]);
   const [userData, setUserData] = useState({});
@@ -50,9 +50,9 @@ const HashTagPost = () => {
       // hashtag があるか確認
       const fetchHashtagPosts = async () => {
         try {
-          const response = await fetch(
-            `http://127.0.0.1:5000/hashtags/${hashtag}`
-          );
+            const response = await fetch(
+            `http://127.0.0.1:5000/hashtags/${encodedHashtag}`
+            );
           if (response.ok) {
             const data = await response.json();
             setPost(data);
@@ -146,7 +146,7 @@ const HashTagPost = () => {
     }
   }, [followPost]);
 
-  const HashTag = (text) => {
+  const HashTag = (text: string) => {
     const hashTagRegex = /#[\w]+/g;
     return text.split(hashTagRegex).map((part, index) => {
       const match = text.match(hashTagRegex);
@@ -171,9 +171,9 @@ const HashTagPost = () => {
 
   return (
     <>
-      <h1 className="hashalltitle">モヤモヤ投稿一覧</h1>
+      <h1 className="hashalltitle">ハッシュタグ投稿一覧</h1>
       <Box display={"flex"}>
-        <Sidebar />
+        {/* <Sidebar /> */}
         <VStack ml={-170}>
           <Tabs variant="line">
             <Tab
