@@ -37,14 +37,8 @@ const UserSelect: React.FC<UserSelectProps> = ({
       <Box m={"0 auto"}>
         <Button
           onClick={() => setShowGroups((prev) => !prev)} // 状態をトグル
-          w={200}
-          h={"auto"}
-          border={"none"}
-          borderRadius={10}
+          className="showbutton"
           variant={"ghost"}
-          cursor={"pointer"}
-          fontSize={20}
-          backgroundColor={"white"}
         >
           {showGroups ? "個人チャット" : "グループチャット"}{" "}
           {/* 状態に応じてテキストを切り替え */}
