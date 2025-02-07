@@ -32,7 +32,7 @@ interface Moyamoya {
 
 const HashTagPost = () => {
   const { hashtag } = useParams<{ hashtag: string }>();
-  const encodedHashtag = encodeURIComponent(`#${hashtag}`); 
+  const encodedHashtag = encodeURIComponent(`${hashtag}`); 
   console.log(encodedHashtag);
   const [post, setPost] = useState<Moyamoya[]>([]);
   const [followPost, setFollowPost] = useState<Moyamoya[]>([]);
@@ -67,7 +67,7 @@ const HashTagPost = () => {
       };
       fetchHashtagPosts();
     }
-  }, [hashtag]);
+  }, [encodedHashtag, hashtag]);
 
   // 投稿に対するユーザー情報を取得
   useEffect(() => {
@@ -171,70 +171,82 @@ const HashTagPost = () => {
 
   return (
     <>
-      <h1 className="hashalltitle">ハッシュタグ投稿一覧</h1>
-      <Box display={"flex"}>
-        {/* <Sidebar /> */}
+      <h1 className="postalltitle">ハッシュタグ投稿一覧</h1>
+      {/* <Box w="15%" h={"auto"} position={"fixed"}>
+        <Input
+          placeholder="Search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <Sidebar />
+      </Box> */}
+      <Box>
         <VStack ml={-170}>
-          <Tabs variant="line">
+          <Tabs variant="line" ml={150}>
             <Tab
-              width={300}
-              margin="0 auto 0 auto"
+              width={150}
+              margin="0 -40px 0 auto"
               border={"none"}
+              cursor={"pointer"}
               onClick={() => handleTabClick(0)}
               backgroundColor={bgColor === 0 ? "lightblue" : "white"}
+              color={bgColor === 0 ? "white" : "black"}
             >
               全体
             </Tab>
             <Tab
-              w={300}
-              m={"0 auto 0 -110px"}
+              width={150}
+              m={"0 auto 0 60px"}
+              cursor={"pointer"}
               border={"none"}
               onClick={() => handleTabClick(1)}
               backgroundColor={bgColor === 1 ? "lightblue" : "white"}
+              color={bgColor === 1 ? "white" : "black"}
             >
               フォロー中
             </Tab>
 
             <TabPanels>
               <TabPanel>
-                <Box className="hash_all">
+                <Box className="post_all">
                   <Box>
-                    <Box className="hash">
+                    <Box className="post">
                       {post.map((post) => (
                         <Card className="postlist" key={post.id}>
                           {userData[post.user_id] ? (
                             <Box>
                               <CardHeader
-                                w="100%"
-                                m="10px 0 0 20px"
-                                display={"flex"}
+                              w="100%"
+                              m="10px 0 0 10px"
+                              display={"flex"}
+                              justifyContent={"space-between"}
                               >
-                                <Link
-                                  href={`/user_prof/${post.user_id}`}
-                                  display={"flex"}
-                                  textDecoration={"none"}
-                                  color={"black"}
-                                >
-                                  <Image
-                                    w={50}
-                                    h={50}
-                                    borderRadius={100}
-                                    src={
-                                      userData[post.user_id].prof_image
-                                        ? `http://127.0.0.1:5000/prof_image/${
-                                            userData[post.user_id].prof_image
-                                          }`
-                                        : "not_profileicon.jpg"
-                                    }
-                                    alt="prof image"
-                                  />
-                                  <Text mt={10} marginLeft={10}>
-                                    {userData[post.user_id].name}
-                                  </Text>
-                                </Link>
-                                <Text ml={450}>
-                                  {post.created_at.split("-").join("/")}
+                              <Link
+                                href={`/user_prof/${post.user_id}`}
+                                display={"flex"}
+                                textDecoration={"none"}
+                                color={"black"}
+                              >
+                                <Image
+                                w={50}
+                                h={50}
+                                borderRadius={100}
+                                src={
+                                  userData[post.user_id].prof_image
+                                  ? `http://127.0.0.1:5000/prof_image/${
+                                    userData[post.user_id].prof_image
+                                    }`
+                                  : "not_profileicon.jpg"
+                                }
+                                alt="prof image"
+                                />
+                                <Text mt={10} marginLeft={10}>
+                                {userData[post.user_id].name}
                                 </Text>
+                              </Link>
+                              <Text mt={10} marginRight={10}>
+                                {post.created_at.split("-").join("/")}
+                              </Text>
                               </CardHeader>
                               <CardBody>
                                 <Link
@@ -248,9 +260,16 @@ const HashTagPost = () => {
                                 </Link>
                               </CardBody>
                               <CardFooter>
-                                <Box display={"flex"} mt={-20} ml={650}>
+                                <Box
+                                  display={"flex"}
+                                  justifyContent={"flex-end"} /* 右端に配置 */
+                                  width={
+                                    "100%"
+                                  } /* フレックス内で幅を全体に広げる */
+                                >
                                   <LikeButton postId={post.id}></LikeButton>
-                                  <Text>{post.count}</Text>
+                                  <Text ml={2}>{post.count}</Text>{" "}
+                                  {/* ボタンとテキストの間隔を適切に設定 */}
                                   <Bookmark postId={post.id}></Bookmark>
                                 </Box>
                               </CardFooter>
@@ -274,9 +293,10 @@ const HashTagPost = () => {
                           {followUserData[post.user_id] ? (
                             <Box>
                               <CardHeader
-                                w="100%"
-                                m="10px 0 0 20px"
-                                display={"flex"}
+                              w="100%"
+                              m="10px 0 0 10px"
+                              display={"flex"}
+                              justifyContent={"space-between"}
                               >
                                 <Link
                                   href={`/user_prof/${post.user_id}`}
@@ -302,7 +322,7 @@ const HashTagPost = () => {
                                     {followUserData[post.user_id].name}
                                   </Text>
                                 </Link>
-                                <Text ml={500}>
+                                <Text mt={10} marginRight={10}>
                                   {post.created_at.split("-").join("/")}
                                 </Text>
                               </CardHeader>
@@ -313,13 +333,18 @@ const HashTagPost = () => {
                                   color={"black"}
                                   display={"inline-block"}
                                   mt={30}
-                                  ml={350}
                                 >
-                                  <Text>{post.post}</Text>
+                                  <Text>{HashTag(post.post)}</Text>
                                 </Link>
                               </CardBody>
                               <CardFooter>
-                                <Box display={"flex"} mt={-20} ml={700}>
+                                <Box 
+                                  display={"flex"}
+                                  justifyContent={"flex-end"} /* 右端に配置 */
+                                  width={
+                                    "100%"
+                                  } 
+                                  >
                                   <LikeButton postId={post.id}></LikeButton>
                                   <Text>{post.count}</Text>
                                   <Bookmark postId={post.id}></Bookmark>
