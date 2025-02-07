@@ -15,6 +15,12 @@ import {
   CardBody,
   CardFooter,
   Input,
+  Drawer,
+  DrawerOverlay,
+  Button,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerHeader,
 } from "@yamada-ui/react";
 import Post from "../post/post.tsx";
 import Sidebar from "./component/sidebar.tsx";
@@ -44,10 +50,15 @@ const PostAll = () => {
   const [bgColor, setBgColor] = useState(0);
   const [query, setQuery] = useState("");
   const [filterpost, setFilterPost] = useState<Moyamoya[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   // ボタンクリック時に背景色を変更する関数
   const handleTabClick = (index:number) => {
     setBgColor(index);
+  };
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
   };
 
   // 全体の投稿を取得
@@ -155,14 +166,42 @@ const PostAll = () => {
   return (
     <>
       <h1 className="postalltitle">モヤモヤ投稿一覧</h1>
-      {/* <Box w="15%" h={"auto"} position={"fixed"}>
-        <Input
-          placeholder="Search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <Sidebar />
-      </Box> */}
+      {/* トグルボタン */}
+      <Box position="fixed" top="110px" left="10px" zIndex="10">
+        <Button onClick={toggleSidebar} colorScheme="blue" size="lg">
+          →
+        </Button>
+      </Box>
+
+      {/* ドロワー (サイドバー) */}
+      <Drawer isOpen={isOpen} onClose={toggleSidebar} placement="left" w={300} bg={"#fff"} size={"xs"} backgroundColor={"white"}>
+        <DrawerOverlay bg="rgba(0,0,0,0.6)"/>
+          <DrawerCloseButton />
+          <DrawerHeader mt={100}></DrawerHeader>
+            <DrawerBody>
+              <Box display={"flex"}>
+            <Input
+              placeholder="Search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              ml={30}
+            />
+            <Button
+              ml={5}
+              colorScheme="blue"
+              onClick={() => {
+              const filtered = postData.filter((post) =>
+                post.post.toLowerCase().includes(query.toLowerCase())
+              );
+              setFilterPost(filtered);
+              toggleSidebar();
+              }}
+            >
+              検索
+            </Button></Box>
+            <Sidebar />
+            </DrawerBody>
+      </Drawer>
       <Box>
         <VStack ml={-170}>
           <Tabs variant="line" ml={150}>
