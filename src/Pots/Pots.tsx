@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { Box } from "@yamada-ui/react";
 import SpeechText from "./audio/audio_speach.tsx";
 import AudioAll from "./audio/audio_all.tsx";
+import "./css/pots.css";
 
 const Pots = () => {
   const ref = useRef<THREE.Mesh>(null);
@@ -32,7 +33,6 @@ const Pots = () => {
       ref.current.rotation.y += 0.01; // Y軸周りに回転
     }
   });
-  
 
   return (
     <>
@@ -73,10 +73,10 @@ const Pot = () => {
       }
     };
     fetchUser();
-  },[]);
+  }, []);
   return (
-    <Box w={1000} mt={130} display={"flex"}>
-      <Box w={400} h={450}>
+    <Box className="canvas-container">
+      <Box className="canvas-box">
         <Canvas style={{ width: "100%", height: "100%" }}>
           <ambientLight intensity={0.5} />
           <directionalLight position={[10, 10, 5]} />
@@ -84,10 +84,14 @@ const Pot = () => {
           <OrbitControls />
         </Canvas>
       </Box>
-      <Box ml={100}>
+      {/* スクロール促す */}
+      <div className="scrolldown-audio">
+        <span>scroll</span>
+      </div>
+      <Box className="audio-box">
         <AudioAll />
       </Box>
-      <Box position={"fixed"} w={100} h={"auto"} top={110} right={50}>
+      <Box className="speech-box">
         <SpeechText username={username} />
       </Box>
     </Box>

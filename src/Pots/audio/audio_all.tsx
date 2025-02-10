@@ -82,27 +82,21 @@ const AudioAll = () => {
       <h1>PotCom一覧</h1>
       <Box className="audio_all">
         {audioData.map((audio) => (
-          <Card
-            key={audio.id}
-            listStyle={"none"}
-            w={650}
-            h={150}
-            border={"1px solid #000"}
-            m={"0 auto 0 10px"}
-          >
+          <Card key={audio.id} className="audio-card">
             {userData[audio.user_id] ? (
               <Box>
-                <CardHeader w={"100%"} m={"5px 0 0 20px"} display={"flex"}>
+                <CardHeader
+                  w="100%"
+                  m="5px 0 0 10px"
+                  display={"flex"}
+                  justifyContent={"space-between"}
+                >
                   <Link
                     href={`/user_prof/${audio.user_id}`}
-                    display={"flex"}
-                    textDecoration={"none"}
-                    color={"black"}
+                    className="card-header-link"
                   >
                     <Image
-                      w={50}
-                      h={50}
-                      borderRadius={100}
+                      className="card-header-img"
                       src={
                         userData[audio.user_id].prof_image
                           ? `http://127.0.0.1:5000/prof_image/${
@@ -111,19 +105,24 @@ const AudioAll = () => {
                           : "not_profileicon.jpg"
                       }
                     />
-                    <Text mt={10} ml={10}>
+                    <Text className="card-header-username">
                       {userData[audio.user_id].name}
                     </Text>
                   </Link>
-                  <Text ml={300}>{audio.created_at.split("-").join("/")}</Text>
+                  <Text className="card-header-date">
+                    {audio.created_at.split("-").join("/")}
+                  </Text>
                 </CardHeader>
                 <CardBody>
-                  <Link href={`/audio_details/${audio.id}`} textDecoration={"none"} color={"black"} display={"inline-block"}>
-                    <Box w={"700px"}>
+                  <Link
+                    href={`/audio_details/${audio.id}`}
+                    className="card-body-link"
+                  >
+                    <Box className="card-body-box">
                       <audio
                         controls={!!audio.audio}
                         src={`http://127.0.0.1:5000/audiofile/${audio.user_id}/${audio.audio}`}
-                        style={{ margin: "10px 0 0 200px" }}
+                        className="card-body-audio"
                       ></audio>
                     </Box>
                   </Link>

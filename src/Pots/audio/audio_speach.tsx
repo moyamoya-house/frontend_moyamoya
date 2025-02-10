@@ -14,6 +14,7 @@ import {
 } from "@yamada-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
+import "./css/speach.css";
 
 const SpeechText = ({ username }: { username: string }) => {
   const [isListening, setIsListening] = useState(false);
@@ -100,33 +101,18 @@ const SpeechText = ({ username }: { username: string }) => {
     <>
       <Button
         onClick={onOpen}
-        width={100}
-        height={60}
-        border={"none"}
-        borderRadius={10}
-        variant={"ghost"}
-        cursor={"pointer"}
-        fontSize={20}
-        backgroundColor={"lightskyblue"}
+        className="speach-button"
       >
         音声録音
       </Button>
 
       <Modal
         isOpen={isOpen}
-        background={"white"}
-        border="1px solid #000"
-        borderRadius={10}
+        className="speach-modal"
       >
         <CloseButton
           onClick={onClose}
-          position="absolute"
-          top="10px"
-          left="10px"
-          width={60}
-          height={60}
-          borderRadius={100}
-          border={"none"}
+          className="close-button"
           onMouseOver={(e) => {
             (e.target as HTMLElement).style.color = "darkred";
           }}
@@ -135,18 +121,13 @@ const SpeechText = ({ username }: { username: string }) => {
           }}
         ></CloseButton>
         <ModalOverlay bg="rgba(0,0,0,0.6)"></ModalOverlay>
-        <ModalHeader m={"0 auto"} fontSize={20}>発散させたいこと</ModalHeader>
-        <ModalBody width={1200} maxW="80%" height={400}>
-          <Box mt={30} display={"flex"} m="0 auto">
-            <Box mt={50} ml={100}>
+        <ModalHeader className="modal-header">発散させたいこと</ModalHeader>
+        <ModalBody className="modal-body">
+          <Box className="speachbox">
+            <Box className="box-inner">
               <button
                 onClick={handleListen}
-                style={{
-                  width: "300px",
-                  height: "300px",
-                  border: "1px solid #000",
-                  borderRadius: "100%",
-                }}
+                className="record-button"
               >
                 <FontAwesomeIcon
                   icon={isListening ? faStop : faPlay}
@@ -155,7 +136,7 @@ const SpeechText = ({ username }: { username: string }) => {
               </button>
               {/* <button onClick={resetTranscript}>リセット</button> */}
             </Box>
-            <Box ml={200}>
+            <Box className="result-box">
               <h1>入力結果:</h1>
 
               <p>{audioURL ? transcript : ""}</p>
@@ -173,14 +154,7 @@ const SpeechText = ({ username }: { username: string }) => {
           <button
             onClick={handleSave}
             disabled={!audioChunks.length}
-            style={{
-              width: "90%",
-              backgroundColor: "lightskyblue",
-              border: "none",
-              margin: "10px auto 0 80px",
-              borderRadius: "10px",
-              cursor: "pointer",
-            }}
+            className="save-button"
           >
             {isSaved ? "戻る" : "保存"}
           </button>
