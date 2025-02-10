@@ -3,6 +3,7 @@ import { Box } from "@yamada-ui/react";
 import UserSelect from "./component/user_select.tsx";
 import Chat from "./component/chat.tsx";
 import CreateChatGroup from "./component/group.tsx";
+import "./css/chat_all.css";
 
 interface User {
   id: number;
@@ -101,8 +102,8 @@ const ChatAll = () => {
 
   return (
     <>
-      <Box h="84vh" m={"100px auto 0 auto"}>
-        <Box zIndex={10}>
+      <Box className="chat-container">
+        <Box className="chat-user-select">
           <UserSelect
             users={users}
             onSelectUser={handleUserSelect}
@@ -110,7 +111,7 @@ const ChatAll = () => {
             onSelectGroup={handleGroupSelect}
           />
         </Box>
-        <Box display={"flex"}>
+        <Box className="chat-flex-container">
           <Chat
             receiverId={receiverId}
             userId={userId}
@@ -121,7 +122,7 @@ const ChatAll = () => {
             groupName={groupName} // グループ名を渡す
             groupImage={groupImage}
           />
-          <Box position={"fixed"} w={100} h={"auto"} top={110} right={50}>
+          <Box className="chat-fixed-box">
             <CreateChatGroup users={users} />
           </Box>
         </Box>

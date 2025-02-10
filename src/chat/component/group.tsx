@@ -13,6 +13,7 @@ import {
   Box
 } from "@yamada-ui/react";
 import { useNavigate } from "react-router-dom";
+import "./css/group.css";
 
 interface User {
   id: number;
@@ -84,42 +85,31 @@ const CreateChatGroup: React.FC<CreateChatGroupProps> = ({ users }) => {
     <>
       <Button
         onClick={onOpen}
-        width={150}
-        height={30}
-        border={"none"}
-        borderRadius={10}
-        variant={"ghost"}
-        cursor={"pointer"}
-        fontSize={20}
-        backgroundColor={"lightskyblue"}
-        ml={-140}
-        mt={10}
+        className="group-button"
       >
         グループ作成
       </Button>
 
-      <Modal isOpen={isOpen} onClose={onClose} w={700} h={500} bg={"white"}>
+      <Modal isOpen={isOpen} onClose={onClose} className="group-modal">
         <ModalOverlay bg="rgba(0, 0, 0, 0.6)" />
-        <ModalHeader mt={50}>
+        <ModalHeader className="group-modal-header">
           <Text m={"0 auto"}>グループチャット作成</Text>
         </ModalHeader>
-        <ModalBody h={400}>
+        <ModalBody className="group-modal-body">
           <Input
             type="text"
             value={groupname}
             onChange={(e) => setGroupName(e.target.value)}
             placeholder="グループ名を入力"
-            mb={4}
-            m={"0 auto"}
-            p={5}
-            w={"60%"}
+            className="group-input-text"
           />
           <Input
             type="file"
             onChange={(e) => setGroupImage(e.target.files?.[0] || null)}
+            mt={10}
           />
-          <h3 style={{marginTop: "100px"}}>メンバー選択</h3>
-          <Box w={"100%"} h={200}>
+          <h3 className="member-selection">メンバー選択</h3>
+          <Box className="member-box">
           <VStack align="start">
             {users.map((user) => (
               <label key={user.id}>
@@ -135,25 +125,17 @@ const CreateChatGroup: React.FC<CreateChatGroupProps> = ({ users }) => {
           </VStack>
           </Box>
         </ModalBody>
-        <ModalFooter w={"100%"} m={"0 auto 0 auto"}>
+        <ModalFooter className="modal-footer">
           <Button
             onClick={handleCreateGroup}
             colorScheme="blue"
-            w={"45%"}
-            border={"none"}
-            borderRadius={5}
-            _hover={{background: "blue", color: "white"}}
+            className="create-button"
           >
             グループ作成
           </Button>
           <Button
             onClick={onClose}
-            ml={3}
-            w={"45%"}
-            mr={30}
-            border={"none"}
-            borderRadius={5}
-            _hover={{background: "red", color: "white"}}
+            className="cancel-button"
           >
             キャンセル
           </Button>

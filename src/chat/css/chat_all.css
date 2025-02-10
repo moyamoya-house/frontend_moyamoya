@@ -1,0 +1,40 @@
+.chat-container {
+    height: 84vh;
+    margin: 100px auto 0 auto;
+}
+
+.chat-user-select {
+    z-index: 10;
+}
+
+.chat-flex-container {
+    display: flex;
+}
+
+.chat-fixed-box {
+    position: fixed;
+    width: 100px;
+    height: auto;
+    top: 110px;
+    right: 50px;
+}
+
+@media screen and (max-width: 768px) {
+    .chat-container {
+        height: 70vh;
+    }
+
+
+    
+}
+
+@media screen and (max-width: 480px) {
+    .chat-container {
+        height: 78.5vh;
+    }
+
+    .chat-fixed-box {
+        right: 5px;
+    }
+}
+

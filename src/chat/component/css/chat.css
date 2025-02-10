@@ -37,6 +37,13 @@
   }
   
 
+.user-text {
+    width: 500px;
+    margin-top: 20px;
+    margin-left: 20px;
+    height: 40px;
+}
+
 .message_chat {
     height: 55vh;
     overflow-y: scroll;
@@ -117,12 +124,15 @@
 
 @media screen and (max-width: 480px) {
     .message_chat {
-        height: 35vh;
+        height: 60vh;
     }
     .chat {
         width: 100%;
         margin-left: 0;
         height: 60vh;
     }
-    
+    .user-text {
+        margin: 20px 0 0 -20px;
+        text-align: center;
+    }
 }

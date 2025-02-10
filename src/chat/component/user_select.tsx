@@ -51,7 +51,7 @@ const UserSelect: React.FC<UserSelectProps> = ({
       {isMobile && (
         <Button
           position="fixed"
-          top="10px"
+          top="110px"
           left="10px"
           zIndex="1001"
           bg="gray.700"
