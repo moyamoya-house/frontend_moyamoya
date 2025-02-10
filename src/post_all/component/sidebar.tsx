@@ -1,4 +1,4 @@
-import { Box } from "@yamada-ui/react";
+import { Box, Link } from "@yamada-ui/react";
 import React, { useEffect, useState } from "react";
 import "./css/sidebar.css";
 
@@ -24,7 +24,7 @@ const Sidebar = () => {
         <ul>
           {trend.map((tag) => (
             <li key={tag.tag}>
-              {tag.tag} ({tag.count})
+              <Link href={`/hashtags/${tag.tag}`} textDecoration={"none"} textColor="#555">{tag.tag} ({tag.count})</Link>
             </li>
           ))}
         </ul>

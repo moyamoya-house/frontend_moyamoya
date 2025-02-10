@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Post from "../post/post.tsx";
-import Sidebar from "../post_all/component/sidebar.tsx";
+// import Sidebar from "../post_all/component/sidebar.tsx";
 import LikeButton from "../nice/nice.tsx";
 import Bookmark from "../bookmark/bookmark.tsx";
 import "./css/hash_tag.css";
@@ -236,7 +236,7 @@ const HashTagPost = () => {
                                   ? `http://127.0.0.1:5000/prof_image/${
                                     userData[post.user_id].prof_image
                                     }`
-                                  : "not_profileicon.jpg"
+                                  : "/not_profileicon.jpg"
                                 }
                                 alt="prof image"
                                 />
@@ -314,7 +314,7 @@ const HashTagPost = () => {
                                             followUserData[post.user_id]
                                               .prof_image
                                           }`
-                                        : "not_profileicon.jpg"
+                                        : "/not_profileicon.jpg"
                                     }
                                     alt="prof image"
                                   />
