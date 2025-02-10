@@ -142,7 +142,7 @@ const Chat = ({
   };
 
   return (
-    <Box ml={300} w={800} h="78vh">
+    <Box className="chat">
       {receiverId || groupId ? (
         <Box
           display={"flex"}

@@ -1,3 +1,9 @@
+.chat {
+    width: 800px;
+    margin-left: 300px;
+    height: 78vh;
+}
+
 .chat_input {
     display: block;
     width: 100%;
@@ -100,4 +106,23 @@
     border-width: 10px;
     border-style: solid;
     border-color: transparent rgba(71, 71, 74, 1) transparent transparent;
+}
+
+@media screen and (max-width: 768px) {
+    .message_chat {
+        height: 45vh;
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+    .message_chat {
+        height: 35vh;
+    }
+    .chat {
+        width: 100%;
+        margin-left: 0;
+        height: 60vh;
+    }
+    
 }
