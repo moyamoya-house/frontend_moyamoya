@@ -1,0 +1,117 @@
+.speach-button {
+    width: 100px;
+    height: 60px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    background-color: lightskyblue;
+}
+
+.speach-modal {
+    background: white;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    border: none;
+}
+
+.close-button:hover {
+    color: darkred;
+}
+
+.close-button:mouseout {
+    color: lightcoral;
+}
+
+.modal-overlay {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.modal-body {
+    width: 1200px;
+    max-width: 80%;
+    height: 400px;
+}
+
+.speachbox {
+    margin-top: 30px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.box-inner {
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+.record-button {
+    width: 300px;
+    height: 300px;
+    border: 1px solid #000;
+    border-radius: 100%;
+}
+
+.result-box {
+    margin-left: 200px;
+}
+
+.save-button {
+    width: 90%;
+    background-color: lightskyblue;
+    border: none;
+    margin: 10px auto 0 80px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+
+    .speach-modal {
+        background: white;
+        border: 1px solid #000;
+        border-radius: 10px;
+        width: 350px;
+    }
+    .modal-body {
+        margin: 0 auto;
+        height: 100%;
+    }
+    .speachbox {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .box-inner {
+        margin-top: 50px;
+        margin-left: 0;
+    }
+
+    .record-button {
+        width: 200px;
+        height: 200px;
+    }
+
+    .result-box {
+        margin-left: 0;
+    }
+
+    .save-button {
+        width: 90%;
+        margin: 10px auto 0 auto;
+    }
+    
+}

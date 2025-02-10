@@ -15,3 +15,75 @@
     width: 3px;
     border-radius: 5px;
 }
+
+.audio-card {
+  list-style: none;
+  width: 650px;
+  height: 150px;
+  border: 1px solid #000;
+  margin: 0 auto 0 10px;
+}
+
+.audio-card-header {
+  width: 100%;
+  margin: 5px 0 0 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-header-link {
+  display: flex;
+  text-decoration: none;
+  color: black;
+}
+
+.card-header-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+
+.card-header-username {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.card-header-date {
+  margin-right: 15px;
+}
+
+.card-body-link {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+}
+
+.card-body-box {
+  width: 700px;
+}
+
+.card-body-audio {
+  margin: 10px 0 0 200px;
+}
+
+@media screen and (max-width: 480px) {
+  .audio_all {
+    width: 100%;
+    height: 100%;
+  }
+
+  .audio-card {
+    width: 95%;
+    height: 150px;
+  }
+
+  .card-body-box {
+    width: 100%;
+  }
+
+  .card-body-audio {
+    margin: 10px 0 0 60px;
+  }
+  
+}

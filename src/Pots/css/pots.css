@@ -1,0 +1,103 @@
+.canvas-container {
+    width: 1000px;
+    margin: 130px auto 0 0;
+    display: flex;
+}
+
+.canvas-box {
+    width: 400px;
+    height: 450px;
+}
+
+.audio-box {
+    margin-left: 100px;
+}
+
+.speech-box {
+    position: fixed;
+    width: 100px;
+    height: auto;
+    top: 110px;
+    right: 50px;
+}
+
+.scrolldown-audio {
+    display: none;
+}
+
+
+
+@media screen and (max-width: 480px) {
+    .canvas-container {
+        width: 100%;
+        margin-top: 130px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .canvas-box {
+        width: 100%;
+        height: 600px;
+        margin-bottom: 300px;
+    }
+
+    .audio-box {
+        margin-left: 0;
+    }
+
+    .speech-box {
+        position: fixed;
+        width: 100px;
+        height: auto;
+        top: 110px;
+        right: 50px;
+    }
+    .scrolldown-audio {
+        display: block;
+        background: linear-gradient(to bottom right, #fff05f, pink);
+        position: absolute;
+        bottom: 1%;
+        right: 50%;
+        animation: arrowmove 1s ease-in-out infinite;
+    }
+    
+    .scrolldown-audio span {
+        position: absolute;
+        left: -20px;
+        bottom: 10px;
+        /* テキストの描写 */
+        color: #333;
+        font-size: 0.7rem;
+        letter-spacing: 0.05rem;
+    
+        /* 縦書き設定 */
+        -ms-writing-mode: tb-rl;
+        -webkit-writing-mode: vertical-rl;
+        writing-mode: vertical-rl;
+    }
+    
+    
+    .scrolldown-audio::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: -6px;
+    
+        /* 矢印の形状 */
+        width: 1px;
+        height: 20px;
+        background: #444;
+        transform: skewX(-31deg);
+    }
+    
+    .scrolldown-audio::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        /* 矢印の形状 */
+        width: 1px;
+        height: 50px;
+        background: #000;
+    }
+}
