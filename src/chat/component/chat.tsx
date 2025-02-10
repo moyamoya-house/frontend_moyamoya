@@ -202,8 +202,8 @@ const Chat = ({
           borderBottom="1px solid #000"
           mb={10}
         >
-          <Text w={500} mt={20} ml={20} h={40}>
-            ユーザーまたはグループを選択してください
+          <Text className="user-text">
+            ユーザーまたはグループを選択
           </Text>
         </Box>
       )}
