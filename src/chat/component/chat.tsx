@@ -173,13 +173,10 @@ const Chat = ({
                   : "/not_profileicon.jpg" // プロフィール画像がない場合のデフォルト
               }
               alt="User Profile"
-              w={50}
-              h={50}
-              borderRadius={100}
-              mt={10}
+              className="user-prof"
             />
           )}
-          <Text w={200} mt={20} ml={20} h={40}>
+          <Text className="user-name">
             {receiverName || groupName}
           </Text>
 
@@ -223,7 +220,7 @@ const Chat = ({
                 ) : (
                   <Image
                     src={`http://127.0.0.1:5000/chat_image/${msg.image}`}
-                    w={300}
+                    className="chatimage"
                   />
                 )}
                 <Image
@@ -261,7 +258,7 @@ const Chat = ({
                 ) : (
                   <Image
                     src={`http://127.0.0.1:5000/chat_image/${msg.image}`}
-                    w={300}
+                    className="chatimage"
                   />
                 )}
                 <em style={{ fontSize: "12px", marginTop: "15px" }}>
