@@ -10,7 +10,6 @@ interface ProfEditProps {
 
 const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
     const [username, setUsername] = useState(useData.name);
-    const [password, setPassword] = useState(useData.password);
     const [email, setEmail] = useState(useData.email);
     const [comment, setComment] = useState(useData.prof_comment);
     const [secondImage, setSecondImage] = useState<string | null>(null);
@@ -21,7 +20,7 @@ const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
     useEffect(() => {
         const fetchImages = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:5000/users/${useData.id}/images`);
+                const response = await fetch(`http://127.0.0.1:5000/users/${useData.id}`);
                 if (response.ok) {
                     const data = await response.json();
                     // プロフィール画像と背景画像がDBにあれば設定
@@ -43,7 +42,6 @@ const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
 
         const formData = new FormData();
         formData.append("name", username);
-        formData.append("password", password);
         formData.append("comment", comment);
         formData.append("email", email);
 
@@ -173,10 +171,6 @@ const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
                     <div className="comment">
                         <label>Comment:</label>
                         <textarea value={comment} onChange={(e) => setComment(e.target.value)} />
-                    </div>
-                    <div className="password">
-                        <label>Password:</label>
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </div>
                 </div>
                 <button type="submit" className="btn">ユーザー情報の更新</button>

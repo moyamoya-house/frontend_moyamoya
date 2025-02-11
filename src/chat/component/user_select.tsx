@@ -54,9 +54,9 @@ const UserSelect: React.FC<UserSelectProps> = ({
           top="110px"
           left="10px"
           zIndex="1001"
-          bg="gray.700"
-          color="white"
+          bg="none"
           borderRadius="full"
+          border={"none"}
           onClick={() => setIsOpen(true)}
         >
           <Menu size={24} />
