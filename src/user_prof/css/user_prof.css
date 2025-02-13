@@ -70,28 +70,23 @@
 }
 
 @media screen and (max-width: 600px) {
-    .mypage-container {
+    .user-profile-container {
         width: 100%;
         margin-top: 50px;
     }
 
-    .mypage-header {
+    .user-profile-image-container {
         height: 200px;
     }
 
-    .mypage-profile {
+    .user-profile-avatar-container {
         flex-direction: column;
     }
 
-    .mypage-profile-image-container {
+    .user-profile-avatar {
         margin-top: -50px;
         margin-left: 0;
     }
-
-    .mypage-edit-link {
-        margin: 0 auto;
-    }
-    
 }
 
 @media screen and (max-width: 480px) {
