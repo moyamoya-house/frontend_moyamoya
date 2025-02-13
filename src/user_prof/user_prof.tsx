@@ -6,6 +6,7 @@ import UserFollow from "../follow/user_follow.tsx";
 import UserMoyamoya from "./component/user_post.tsx";
 import UserBookmark from "./component/user_bookmark.tsx";
 import { User } from "../prof_edit/ProfEditPage";
+import "./css/user_prof.css";
 
 const UserProf = () => {
     const { id } = useParams();
@@ -44,40 +45,28 @@ const UserProf = () => {
     return (
         <>
         {userData ? (
-            <Box w={1500} maxWidth='80%' m='0 auto' mt={100} overflow={"hidden"}>
-                <Box h={300} border='1px solid #000' overflow={"hidden"}>
+            <Box className="user-profile-container">
+                <Box className="user-profile-image-container">
                     {userData.second_image ? (
                         <Image src={`http://127.0.0.1:5000/second_image/${userData.second_image}`}></Image>
                     ) : (
-                        <Box h={300} bg={"aquamarine"}></Box>
+                        <Box className="user-profile-placeholder"></Box>
                     )}
                 </Box>
-                <Box position='relative' display={"flex"}>
+                <Box className="user-profile-avatar-container">
                     <Box
-                    w={160}
-                    h={160}
-                    borderRadius={100}
-                    mt={-90}
-                    ml={100}
-                    bg='white'
-                    display={"flex"}
-                    justifyContent='center'
-                    alignItems={"center"}
+                    className="user-profile-avatar"
                     >
                         { userData.prof_image ? (
                             <Image
-                            w={150}
-                            h={150}
-                            borderRadius={100}
+                            className="user-img"
                             src={`http://127.0.0.1:5000/prof_image/${userData.prof_image}`}
                             alt="prof_image"
                             >
                             </Image>
                         ) : (
                             <Image
-                            w={150}
-                            h={150}
-                            borderRadius={100}
+                            className="user-img"
                             src="/not_profileicon.jpg"
                             alt="prof_image"
                             ></Image>
@@ -85,25 +74,19 @@ const UserProf = () => {
 
                     </Box>
                 </Box>
-                <h1>{userData.name}</h1>
+                <h1 className="user-profile-name">{userData.name}</h1>
                 <UserFollow userId={userData.id} />
-                <Text>{userData.prof_comment}</Text>
+                <Text className="user-profile-comment">{userData.prof_comment}</Text>
                 <Followbutton userId={userData.id} />
 
                 <Tabs>
                     <Tab
-                        width={300}
-                        maxW="100%"
-                        m="0 auto 0 auto"
-                        border={"none"}
+                    className="user-profile-tab"
                     >
                         投稿一覧
                     </Tab>
                     <Tab
-                        width={300}
-                        maxW="100%"
-                        m="0 auto 0 auto"
-                        border={"none"}
+                    className="user-profile-tab"
                     >
                         ブックマーク一覧
                     </Tab>
