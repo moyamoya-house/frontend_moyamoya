@@ -108,6 +108,7 @@
 
     .mypage-profile {
         flex-direction: column;
+        margin: 90px 0 0 10px;
     }
 
     .mypage-profile-image-container {
