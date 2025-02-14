@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Image, Text, Link, Center } from "@yamada-ui/react";
+import { Box, Image, Text, Link, Card, CardBody, CardFooter, CardHeader } from "@yamada-ui/react";
 import LikeButton from "../../nice/nice.tsx";
 import Bookmark from "../../bookmark/bookmark.tsx";
 import "./css/user_post.css";
@@ -67,68 +67,50 @@ const UserMoyamoya = ({ userId }) => {
   }
 
   return (
-    <Box w={1500} maxWidth="80%" m={"10px 0 30px 50px"}>
-      {moyamoyaData.length > 0 ? (
-        <ul className="post">
-          {moyamoyaData.map((post) => (
-            <li className="postlist" key={post.id}>
-              <Box>
-                <Box m="20px 0 0 20px" display={"flex"}>
-                  <Link
-                    href={`/user_prof/${post.user_id}`}
-                    display={"flex"}
-                    textDecoration={"none"}
-                    color={"black"}
-                  >
-                    {userData.prof_image ? (
+    <Box className="user_post_all">
+      <Box>
+        <Box className="user_post">
+          {moyamoyaData.length > 0 ? (
+            moyamoyaData.map((post) => (
+              <Card className="user_postlist" key={post.id}>
+                <Box>
+                  <CardHeader w="100%" m="5px 0 0 10px" display={"flex"} justifyContent={"space-between"}>
+                    <Link href={`/user_prof/${post.user_id}`} display={"flex"} textDecoration={"none"} color={"black"}>
                       <Image
                         w={50}
                         h={50}
                         borderRadius={100}
-                        src={`http://127.0.0.1:5000/prof_image/${userData.prof_image}`}
-                        alt="prof_image"
-                      ></Image>
-                    ) : (
-                      <Image
-                        w={50}
-                        h={50}
-                        borderRadius={100}
-                        src="/not_profileicon.jpg"
-                        alt="prof_image"
-                      ></Image>
-                    )}
-                    <Text mt={10} marginLeft={10}>
-                      {userData.name}
-                    </Text>
-                  </Link>
+                        src={
+                          userData.prof_image
+                            ? `http://127.0.0.1:5000/prof_image/${userData.prof_image}`
+                            : "/not_profileicon.jpg"
+                        }
+                        alt="プロフィール画像"
+                      />
+                      <Text mt={10} marginLeft={10}>{userData.name}</Text>
+                    </Link>
+                    <Text className="user_post_date">{post.created_at.split("-").join("/")}</Text>
+                  </CardHeader>
+                  <CardBody>
+                    <Link href={`/post_detail/${post.id}`} textDecoration="none" color={"black"} display={"inline-block"} mt={30}>
+                      <Text>{post.post}</Text>
+                    </Link>
+                  </CardBody>
+                  <CardFooter>
+                    <Box display={"flex"} justifyContent={"flex-end"} width={"100%"}>
+                      <LikeButton postId={post.id} />
+                      <Text ml={2}>{post.count}</Text>
+                      <Bookmark postId={post.id} />
+                    </Box>
+                  </CardFooter>
                 </Box>
-                <Text mt={-50} ml={620}>
-                  {post.created_at}
-                </Text>
-                <Link
-                  href={`/post_detail/${post.id}`}
-                  textDecoration="none"
-                  color={"black"}
-                  display={"inline-block"}
-                  mt={30}
-                  ml={350}
-                >
-                  <Center>
-                    <Text>{post.post}</Text>
-                  </Center>
-                </Link>
-                <Box display={"flex"} ml={700}>
-                  <LikeButton postId={post.id}></LikeButton>
-                  <Text>{post.count}</Text>
-                  <Bookmark postId={post.id}></Bookmark>
-                </Box>
-              </Box>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <Box></Box>
-      )}
+              </Card>
+            ))
+          ) : (
+            <Text>投稿がありません。</Text>
+          )}
+        </Box>
+      </Box>
     </Box>
   );
 };
