@@ -45,3 +45,211 @@
     border-radius: 10px;
     background-color: lightskyblue;
 }
+#secondimageInput + label > div {
+    width: 100%;
+    height: 180px;
+    border: 2px dashed #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+#secondimageInput:checked + label > div::before {
+    content: "";
+}
+
+#imageInput + label > div {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #000;
+    border-radius: 100%;
+    display: flex;
+    margin: 60px 0 0 100px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+#imageInput:checked + label > div::before {
+    content: "";
+}
+
+@media screen and (max-width: 768px) {
+    .proform {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .editbox {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .label {
+        width: 100%;
+        height: 100px;
+        margin: 0 auto;
+    }
+
+    .username {
+        margin-bottom: 10px;
+        font-size: large;
+    }
+
+    .comment {
+        margin-bottom: 10px;
+        font-size: large;
+    }
+
+    .password {
+        margin-bottom: 20px;
+        font-size: large;
+    }
+
+    .email {
+        margin-bottom: 10px;
+        font-size: large;
+    }
+
+    .btn {
+        width: 100%;
+        height: 40px;
+        margin: 0 0 30px 0;
+        border: none;
+        border-radius: 10px;
+        background-color: lightskyblue;
+    }
+
+    #secondimageInput + label > div {
+        width: 100%;
+        height: 180px;
+        border: 2px dashed #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background-size: cover;
+        background-position: center;
+    }
+
+    #secondimageInput:checked + label > div::before {
+        content: "";
+    }
+
+    #imageInput + label > div {
+        width: 150px;
+        height: 150px;
+        border: 2px solid #000;
+        border-radius: 100%;
+        display: flex;
+        margin: 60px 0 0 100px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background-size: cover;
+        background-position: center;
+    }
+
+    #imageInput:checked + label > div::before {
+        content: "";
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+    .proform {
+        max-width: 400px;
+        height: 73vh;
+        margin: 0 auto;
+    }
+
+    .editbox {
+        width: 100%;
+        margin: 100px auto 0 auto;
+    }
+
+    .label {
+        width: 100%;
+        height: 100px;
+        margin: 0 auto;
+    }
+
+    .username {
+        width: 100%;
+        margin: 0 auto 10px 50px;
+        font-size: medium;
+    }
+
+    .comment {
+        width: 100%;
+        margin: 0 auto 10px 50px;
+        font-size: medium;
+    }
+
+    .commentinput {
+        margin-left: 75px;
+    }
+
+    .email {
+        width: 100%;
+        margin: 0 auto 10px 50px;
+        font-size: medium;
+    }
+
+    .emailinput {
+        margin-left: 75px;
+    }
+
+    .btn {
+        width: 100%;
+        height: 40px;
+        margin: 0 0 30px 0;
+        border: none;
+        border-radius: 10px;
+        background-color: lightskyblue;
+    }
+
+    #secondimageInput + label > div {
+        width: 100%;
+        height: 180px;
+        border: 2px dashed #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background-size: cover;
+        background-position: center;
+    }
+
+    #secondimageInput:checked + label > div::before {
+        content: "";
+    }
+
+    #imageInput + label > div {
+        width: 150px;
+        height: 150px;
+        border: 2px solid #000;
+        border-radius: 100%;
+        display: flex;
+        margin: 60px 0 0 100px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background-size: cover;
+        background-position: center;
+    }
+
+    #imageInput:checked + label > div::before {
+        content: "";
+    }
+    
+}

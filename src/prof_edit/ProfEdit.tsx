@@ -115,15 +115,6 @@ const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
                     <label htmlFor="secondimageInput">
                         <div
                             style={{
-                                width: "100%",
-                                height: "180px",
-                                border: "2px dashed #000",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                cursor: "pointer",
-                                backgroundSize: "cover",
-                                backgroundPosition: "center",
                                 backgroundImage: secondImage ? `url(${secondImage})` : "none",
                             }}
                         >
@@ -141,17 +132,6 @@ const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
                     <label htmlFor="imageInput" className="label">
                         <div
                             style={{
-                                width: "150px",
-                                height: "150px",
-                                border: "2px solid #000",
-                                borderRadius: "100%",
-                                display: "flex",
-                                margin: "60px 0 0 100px",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                cursor: "pointer",
-                                backgroundSize: "cover",
-                                backgroundPosition: "center",
                                 backgroundImage: preview ? `url(${preview})` : "none",
                             }}
                         >
@@ -166,11 +146,11 @@ const ProfEdit: React.FC<ProfEditProps> = ({ useData }) => {
                     </Box>
                     <div className="email">
                         <label>Email:</label>
-                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="emailinput" />
                     </div>
                     <div className="comment">
                         <label>Comment:</label>
-                        <textarea value={comment} onChange={(e) => setComment(e.target.value)} />
+                        <textarea value={comment} onChange={(e) => setComment(e.target.value)} className="commentinput" />
                     </div>
                 </div>
                 <button type="submit" className="btn">ユーザー情報の更新</button>
