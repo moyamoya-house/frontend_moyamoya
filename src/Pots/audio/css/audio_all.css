@@ -1,27 +1,36 @@
 .audio_all {
-  width: 750px;
+  width: 700px;
   margin-bottom: 10px;
   height: 77vh;
   overflow-y: scroll;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: inset;
 }
 
 .audio_all::-webkit-scrollbar {
-    width: 5px;
-    background-color: #23efcd;
-    border-radius: 5px;
+  width: 5px;
+  background-color: #23efcd;
+  border-radius: 5px;
 }
 .audio_all::-webkit-scrollbar-thumb {
-    background: #d8f5fa;
-    width: 3px;
-    border-radius: 5px;
+  background: #d8f5fa;
+  width: 3px;
+  border-radius: 5px;
 }
 
 .audio-card {
   list-style: none;
-  width: 650px;
+  width: 600px;
   height: 150px;
-  border: 1px solid #000;
-  margin: 0 auto 0 10px;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .audio-card-header {
@@ -60,7 +69,7 @@
 }
 
 .card-body-box {
-  width: 700px;
+  width: 650px;
 }
 
 .card-body-audio {
@@ -70,11 +79,15 @@
 @media screen and (max-width: 480px) {
   .audio_all {
     width: 100%;
+    max-width: 400px;
+    padding: 5px;
     height: 67vh;
+    margin: 0 auto;
   }
 
   .audio-card {
-    width: 95%;
+    width: 100%;
+    max-width: 350px;
     height: 150px;
   }
 
@@ -83,7 +96,17 @@
   }
 
   .card-body-audio {
-    margin: 10px 0 0 60px;
+    margin: 20px auto 0 30px;
   }
-  
+
+  .audio_all::-webkit-scrollbar {
+    width: 5px;
+    background-color: #23efcd;
+    border-radius: 5px;
+  }
+  .audio_all::-webkit-scrollbar-thumb {
+    background: #d8f5fa;
+    width: 3px;
+    border-radius: 5px;
+  }
 }

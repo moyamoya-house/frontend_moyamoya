@@ -180,7 +180,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media screen and (max-width: 480px) {
   .post {
     padding: 10px;
     max-width: 300px;
@@ -201,7 +201,6 @@
   .post_all {
     width: 100%;
     max-width: 400px;
-    height: auto;
     padding: 5px;
     margin: 20px -10px 20px auto;
   }
@@ -218,6 +217,17 @@
   .postlist .post-buttons button {
     padding: 6px 10px;
     font-size: 12px;
+  }
+
+  /* スクロールバーのカスタマイズ */
+  .post_all::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f0f0f0;
+  }
+
+  .post_all::-webkit-scrollbar-thumb {
+    background: #4a90e2;
+    border-radius: 4px;
   }
 }
 
