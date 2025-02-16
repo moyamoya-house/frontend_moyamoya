@@ -63,7 +63,7 @@ const TopHeader = () => {
       {userData ? (
         <Box className="header">
           <Link href="/top">
-            <Image src="/PotCom_logo_typography.png" alt="pot" h={100}></Image>
+            <Image src="/PotCom_logo_transparent.png" alt="pot" h={100}></Image>
           </Link>
           <Box display="flex" mt={25}>
             <Link href="/notification" textDecoration={"none"} color={"black"}>
