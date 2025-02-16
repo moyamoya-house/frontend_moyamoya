@@ -29,9 +29,13 @@ const AudioAll = () => {
   // potsデータ取得
   useEffect(() => {
     const fetchAudioData = async () => {
+      const token = localStorage.getItem("token");
       try {
         const response = await fetch("http://127.0.0.1:5000/pots", {
           method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
         });
         if (response.ok) {
           const data = await response.json();
