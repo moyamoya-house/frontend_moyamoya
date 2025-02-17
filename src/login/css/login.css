@@ -93,7 +93,8 @@
   .container {
     width: 90%;
     max-width: 350px;
-    margin: 200px auto 83px auto;
+    padding: 10px;
+    margin: 200px 0 83px 0;
   }
 
   .input {
