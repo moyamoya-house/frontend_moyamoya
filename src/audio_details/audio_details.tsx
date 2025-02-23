@@ -83,43 +83,45 @@ const AudioDetails = () => {
   }, [audio]);
 
   console.log(userId);
-  
 
   if (loading) {
-    return <p style={{marginTop: "200px"}}>loading</p>;
+    return <p style={{ marginTop: "200px" }}>loading</p>;
   }
 
   return (
     <>
-<Box className="audio-details">
-    <Card>
-        <CardHeader className="card-header">
+      <Box className="audio-details">
+        <Card>
+          <CardHeader className="card-header">
             <Link className="link">
-                <Image
-                    src={userId?.prof_image ? `http://127.0.0.1:5000/prof_image/${userId?.prof_image}` : "/not_profileicon.jpg"}
-                    alt="prof_image"
-                    className="prof_image"
-                />
-                <Text className="user-name">{userId?.name}</Text>
+              <Image
+                src={
+                  userId?.prof_image
+                    ? `http://127.0.0.1:5000/prof_image/${userId?.prof_image}`
+                    : "/not_profileicon.jpg"
+                }
+                alt="prof_image"
+                className="prof_image"
+              />
+              <Text className="user-name">{userId?.name}</Text>
             </Link>
-            <Text className="created-at">{audio?.created_at}</Text>
-        </CardHeader>
-        <CardBody className="card-body">
+            <Text className="created-at">{audio?.created_at.split("-").join("/")}</Text>
+          </CardHeader>
+          <CardBody className="card-body">
             <Box>
-                <audio
-                    controls
-                    src={`http://127.0.0.1:5000/audiofile/${audio?.pots_user_id}/${audio?.audio}`}
-                    className="audio"
-                ></audio>
-                <Text className="classification">{audio?.classification}</Text>
-                <Text className="stress-level">{audio?.stress_level}</Text>
-                <Text className="emotion-score">{audio?.emotion_score}</Text>
-                <Text className="solution">{audio?.solution}</Text>
+              <audio
+                controls
+                src={`http://127.0.0.1:5000/audiofile/${audio?.pots_user_id}/${audio?.audio}`}
+                className="audio"
+              ></audio>
+              <Text className="classification">{audio?.classification}</Text>
+              <Text className="stress-level">{audio?.stress_level}</Text>
+              <Text className="emotion-score">{audio?.emotion_score}</Text>
+              <Text className="solution">{audio?.solution}</Text>
             </Box>
-        </CardBody>
-    </Card>
-</Box>
-
+          </CardBody>
+        </Card>
+      </Box>
     </>
   );
 };

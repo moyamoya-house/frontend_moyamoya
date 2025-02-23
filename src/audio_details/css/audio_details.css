@@ -62,3 +62,39 @@
     color: #666;
     margin-bottom: 10px;
 }
+
+@media screen and (max-width: 600px) {
+    .audio-details {
+        margin: 80px 10px 20px 10px;
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+    .audio-details {
+        width: 100%;
+        max-width: 400px;
+        padding: 10px;
+        margin: 200px 0 66px 0;
+    }
+    .card-header .link .prof_image {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .card-header .link .user-name {
+        font-size: 16px;
+    }
+    
+    .card-header .created-at {
+        font-size: 12px;
+    }
+    
+    .card-body .classification,
+    .card-body .stress-level,
+    .card-body .emotion-score,
+    .card-body .solution {
+        font-size: 14px;
+    }
+    
+}

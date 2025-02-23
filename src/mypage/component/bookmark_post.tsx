@@ -41,7 +41,7 @@ const BookmarkPost = () => {
         const users = await Promise.all(userDataPromises);
         const usermap: Record<number, User> = {};
         users.forEach((user) => {
-          usermap[user.user_id] = user;
+          usermap[user.id] = user;
         });
         setUserData(usermap);
       } catch (error) {
@@ -51,7 +51,7 @@ const BookmarkPost = () => {
     if (bookmarkData.length > 0) {
       fetchBookmarkUser();
     }
-  }, [bookmarkData]);
+  }, [bookmarkData,userData]);
 
   return (
     <Box className="user_post_all">
