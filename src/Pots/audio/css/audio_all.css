@@ -82,7 +82,7 @@
     max-width: 400px;
     padding: 5px;
     height: 67vh;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
   }
 
   .audio-card {

@@ -63,7 +63,7 @@ const TopHeader = () => {
           <Link href="/top">
             <Image src="/PotCom_logo_transparent.png" alt="pot" h={100}></Image>
           </Link>
-          <Box display="flex" mt={25}>
+          <Box display="flex" mt={25} ml={100}>
             <Link
               href="/notification"
               textDecoration="none"
