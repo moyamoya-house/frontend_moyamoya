@@ -186,9 +186,8 @@ const Chat = ({
             icon={<i className="fas fa-video"></i>}
             size="md"
             colorScheme="teal"
-            ml="auto"
-            mr={4}
             onClick={startVideoCall}
+            className="video-call"
           />
         </Box>
       ) : (

@@ -33,12 +33,12 @@ const UserSelect: React.FC<UserSelectProps> = ({
 }) => {
   const [showGroups, setShowGroups] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 480);
 
   // ウィンドウ幅の監視
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 480);
     };
 
     window.addEventListener("resize", handleResize);
@@ -90,7 +90,7 @@ const UserSelect: React.FC<UserSelectProps> = ({
         height="100vh"
         bg="lightsteelblue"
         overflowY="scroll"
-        zIndex="1002"
+        zIndex={1001}
         display="flex"
         flexDirection="column"
         p={4}

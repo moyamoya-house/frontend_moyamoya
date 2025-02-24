@@ -138,6 +138,7 @@ const TopHeader = () => {
             border="1px solid #000"
             bg="#fff"
             size={"xs"}
+            zIndex={9999}
             backgroundColor={"white"}
           >
             <DrawerOverlay bg="rgba(0, 0, 0, 0.6)" />

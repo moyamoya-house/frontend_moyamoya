@@ -27,3 +27,17 @@
     z-index: 10;
     background: #1a1a40;
 }
+
+@media screen and (max-width: 600px) {
+    .header {
+        height: 150px;
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+    .header {
+        height: 100px;
+    }
+    
+}

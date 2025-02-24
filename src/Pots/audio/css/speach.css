@@ -73,7 +73,7 @@
     width: 90%;
     background-color: lightskyblue;
     border: none;
-    margin: 10px auto 0 80px;
+    margin: 10px auto 10px 80px;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -111,7 +111,7 @@
 
     .save-button {
         width: 90%;
-        margin: 10px auto 0 auto;
+        margin: 10px auto 10px auto;
     }
     
 }

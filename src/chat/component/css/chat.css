@@ -132,6 +132,14 @@
     height: 40px;
 }
 
+.video-call {
+    margin-top: 20px;
+    margin-left: 20px;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
   .message_chat {
     height: 45vh;

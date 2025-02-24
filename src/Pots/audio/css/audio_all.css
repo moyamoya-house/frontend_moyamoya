@@ -73,7 +73,7 @@
 }
 
 .card-body-audio {
-  margin: 10px 0 0 200px;
+  margin: 10px auto 0 150px;
 }
 
 @media screen and (max-width: 480px) {
