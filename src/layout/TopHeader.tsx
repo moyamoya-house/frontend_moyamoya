@@ -15,6 +15,7 @@ import {
 } from "@yamada-ui/react";
 import "./css/layout.css";
 import React, { useEffect, useState } from "react";
+import LogoutButton from "./component/logoutBtn.tsx";
 
 interface User {
   user_id: number;
@@ -177,6 +178,9 @@ const TopHeader = () => {
                   <Link href="/chat" color={"black"} textDecoration={"none"}>
                     メッセージ
                   </Link>
+                </ListItem>
+                <ListItem>
+                  <LogoutButton />
                 </ListItem>
               </List>
             </DrawerBody>
