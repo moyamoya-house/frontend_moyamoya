@@ -22,6 +22,8 @@ import {
   DrawerCloseButton,
   DrawerHeader,
 } from "@yamada-ui/react";
+import { motion } from "framer-motion";
+import { Menu } from "lucide-react";
 import Post from "../post/post.tsx";
 import Sidebar from "./component/sidebar.tsx";
 import LikeButton from "../nice/nice.tsx";
@@ -168,10 +170,24 @@ const PostAll = () => {
       <h1 className="postalltitle">モヤモヤ投稿一覧</h1>
       {/* トグルボタン */}
       <Box position="fixed" top="110px" left="10px" zIndex="10">
-        <Button onClick={toggleSidebar} colorScheme="blue" size="lg">
-          →
+      <motion.div
+        whileHover={{ scale: 1.1, rotate: 5 }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ type: "spring", stiffness: 300 }}
+      >
+        <Button
+          onClick={toggleSidebar}
+          bg="blue.500"
+          color="white"
+          _hover={{ bg: "blue.600" }}
+          p="3"
+          rounded="full"
+          shadow="lg"
+        >
+          <Menu size={24} />
         </Button>
-      </Box>
+      </motion.div>
+    </Box>
 
       {/* ドロワー (サイドバー) */}
       <Drawer isOpen={isOpen} onClose={toggleSidebar} placement="left" w={300} bg={"#fff"} size={"xs"} backgroundColor={"white"}>
