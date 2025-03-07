@@ -1,0 +1,73 @@
+.group-members-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.group-members-button:hover {
+    background-color: #45a049;
+}
+
+.group-members-modal {
+    width: 300px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-header {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.user-link {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+}
+
+.modal-body  ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.modal-body li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    list-style: none;
+}
+
+.modal-body img {
+    margin-right: 15px;
+    border: 2px solid #ddd;
+    padding: 5px;
+    background-color: #fff;
+    margin-top: 15px;
+}
+
+.user_name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.modal-body li:hover img {
+    border-color: #4CAF50;
+}
+
+.modal-body li:hover {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 10px;
+}
