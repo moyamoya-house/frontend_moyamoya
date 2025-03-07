@@ -143,7 +143,7 @@ const UserSelect: React.FC<UserSelectProps> = ({
                     }
                     alt="グループ画像"
                   />
-                  <Text ml={30}>{grp.group_name}</Text>
+                  <Text ml={10}>{grp.group_name}</Text>
                 </button>
               ))
             ) : (
@@ -168,7 +168,7 @@ const UserSelect: React.FC<UserSelectProps> = ({
                   }
                   alt="プロフィール画像"
                 />
-                <Text ml={30}>{usr.user_name}</Text>
+                <Text ml={10}>{usr.user_name}</Text>
               </button>
             ))
           ) : (

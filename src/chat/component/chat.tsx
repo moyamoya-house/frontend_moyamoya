@@ -11,6 +11,7 @@ import {
 import io from "socket.io-client";
 import "./css/chat.css";
 import VideoCall from "./call_video.tsx";
+import GroupMembers from "./group_user.tsx";
 
 interface Message {
   message: string;
@@ -176,9 +177,7 @@ const Chat = ({
               className="user-prof"
             />
           )}
-          <Text className="user-name">
-            {receiverName || groupName}
-          </Text>
+          <Text className="user-name">{receiverName || groupName}</Text>
 
           {/* ビデオ通話アイコン */}
           <IconButton
@@ -189,6 +188,13 @@ const Chat = ({
             onClick={startVideoCall}
             className="video-call"
           />
+
+          {/* チャットメンバー一覧 */}
+          {groupId && (
+            <Box m={"10px auto 0 auto"}>
+              <GroupMembers groupId={groupId} />
+            </Box>
+          )}
         </Box>
       ) : (
         <Box
@@ -198,9 +204,7 @@ const Chat = ({
           borderBottom="1px solid #000"
           mb={10}
         >
-          <Text className="user-text">
-            ユーザーまたはグループを選択
-          </Text>
+          <Text className="user-text">ユーザーまたはグループを選択</Text>
         </Box>
       )}
 
